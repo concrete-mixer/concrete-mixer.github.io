@@ -1,0 +1,12 @@
+# Site settings
+title: Concrète Mixer - messing around with audio code
+email: concretemixer.audio@gmail.com
+description: > # this means to ignore newlines until "baseurl:"
+  This is a blog about audio coding that rambles through the work I’ve done over the past couple of years.
+baseurl: "" # the subpath of your site, e.g. /blog/
+url: "http://yourdomain.com" # the base hostname & protocol for your site
+# twitter_username: jekyllrb
+github_username:  concrete-mixer
+
+# Build settings
+markdown: kramdown
