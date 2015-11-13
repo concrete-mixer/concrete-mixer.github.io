@@ -2,6 +2,7 @@
 title: About Concrète Mixer
 layout: post
 category: Concrète Mixer
+precis: In this post I brief description of the Concrète Mixer app.
 ---
 
 So this blog is mainly focused on Concrète Mixer, a sound app I've built to be run on a Raspberry Pi. In this post I brief description of the app as a starter. Later posts will get in to more detailed explorations.
