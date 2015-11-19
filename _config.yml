@@ -6,14 +6,15 @@ url: "https://concrete-mixer.github.io" # the base hostname & protocol for your 
 theme:
   # Meta
   title: Concrète Mixer - messing around with audio code
-  avatar: avatar.png
+  avatar: highgate.jpg
   gravatar: # Email MD5 hash
   description: "This is a blog about audio coding that rambles through the work I’ve done over the past couple of years." # used by search engines
 
   # Header and footer text
   header_text: >
      <p>This is a blog about audio coding that rambles through the work I’ve done over the past couple of years.</a>
-  header_text_feature_image: header.jpg
+  header_text_feature_image: img/concrete-banner.jpg
+  post_header_image: img/concrete-feature.jpg
   footer_text: >
    Powered by <a href="http://jekyllrb.com">Jekyll</a> with <a href="https://rohanchandra.github.io/project/type/">Type Theme</a>
 

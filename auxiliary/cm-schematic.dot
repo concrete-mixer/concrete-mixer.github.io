@@ -1,0 +1,94 @@
+digraph  {
+    penwidth=2.0;
+    labeljust=left;
+    node [fontname="Helvetica",penwidth="2.0"];
+    edge [penwidth="2.0"];
+    fontname=helvetica;
+    fontsize=16;
+
+    subgraph cluster_0 {
+        node [style=filled,fillcolor=darkorange,color=darkorange,fontcolor=white];
+        graph [color=darkorange];
+        label="Perl";
+        fontcolor=darkorange;
+        init [label="init.pl"];
+        concretepm [label="Concrete.pm"];
+        node [style=filled,fillcolor=brown,color=brown,fontcolor=white];
+        osc [label="OSC server"];
+    }
+
+    subgraph cluster_1 {
+        node [style=filled,fillcolor=darkorchid,color=darkorchid,fontcolor=white];
+        graph [color=darkorchid];
+        label="WAV file directories";
+        fontcolor=darkorchid;
+        main [label="Main"];
+        alt [label="Alt"];
+    }
+    subgraph cluster_2 {
+        node [style=filled,fillcolor=forestgreen,color=forestgreen,fontcolor=white];
+        graph [color=forestgreen];
+        label="ChucK";
+        fontcolor=forestgreen;
+
+        subgraph cluster_3 {
+            label="Concrete mode";
+            playsound [label="playSound.ck"];
+            playfx [label="playFx.ck"];
+            concreteck [label="Concrete.ck"];
+        }
+
+        subgraph cluster_4 {
+            label="Core Concrete Mixer";
+            fontcolor=navy;
+            graph [color=navy];
+            node [fillcolor=navy,color=navy];
+            controlck [label="Control.ck"];
+            fxlibs [label="FX libs"];
+            helperlibs [label="Helper libs"];
+        }
+    }
+
+    node [style=filled,fillcolor=hotpink,color=hotpink,fontcolor=white];
+    shell [label="Linux shell $",color=hotpink];
+    edge [color=hotpink];
+    shell -> init;
+
+    edge [color=darkorange];
+    init -> concretepm;
+    concretepm -> osc;
+    concretepm -> concreteck;
+
+    edge [color=darkorchid];
+    main -> concretepm;
+    alt -> concretepm;
+    concretepm -> playsound;
+
+    edge [color=brown];
+    osc -> playfx;
+    osc -> playsound;
+    playsound -> controlck;
+    playfx -> controlck;
+    controlck -> osc;
+
+    edge [color=forestgreen];
+    concreteck -> controlck;
+    concreteck -> playfx;
+    concreteck -> playsound;
+    concreteck -> fxlibs;
+    concreteck -> helperlibs;
+
+    edge [color=navy];
+    fxlibs -> helperlibs;
+    controlck -> helperlibs;
+    playsound -> helperlibs;
+    playfx -> fxlibs;
+    playfx -> helperlibs;
+
+    node [style=filled,fillcolor=steelblue,color=steelblue,fontcolor=white];
+    edge [color=steelblue];
+    playsound -> controlck;
+    playsound -> playfx;
+    fxlibs -> controlck;
+    controlck -> DAC;
+}

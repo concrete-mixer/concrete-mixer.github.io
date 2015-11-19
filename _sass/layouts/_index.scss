@@ -5,9 +5,10 @@
   width: 100%;
   background-color:$header-desc-background-color;
   background-size: cover;
-  font-size: 1.2em;
+  font-size: 1.3em;
   text-align: center;
   color: $header-desc-text-color;
+  font-weight: bold;
 }
 .call-out p:last-child {
   margin-bottom: 0;
