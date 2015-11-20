@@ -1,22 +1,22 @@
 digraph  {
     penwidth=2.0;
     labeljust=left;
-    node [fontname="Helvetica",penwidth="2.0"];
+    node [fontname="Helvetica",penwidth="2.0",fontcolor=white,style=filled];
     edge [penwidth="2.0"];
     fontname=helvetica;
     fontsize=16;
 
     subgraph cluster_0 {
-        node [style=filled,fillcolor=chocolate,color=chocolate,fontcolor=white];
+        node [fillcolor=chocolate,color=chocolate];
         graph [color=chocolate];
         label="Perl";
         fontcolor=chocolate;
         concretepm [label="Concrete.pm\nOSC server"];
-        node [style=filled,fillcolor=brown,color=brown,fontcolor=white];
+        node [fillcolor=brown,color=brown];
     }
 
     subgraph cluster_1 {
-        node [style=filled,fillcolor=darkorchid,color=darkorchid,fontcolor=white];
+        node [fillcolor=darkorchid,color=darkorchid];
         graph [color=darkorchid];
         label="WAV files";
         fontcolor=darkorchid;
@@ -28,12 +28,12 @@ digraph  {
         graph [color=forestgreen];
         fontcolor=forestgreen;
         label="ChucK";
-        node [style=filled,fillcolor=forestgreen,color=forestgreen,fontcolor=white];
+        node [fillcolor=forestgreen,color=forestgreen];
         playsound [label="playSound.ck"];
         playfx [label="playFxChain.ck"];
     }
 
-    node [style=filled,fillcolor=hotpink,color=hotpink,fontcolor=white];
+    node [fillcolor=hotpink,color=hotpink];
     shell [label="Linux shell $",color=hotpink];
     edge [color=hotpink];
     shell -> concretepm;
@@ -50,7 +50,7 @@ digraph  {
     playfx -> concretepm;
     playsound -> concretepm;
 
-    node [style=filled,fillcolor=steelblue,color=steelblue,fontcolor=white];
+    node [fillcolor=steelblue,color=steelblue];
     edge [color=steelblue];
     playsound -> DAC;
     playsound -> playfx;
