@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html class="no-js">
+  <head>
+	<meta charset="utf-8">
+	<title>How I got to using ChucK | Concrète Mixer - messing around with audio code</title>
+	<meta name="description" content="When I started looking at doing audio software development I looked at several options. The way I write it sounds like I went about this task in a very preci...">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-Frame-Options" content="sameorigin">
+
+	<!-- CSS -->
+	<link rel="stylesheet" href="/css/main.css">
+
+	<!--Favicon-->
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+	<!-- Canonical -->
+	<link rel="canonical" href="https://concrete-mixer.github.io/concr%C3%A8te%20mixer/2015/12/01/chuck.html">
+
+	<!-- RSS -->
+	<link rel="alternate" type="application/atom+xml" title="Concrète Mixer - messing around with audio code" href="https://concrete-mixer.github.io/feed.xml" />
+
+	<!-- Font Awesome -->
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<!-- Google Fonts -->
+	
+	<link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,700italic,400italic" rel="stylesheet" type="text/css">
+	
+
+	<!-- KaTeX -->
+	
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.3.0/katex.min.css">
+	<script src="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.3.0/katex.min.js"></script>
+	
+
+	<!-- Google Analytics -->
+	
+</head>
+
+  <body>
+    <header class="site-header">
+	<div class="branding">
+		
+		<a href="/">
+			<img class="avatar" src="/img/highgate.jpg" alt=""/>
+		</a>
+		
+		<h1 class="site-title">
+			<a href="/">Concrète Mixer - messing around with audio code</a>
+		</h1>
+	</div>
+	<nav class="site-nav">
+		<ul>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<!-- Social icons from Font Awesome, if enabled -->
+			
+<li>
+	<a href="https://concrete-mixer.github.io/feed.xml" title="Follow RSS feed">
+		<i class="fa fa-fw fa-rss"></i>
+	</a>
+</li>
+
+
+
+<li>
+	<a href="mailto:concretemixer.audio@gmail.com" title="Email">
+		<i class="fa fa-fw fa-envelope"></i>
+	</a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li>
+	<a href="https://github.com/concrete-mixer" title="Follow on GitHub">
+		<i class="fa fa-fw fa-github"></i>
+	</a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li>
+	<a href="https://soundcloud.com/concrete-mixer" title="Follow on SoundCloud">
+		<i class="fa fa-fw fa-soundcloud"></i>
+	</a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		</ul>
+	</nav>
+</header>
+
+    <div class="content">
+      <article class="feature-image">
+  <header style="background-image: url('/img/concrete-feature.jpg')">
+    <h1 class="title">How I got to using ChucK</h1>
+    <p class="meta">
+    December 1, 2015
+    
+    </p>
+  </header>
+  <section class="post-content"><p>When I started looking at doing audio software development I looked at several options. The way I write it sounds like I went about this task in a very precise way, but in reality I drifted in and out of things, with some dabbling occurring after I had already settled on ChucK.</p>
+
+<p>The intent of this post is to outline the “journey” I took in case it might be useful for others. The big caveat is that there’s nothing particularly definitive about the choices I’ve made or where I’ve ended up, so you’d be better in taking what’s written below as a starting point for your own evaluations rather than ignoring the options I passed on and going straight to ChucK.</p>
+
+<h1 id="background">Background</h1>
+
+<p>So until 2013 I’d spent the previous 11 years producing electronic music tracks of various kinds using <a href="http://www.audiomulch.com">AudioMulch</a>, a nifty if decidedly lowkey (compared to Live/Reason/Logic/Yaddayadda) program for Windows and (eventually) Mac. While I enjoyed using Mulch, its development ground to a halt in the early part of this decade and the project is now moribund. (In my view, an open sourced Mulch would be a killer app for Linux audio, but I don’t think that will happen.)</p>
+
+<p>After a decade of Mulching I was keen to try something different. I dined with the devil and tried <a href="https://www.ableton.com/en/live/">Ableton Live</a>, but I’ve never been keen on following the herd (however excellent their choice might be). I decided that if I was to make a change it should be radical, and I should try to make my own sound from as low a level as possible.</p>
+
+<h1 id="priorities">Priorities</h1>
+
+<ul>
+  <li>Being increasingly time poor, I didn’t want to have to an entire sound app myself (except, briefly, when I had a dabble).</li>
+  <li>It had to be Linuxy, preferably free/open source</li>
+  <li>It had to be able to run on a Raspberry Pi, because I wanted to make a sound generating box.</li>
+</ul>
+
+<h1 id="the-evaluation">The Evaluation</h1>
+
+<h2 id="pure-data">Pure Data</h2>
+
+<p><a href="https://puredata.info/">Pure Data</a> is the open source implementation of <a href="https://en.wikipedia.org/wiki/Max_%28software%29">Max/MSP</a> (Max on a Mac seems to be the defacto standard for the academic end of audio programming). I didn’t really do much pd coding, but I did watch the bulk of the videos of one of <a href="https://en.wikipedia.org/wiki/Miller_Puckette">Miller “MSP” Puckette</a>’s <a href="http://pd-la.info/pd-media/miller-puckette-mus171-videos/">introductory courses on pd</a>, which I greatly enjoyed and highly recommend.</p>
+
+<p>In the end I decided pd wasn’t for me. I was a bit reluctant about this, as pd is pretty cool, but coming from a web programming background I find pd’s visual programming paradigm a bit unintuitive, or at least more time-consuming to fathom. Also I’d become increasingly annoyed mousing about to make music.</p>
+
+<h2 id="supercollider">Supercollider</h2>
+
+<p>I had a brief look at <a href="http://supercollider.github.io/">SuperCollider</a> but found the code layout (everything is wrapped up in braces) a bit frustrating. Again, it’s something I could come back to if I had sufficient motivation. Also, cool name…</p>
+
+<h2 id="web-audio-api">Web Audio API</h2>
+
+<p>The <a href="https://en.wikipedia.org/wiki/HTML5_Audio#Web_Audio_API_and_MediaStream_Processing_API">web audio API</a> is a standard for rendering audio in web browsers. When I looked at it in 2013 it was reasonably raw and only properly supported by Chrome. The API is interfaced with javascript, and as someone who has worked in JS for some time that did appeal.</p>
+
+<h3 id="a-digression-about-mobile-apps-and-sound-art">A digression about mobile apps and sound art</h3>
+<p>Several demo apps written using the API are available online, and they are impressive. If Android’s browser container supported it, there’s a good chance I might have written Concrete Mixer as a phone app.</p>
+
+<p>Two years on, however, I’m now of the view that building CM as a mobile app would have been a mistake. I don’t like the idea of a sound producing app being one a hundred apps on a user’s phone competing for their attention. 
+To my mind the task of rendering sound worlds is a serious business, and Raspberry Pis, even though they are inexpensive and to some extent disposable, still feel more appropriate for this endeavour. More <em>honest</em>, somehow.</p>
+
+<h2 id="back-to-the-web-audio-api">Back to the Web Audio API</h2>
+
+<p>So yes, back on topic, my main feeling is that the web audio API is best used as intended for interactive multimedia, rather than an audio-only application. I also find the API itself a bit cumbersome (compared to ChucK, see below). I would pay more attention if there was an implementation of it in nodejs but as far as I’m aware there’s nothing available <a href="https://github.com/sebpiq/node-web-audio-api">that isn’t alpha</a>.</p>
+
+<p>Again, there may be reasons in the future to use it, but not right now.</p>
+
+<h2 id="perl">Perl</h2>
+
+<p>Mid last year after I went on a tangent learning some audio processing techniques without ChucK doing the heavy lifting. I did this in Perl because it’s what I use in my day job and I wanted to save time. I ended up having a good fiddle and may write up a report on my experiments later. However I soon concluded that Perl isn’t the best platform for doing this long term.</p>
+
+<h2 id="chuck">ChucK</h2>
+
+<p>In the end I went with ChucK because it’s the simplest, most intuitive (for me anyway) language I came across. (This doesn’t mean it’s the best.)</p>
+
+<p>So <a href="http://chuck.cs.princeton.edu/">ChucK</a> is a C++ish OO scripting language which describes itself as “strongly typed and strongly timed”. Time is tamed with the use of the <code>dur</code> (duration) type as well as being able to delay execution in a very ‘timely’ (teehee!) context:</p>
+
+<div class="highlight"><pre><code class="language-chuck" data-lang="chuck"><span class="lineno">1</span> <span class="mi">441</span><span class="o">::</span><span class="kc">samp</span> <span class="o">=&gt;</span> <span class="k">dur</span> <span class="n">interval</span><span class="o">;</span> <span class="c1">// 441 samples or 1/100 of a second</span>
+<span class="lineno">2</span> 
+<span class="lineno">3</span> <span class="k">while</span> <span class="o">(</span> <span class="mi">1</span> <span class="o">)</span> <span class="o">{</span> <span class="c1">// ie do this continually</span>
+<span class="lineno">4</span>     <span class="n">interval</span> <span class="o">=&gt;</span> <span class="kc">now</span><span class="o">;</span> <span class="c1">// wait for this duration to pass</span>
+<span class="lineno">5</span>     <span class="o">&lt;&lt;&lt;</span> <span class="s">&quot;I waited&quot;</span><span class="o">,</span> <span class="n">interval</span><span class="o">,</span> <span class="s">&quot;samples and then I did something&quot;</span> <span class="o">&gt;&gt;&gt;;</span> <span class="c1">// log to stdout</span>
+<span class="lineno">6</span> 
+<span class="lineno">7</span>     <span class="c1">// will print the above message 100 times a second</span>
+<span class="lineno">8</span>     <span class="c1">// you would never want to do this</span>
+<span class="lineno">9</span> <span class="o">}</span></code></pre></div>
+
+<p>It should be reasonably clear that this is perfect for scheduling and sequencing changes in signal - be it pitch, timbre, silence, etc.</p>
+
+<p>ChucK’s other eccentricity is the <code>=&gt;</code> ‘ChucK’ assignment operator, which both assigns variables (back to front) as well as links audio components in the same way you might plug a guitar into an amp and from an amp into a mixer:</p>
+
+<div class="highlight"><pre><code class="language-chuck" data-lang="chuck"><span class="lineno"> 1</span> <span class="c1">// this listing demonstrates various uses of the =&gt; operator</span>
+<span class="lineno"> 2</span> 
+<span class="lineno"> 3</span> <span class="c1">// declare signal generating/filtering elements</span>
+<span class="lineno"> 4</span> <span class="c1">// in ChucK parlance these are generically called Ugens.</span>
+<span class="lineno"> 5</span> <span class="c1">// instantiate a sawtooth oscillator called saw</span>
+<span class="lineno"> 6</span> <span class="c1">// and a low pass filter called low pass</span>
+<span class="lineno"> 7</span> <span class="nb">SawOsc</span> <span class="n">saw</span><span class="o">,</span> <span class="nb">LPF</span> <span class="n">lowpass</span><span class="o">;</span>
+<span class="lineno"> 8</span> 
+<span class="lineno"> 9</span> <span class="c1">// set the gain of the sawtooth osc to a quarter of maximum</span>
+<span class="lineno">10</span> <span class="c1">// it is strongly advisable to do this</span>
+<span class="lineno">11</span> <span class="c1">// note scale is logarithmic so this is actually -12ish decibels</span>
+<span class="lineno">12</span> <span class="mf">0.25</span> <span class="o">=&gt;</span> <span class="n">saw</span><span class="o">.</span><span class="na">gain</span><span class="o">;</span>
+<span class="lineno">13</span> 
+<span class="lineno">14</span> <span class="mi">440</span> <span class="o">=&gt;</span> <span class="n">saw</span><span class="o">.</span><span class="na">freq</span><span class="o">;</span> <span class="c1">// initialise the oscillator frequency to A4</span>
+<span class="lineno">15</span> <span class="c1">// note saw.freq(440) does the same thing</span>
+<span class="lineno">16</span> <span class="mi">4000</span> <span class="o">=&gt;</span> <span class="kt">int</span> <span class="n">inty</span><span class="o">;</span> <span class="c1">// variable assignment</span>
+<span class="lineno">17</span> 
+<span class="lineno">18</span> <span class="c1">// set the lowpass filter to 4Khz (frequency response will roll</span>
+<span class="lineno">19</span> <span class="c1">// off above this value with a steepness according to the filter</span>
+<span class="lineno">20</span> <span class="c1">// type</span>
+<span class="lineno">21</span> <span class="n">inty</span> <span class="o">=&gt;</span> <span class="n">saw</span><span class="o">.</span><span class="na">freq</span><span class="o">;</span>
+<span class="lineno">22</span> 
+<span class="lineno">23</span> <span class="c1">// route saw oscillator to lowpass and then on to the soundcard output</span>
+<span class="lineno">24</span> <span class="c1">// and route that to the sound card (dac)</span>
+<span class="lineno">25</span> <span class="n">saw</span> <span class="o">=&gt;</span> <span class="n">lowpass</span> <span class="o">=&gt;</span> <span class="kc">dac</span><span class="o">;</span>
+<span class="lineno">26</span> 
+<span class="lineno">27</span> <span class="c1">// note you can declare and chuck at the same time, so we could have gone:</span>
+<span class="lineno">28</span> <span class="c1">// SawOsc saw =&gt; LPF lowpass =&gt; dac;</span>
+<span class="lineno">29</span> 
+<span class="lineno">30</span> <span class="k">while</span> <span class="o">(</span> <span class="mi">1</span> <span class="o">)</span> <span class="o">{</span> <span class="c1">// loop forever</span>
+<span class="lineno">31</span>     <span class="c1">// Get some sample hold going</span>
+<span class="lineno">32</span> 
+<span class="lineno">33</span>     <span class="c1">// randomly assign the oscillator frequency</span>
+<span class="lineno">34</span>     <span class="nb">Std</span><span class="o">.</span><span class="na">rand2f</span><span class="o">(</span> <span class="mi">20</span><span class="o">,</span> <span class="mi">4000</span> <span class="o">)</span> <span class="o">=&gt;</span> <span class="n">saw</span><span class="o">.</span><span class="na">freq</span><span class="o">;</span>
+<span class="lineno">35</span> 
+<span class="lineno">36</span>     <span class="c1">// randomly assign the filter frequency</span>
+<span class="lineno">37</span>     <span class="nb">Std</span><span class="o">.</span><span class="na">rand2f</span><span class="o">(</span> <span class="mi">20</span><span class="o">,</span> <span class="mi">4000</span> <span class="o">)</span> <span class="o">=&gt;</span> <span class="n">lowpass</span><span class="o">.</span><span class="na">freq</span><span class="o">;</span>
+<span class="lineno">38</span> 
+<span class="lineno">39</span>     <span class="c1">// finally, move time on</span>
+<span class="lineno">40</span>     <span class="c1">// you can define duration in both increments of time and samples</span>
+<span class="lineno">41</span>     <span class="mf">0.5</span><span class="o">::</span><span class="kc">second</span> <span class="o">=&gt;</span> <span class="kc">now</span><span class="o">;</span> 
+<span class="lineno">42</span>     
+<span class="lineno">43</span> <span class="o">}</span></code></pre></div>
+
+<p>ChucKing durations to <code>now</code> means advancing time. Once you have your components in place they will do their thing (ie oscillate or filter) without you having to worry about them doing it.</p>
+
+<p>When I studied ChucK all this made intuitive sense to me. Consequently I’ve ended up using ChucK for most of my recent tinkering.</p>
+
+<h2 id="downsides">Downsides</h2>
+
+<p>ChucK is 10 years old, and you’d expect a language of that age to be mature. However ChucK’s developer and userbase is small, and academic, and ChucK thus has few pressures on it. Development has focused on a narrow range of applications, notably “live programming”. I don’t dispute the suitability of this narrow focus, but it also means that ChucK often feels like a ‘toy language’, missing many features you’d expect. I guess I had better give examples:</p>
+
+<ul>
+  <li>Barebones syntax, eg no <code>case</code> statements or much in the way of syntactic sugar.</li>
+  <li>No base library loading - you need to explicitly load every library file you want access to. You can’t just provide ChucK with a lib directory environment variable and have all libraries in that directory loaded automatically.</li>
+  <li>A lack of file system tools (for example, there is no way in ChucK to access the file system, other than to load ChucK files).</li>
+  <li>A lack of concern for memory leakage, or performance generally (a major problem for a sound system like Concrete Mixer which is intended to run indefinitely on a Raspberry Pi).</li>
+</ul>
+
+<p>As mentioned before these drawbacks lead me to use a Perl wrapper to manage Concrete Mixer. This hasn’t been a massive inconvenience, but it would have been nice if Concrete Mixer could have been pure ChucK app.</p>
+
+<h1 id="on-the-whole">On the whole</h1>
+
+<p>My criticisms of ChucK are (in my view, obviously) reasonable, but I suspect if I had gone with any of the alternatives I could compile a list of different but equivalent drawbacks for them too, so singling out ChucK in this way is a little unfair. The fact is I’m still using ChucK and I’ve barely scratched the surface of its audio manipulation capabilities. I’m also unlikely to jump ship to another language any time soon. Although if you do know of something you think is better, let me know!</p>
+</section>
+</article>
+
+<!-- Post navigation -->
+
+
+<!-- Disqus -->
+
+
+    </div>
+    
+<script src="/js/katex_init.js"></script>
+
+
+
+<footer class="site-footer">
+	<p class="text">Powered by <a href="http://jekyllrb.com">Jekyll</a> with <a href="https://rohanchandra.github.io/project/type/">Type Theme</a>
+</p>
+</footer>
+
+
+  </body>
+</html>

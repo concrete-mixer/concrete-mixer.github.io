@@ -5,7 +5,149 @@
     <atom:link href="https://concrete-mixer.github.io/feed.xml" rel="self" type="application/rss+xml"/>
     <link>https://concrete-mixer.github.io/</link>
     <description>This is a blog about audio coding that rambles through the work I’ve done over the past couple of years.</description>
-    <pubDate>Sun, 22 Nov 2015 12:52:12 +1300</pubDate>
+    <pubDate>Tue, 01 Dec 2015 21:14:42 +1300</pubDate>
+    
+      <item>
+        <title>How I got to using ChucK</title>
+        <link>https://concrete-mixer.github.io/concr%C3%A8te%20mixer/2015/12/01/chuck.html</link>
+        <guid isPermaLink="true">https://concrete-mixer.github.io/concr%C3%A8te%20mixer/2015/12/01/chuck.html</guid>
+        <description>&lt;p&gt;When I started looking at doing audio software development I looked at several options. The way I write it sounds like I went about this task in a very precise way, but in reality I drifted in and out of things, with some dabbling occurring after I had already settled on ChucK.&lt;/p&gt;
+
+&lt;p&gt;The intent of this post is to outline the “journey” I took in case it might be useful for others. The big caveat is that there’s nothing particularly definitive about the choices I’ve made or where I’ve ended up, so you’d be better in taking what’s written below as a starting point for your own evaluations rather than ignoring the options I passed on and going straight to ChucK.&lt;/p&gt;
+
+&lt;h1 id=&quot;background&quot;&gt;Background&lt;/h1&gt;
+
+&lt;p&gt;So until 2013 I’d spent the previous 11 years producing electronic music tracks of various kinds using &lt;a href=&quot;http://www.audiomulch.com&quot;&gt;AudioMulch&lt;/a&gt;, a nifty if decidedly lowkey (compared to Live/Reason/Logic/Yaddayadda) program for Windows and (eventually) Mac. While I enjoyed using Mulch, its development ground to a halt in the early part of this decade and the project is now moribund. (In my view, an open sourced Mulch would be a killer app for Linux audio, but I don’t think that will happen.)&lt;/p&gt;
+
+&lt;p&gt;After a decade of Mulching I was keen to try something different. I dined with the devil and tried &lt;a href=&quot;https://www.ableton.com/en/live/&quot;&gt;Ableton Live&lt;/a&gt;, but I’ve never been keen on following the herd (however excellent their choice might be). I decided that if I was to make a change it should be radical, and I should try to make my own sound from as low a level as possible.&lt;/p&gt;
+
+&lt;h1 id=&quot;priorities&quot;&gt;Priorities&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Being increasingly time poor, I didn’t want to have to an entire sound app myself (except, briefly, when I had a dabble).&lt;/li&gt;
+  &lt;li&gt;It had to be Linuxy, preferably free/open source&lt;/li&gt;
+  &lt;li&gt;It had to be able to run on a Raspberry Pi, because I wanted to make a sound generating box.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;the-evaluation&quot;&gt;The Evaluation&lt;/h1&gt;
+
+&lt;h2 id=&quot;pure-data&quot;&gt;Pure Data&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://puredata.info/&quot;&gt;Pure Data&lt;/a&gt; is the open source implementation of &lt;a href=&quot;https://en.wikipedia.org/wiki/Max_%28software%29&quot;&gt;Max/MSP&lt;/a&gt; (Max on a Mac seems to be the defacto standard for the academic end of audio programming). I didn’t really do much pd coding, but I did watch the bulk of the videos of one of &lt;a href=&quot;https://en.wikipedia.org/wiki/Miller_Puckette&quot;&gt;Miller “MSP” Puckette&lt;/a&gt;’s &lt;a href=&quot;http://pd-la.info/pd-media/miller-puckette-mus171-videos/&quot;&gt;introductory courses on pd&lt;/a&gt;, which I greatly enjoyed and highly recommend.&lt;/p&gt;
+
+&lt;p&gt;In the end I decided pd wasn’t for me. I was a bit reluctant about this, as pd is pretty cool, but coming from a web programming background I find pd’s visual programming paradigm a bit unintuitive, or at least more time-consuming to fathom. Also I’d become increasingly annoyed mousing about to make music.&lt;/p&gt;
+
+&lt;h2 id=&quot;supercollider&quot;&gt;Supercollider&lt;/h2&gt;
+
+&lt;p&gt;I had a brief look at &lt;a href=&quot;http://supercollider.github.io/&quot;&gt;SuperCollider&lt;/a&gt; but found the code layout (everything is wrapped up in braces) a bit frustrating. Again, it’s something I could come back to if I had sufficient motivation. Also, cool name…&lt;/p&gt;
+
+&lt;h2 id=&quot;web-audio-api&quot;&gt;Web Audio API&lt;/h2&gt;
+
+&lt;p&gt;The &lt;a href=&quot;https://en.wikipedia.org/wiki/HTML5_Audio#Web_Audio_API_and_MediaStream_Processing_API&quot;&gt;web audio API&lt;/a&gt; is a standard for rendering audio in web browsers. When I looked at it in 2013 it was reasonably raw and only properly supported by Chrome. The API is interfaced with javascript, and as someone who has worked in JS for some time that did appeal.&lt;/p&gt;
+
+&lt;h3 id=&quot;a-digression-about-mobile-apps-and-sound-art&quot;&gt;A digression about mobile apps and sound art&lt;/h3&gt;
+&lt;p&gt;Several demo apps written using the API are available online, and they are impressive. If Android’s browser container supported it, there’s a good chance I might have written Concrete Mixer as a phone app.&lt;/p&gt;
+
+&lt;p&gt;Two years on, however, I’m now of the view that building CM as a mobile app would have been a mistake. I don’t like the idea of a sound producing app being one a hundred apps on a user’s phone competing for their attention. 
+To my mind the task of rendering sound worlds is a serious business, and Raspberry Pis, even though they are inexpensive and to some extent disposable, still feel more appropriate for this endeavour. More &lt;em&gt;honest&lt;/em&gt;, somehow.&lt;/p&gt;
+
+&lt;h2 id=&quot;back-to-the-web-audio-api&quot;&gt;Back to the Web Audio API&lt;/h2&gt;
+
+&lt;p&gt;So yes, back on topic, my main feeling is that the web audio API is best used as intended for interactive multimedia, rather than an audio-only application. I also find the API itself a bit cumbersome (compared to ChucK, see below). I would pay more attention if there was an implementation of it in nodejs but as far as I’m aware there’s nothing available &lt;a href=&quot;https://github.com/sebpiq/node-web-audio-api&quot;&gt;that isn’t alpha&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Again, there may be reasons in the future to use it, but not right now.&lt;/p&gt;
+
+&lt;h2 id=&quot;perl&quot;&gt;Perl&lt;/h2&gt;
+
+&lt;p&gt;Mid last year after I went on a tangent learning some audio processing techniques without ChucK doing the heavy lifting. I did this in Perl because it’s what I use in my day job and I wanted to save time. I ended up having a good fiddle and may write up a report on my experiments later. However I soon concluded that Perl isn’t the best platform for doing this long term.&lt;/p&gt;
+
+&lt;h2 id=&quot;chuck&quot;&gt;ChucK&lt;/h2&gt;
+
+&lt;p&gt;In the end I went with ChucK because it’s the simplest, most intuitive (for me anyway) language I came across. (This doesn’t mean it’s the best.)&lt;/p&gt;
+
+&lt;p&gt;So &lt;a href=&quot;http://chuck.cs.princeton.edu/&quot;&gt;ChucK&lt;/a&gt; is a C++ish OO scripting language which describes itself as “strongly typed and strongly timed”. Time is tamed with the use of the &lt;code&gt;dur&lt;/code&gt; (duration) type as well as being able to delay execution in a very ‘timely’ (teehee!) context:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-chuck&quot; data-lang=&quot;chuck&quot;&gt;&lt;span class=&quot;lineno&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;441&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;samp&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;dur&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;interval&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 441 samples or 1/100 of a second&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;2&lt;/span&gt; 
+&lt;span class=&quot;lineno&quot;&gt;3&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// ie do this continually&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;4&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;interval&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;now&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// wait for this duration to pass&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;5&lt;/span&gt;     &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;I waited&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;interval&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;samples and then I did something&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// log to stdout&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;6&lt;/span&gt; 
+&lt;span class=&quot;lineno&quot;&gt;7&lt;/span&gt;     &lt;span class=&quot;c1&quot;&gt;// will print the above message 100 times a second&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;8&lt;/span&gt;     &lt;span class=&quot;c1&quot;&gt;// you would never want to do this&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;9&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;It should be reasonably clear that this is perfect for scheduling and sequencing changes in signal - be it pitch, timbre, silence, etc.&lt;/p&gt;
+
+&lt;p&gt;ChucK’s other eccentricity is the &lt;code&gt;=&amp;gt;&lt;/code&gt; ‘ChucK’ assignment operator, which both assigns variables (back to front) as well as links audio components in the same way you might plug a guitar into an amp and from an amp into a mixer:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-chuck&quot; data-lang=&quot;chuck&quot;&gt;&lt;span class=&quot;lineno&quot;&gt; 1&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// this listing demonstrates various uses of the =&amp;gt; operator&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt; 2&lt;/span&gt; 
+&lt;span class=&quot;lineno&quot;&gt; 3&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// declare signal generating/filtering elements&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt; 4&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// in ChucK parlance these are generically called Ugens.&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt; 5&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// instantiate a sawtooth oscillator called saw&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt; 6&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// and a low pass filter called low pass&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt; 7&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;SawOsc&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;saw&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;LPF&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lowpass&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt; 8&lt;/span&gt; 
+&lt;span class=&quot;lineno&quot;&gt; 9&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// set the gain of the sawtooth osc to a quarter of maximum&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;10&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// it is strongly advisable to do this&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;11&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// note scale is logarithmic so this is actually -12ish decibels&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;12&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.25&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;saw&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;gain&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;13&lt;/span&gt; 
+&lt;span class=&quot;lineno&quot;&gt;14&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;440&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;saw&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;freq&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// initialise the oscillator frequency to A4&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;15&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// note saw.freq(440) does the same thing&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;16&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4000&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;inty&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// variable assignment&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;17&lt;/span&gt; 
+&lt;span class=&quot;lineno&quot;&gt;18&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// set the lowpass filter to 4Khz (frequency response will roll&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;19&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// off above this value with a steepness according to the filter&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;20&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// type&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;21&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;inty&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;saw&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;freq&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;22&lt;/span&gt; 
+&lt;span class=&quot;lineno&quot;&gt;23&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// route saw oscillator to lowpass and then on to the soundcard output&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;24&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// and route that to the sound card (dac)&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;25&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;saw&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lowpass&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;dac&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;26&lt;/span&gt; 
+&lt;span class=&quot;lineno&quot;&gt;27&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// note you can declare and chuck at the same time, so we could have gone:&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;28&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// SawOsc saw =&amp;gt; LPF lowpass =&amp;gt; dac;&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;29&lt;/span&gt; 
+&lt;span class=&quot;lineno&quot;&gt;30&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// loop forever&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;31&lt;/span&gt;     &lt;span class=&quot;c1&quot;&gt;// Get some sample hold going&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;32&lt;/span&gt; 
+&lt;span class=&quot;lineno&quot;&gt;33&lt;/span&gt;     &lt;span class=&quot;c1&quot;&gt;// randomly assign the oscillator frequency&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;34&lt;/span&gt;     &lt;span class=&quot;nb&quot;&gt;Std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;rand2f&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4000&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;saw&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;freq&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;35&lt;/span&gt; 
+&lt;span class=&quot;lineno&quot;&gt;36&lt;/span&gt;     &lt;span class=&quot;c1&quot;&gt;// randomly assign the oscillator frequency&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;37&lt;/span&gt;     &lt;span class=&quot;nb&quot;&gt;Std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;rand2f&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4000&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lowpass&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;freq&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;38&lt;/span&gt; 
+&lt;span class=&quot;lineno&quot;&gt;39&lt;/span&gt;     &lt;span class=&quot;c1&quot;&gt;// finally, move time on&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;40&lt;/span&gt;     &lt;span class=&quot;c1&quot;&gt;// you can define duration in both increments of time and samples&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;41&lt;/span&gt;     &lt;span class=&quot;mf&quot;&gt;0.5&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;second&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;now&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; 
+&lt;span class=&quot;lineno&quot;&gt;42&lt;/span&gt;     
+&lt;span class=&quot;lineno&quot;&gt;43&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;ChucKing durations to &lt;code&gt;now&lt;/code&gt; means advancing time. Once you have your components in place they will do their thing (ie oscillate or filter) without you having to worry about them doing it.&lt;/p&gt;
+
+&lt;p&gt;When I studied ChucK all this made intuitive sense to me. Consequently I’ve ended up using ChucK for most of my recent tinkering.&lt;/p&gt;
+
+&lt;h2 id=&quot;downsides&quot;&gt;Downsides&lt;/h2&gt;
+
+&lt;p&gt;ChucK is 10 years old, and you’d expect a language of that age to be mature. However ChucK’s developer and userbase is small, and academic, and ChucK thus has few pressures on it. Development has focused on a narrow range of applications, notably “live programming”. I don’t dispute the suitability of this narrow focus, but it also means that ChucK often feels like a ‘toy language’, missing many features you’d expect. I guess I had better give examples:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Barebones syntax, eg no &lt;code&gt;case&lt;/code&gt; statements or much in the way of syntactic sugar.&lt;/li&gt;
+  &lt;li&gt;No base library loading - you need to explicitly load every library file you want access to. You can’t just provide ChucK with a lib directory environment variable and have all libraries in that directory loaded automatically.&lt;/li&gt;
+  &lt;li&gt;A lack of file system tools (for example, there is no way in ChucK to access the file system, other than to load ChucK files).&lt;/li&gt;
+  &lt;li&gt;A lack of concern for memory leakage, or performance generally (a major problem for a sound system like Concrete Mixer which is intended to run indefinitely on a Raspberry Pi).&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;As mentioned before these drawbacks lead me to use a Perl wrapper to manage Concrete Mixer. This hasn’t been a massive inconvenience, but it would have been nice if Concrete Mixer could have been pure ChucK app.&lt;/p&gt;
+
+&lt;h1 id=&quot;on-the-whole&quot;&gt;On the whole&lt;/h1&gt;
+
+&lt;p&gt;My criticisms of ChucK are (in my view, obviously) reasonable, but I suspect if I had gone with any of the alternatives I could compile a list of different but equivalent drawbacks for them too, so singling out ChucK in this way is a little unfair. The fact is I’m still using ChucK and I’ve barely scratched the surface of its audio manipulation capabilities. I’m also unlikely to jump ship to another language any time soon. Although if you do know of something you think is better, let me know!&lt;/p&gt;
+</description>
+        <pubDate>Tue, 01 Dec 2015 00:00:00 +1300</pubDate>
+      </item>
     
       <item>
         <title>Using dot to make charts</title>
