@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html class="no-js">
+  <head>
+	<meta charset="utf-8">
+	<title>Perl sine wave demo | Concrète Mixer - messing around with audio code</title>
+	<meta name="description" content="This is a blog about audio coding that rambles through the work I’ve done over the past couple of years.">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-Frame-Options" content="sameorigin">
+
+	<!-- CSS -->
+	<link rel="stylesheet" href="/css/main.css">
+
+	<!--Favicon-->
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+	<!-- Canonical -->
+	<link rel="canonical" href="https://concrete-mixer.github.io/auxiliary/2015-11-23-perl-sine-wave.html">
+
+	<!-- RSS -->
+	<link rel="alternate" type="application/atom+xml" title="Concrète Mixer - messing around with audio code" href="https://concrete-mixer.github.io/feed.xml" />
+
+	<!-- Font Awesome -->
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<!-- Google Fonts -->
+	
+	<link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,700italic,400italic" rel="stylesheet" type="text/css">
+	
+
+	<!-- KaTeX -->
+	
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.3.0/katex.min.css">
+	<script src="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.3.0/katex.min.js"></script>
+	
+
+	<!-- Google Analytics -->
+	
+</head>
+
+  <body>
+    <header class="site-header">
+	<div class="branding">
+		
+		<a href="/">
+			<img class="avatar" src="/img/highgate.jpg" alt=""/>
+		</a>
+		
+		<h1 class="site-title">
+			<a href="/">Concrète Mixer - messing around with audio code</a>
+		</h1>
+	</div>
+	<nav class="site-nav">
+		<ul>
+			
+			
+			<li>
+				<a class="page-link" href="/auxiliary/2015-11-23-perl-sine-wave.html">
+					Perl sine wave demo
+				</a>
+			</li>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<!-- Social icons from Font Awesome, if enabled -->
+			
+<li>
+	<a href="https://concrete-mixer.github.io/feed.xml" title="Follow RSS feed">
+		<i class="fa fa-fw fa-rss"></i>
+	</a>
+</li>
+
+
+
+<li>
+	<a href="mailto:concretemixer.audio@gmail.com" title="Email">
+		<i class="fa fa-fw fa-envelope"></i>
+	</a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li>
+	<a href="https://github.com/concrete-mixer" title="Follow on GitHub">
+		<i class="fa fa-fw fa-github"></i>
+	</a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li>
+	<a href="https://soundcloud.com/concrete-mixer" title="Follow on SoundCloud">
+		<i class="fa fa-fw fa-soundcloud"></i>
+	</a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		</ul>
+	</nav>
+</header>
+
+    <div class="content">
+      <article class="feature-image">
+  <header style="background-image: url('/img/concrete-feature.jpg')">
+    <h1 class="title">Perl sine wave demo</h1>
+    <p class="meta">
+    
+    
+    </p>
+  </header>
+  <section class="post-content"><p>There is no good reason to write audio code in Perl, but on the other hand, no reason not to, so here we go.</p>
+
+<h1 id="piping-hot-sound">Piping hot sound</h1>
+
+<p>Someone may have written an audio library for Perl which interfaces with Alsa in a ‘proper’ way, but there’s a grubbier and consequently more appropriate way of doing it: through the shell.</p>
+
+<p><code>$ perl script.pl | aplay -f cd</code></p>
+
+<p>This command pipes the output of a perl script to Alsa’s aplay utility, which can take a data stream as input. The <code>-f cd</code> means fire the stream to the soundcard at a sample rate of 44Khz, which is the samplerate a CD uses.</p>
+
+<p>With this in play, you need to write a script that will generate an audio-appropriate stream of data. The simplest sound you can generate is white noise, because you just generate a set of random values within a 16 bit range of amplitudes. We’re a bit more sophisticated, than that, however, so we’re going to start by generating a sine wave:</p>
+
+<div class="highlight"><pre><code class="language-perl" data-lang="perl"><span class="lineno"> 1</span> <span class="c1">#!/usr/bin/perl</span>
+<span class="lineno"> 2</span> <span class="k">use</span> <span class="n">strict</span><span class="p">;</span>
+<span class="lineno"> 3</span> <span class="k">use</span> <span class="n">warnings</span><span class="p">;</span>
+<span class="lineno"> 4</span> 
+<span class="lineno"> 5</span> <span class="k">my</span> <span class="nv">$PI</span> <span class="o">=</span> <span class="mf">3.1415926</span><span class="p">;</span>
+<span class="lineno"> 6</span> 
+<span class="lineno"> 7</span> <span class="c1"># Amplitude for signal, roughly 50% of max (32768) or -6db</span>
+<span class="lineno"> 8</span> <span class="k">my</span> <span class="nv">$amplitude</span> <span class="o">=</span> <span class="mi">16384</span><span class="p">;</span>
+<span class="lineno"> 9</span> <span class="k">my</span> <span class="nv">$freq</span> <span class="o">=</span> <span class="mi">440</span><span class="p">;</span> <span class="c1"># Frequency in Hertz (&#39;A4&#39; note)</span>
+<span class="lineno">10</span> <span class="k">my</span> <span class="nv">$sample_rate</span> <span class="o">=</span> <span class="mi">44100</span><span class="p">;</span>
+<span class="lineno">11</span> 
+<span class="lineno">12</span> <span class="c1"># define time increment for calculating the wave</span>
+<span class="lineno">13</span> <span class="k">my</span> <span class="nv">$increment</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="nv">$sample_rate</span><span class="p">;</span>
+<span class="lineno">14</span> <span class="k">my</span> <span class="nv">$t</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="lineno">15</span> 
+<span class="lineno">16</span> <span class="k">while</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span> <span class="c1"># do this perpetually</span>
+<span class="lineno">17</span>     <span class="nv">$t</span> <span class="o">+=</span> <span class="nv">$increment</span><span class="p">;</span> <span class="c1"># Time in seconds</span>
+<span class="lineno">18</span> 
+<span class="lineno">19</span>     <span class="k">my</span> <span class="nv">$signal</span> <span class="o">=</span> <span class="nv">$amplitude</span> <span class="o">*</span> <span class="nb">sin</span><span class="p">(</span><span class="nv">$freq</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">*</span> <span class="nv">$PI</span> <span class="o">*</span> <span class="nv">$t</span><span class="p">);</span>
+<span class="lineno">20</span>     <span class="k">print</span> <span class="nb">pack</span><span class="p">(</span><span class="s">&quot;v&quot;</span><span class="p">,</span> <span class="nv">$signal</span><span class="p">);</span>
+<span class="lineno">21</span> <span class="p">}</span></code></pre></div>
+
+<p>The guts of this script is <code>my $signal = $amplitude * sin($freq * 2 * $PI * $t);</code>. This is high school maths/physics (I’m told, it’s all so long ago now I can’t actually remember :/). Essentially you generate a sine wave by rotating through a circle (2*pi radians) and plotting the sine of the angle of rotation (0 - 360, or phase) as an amplitude through time. (The preceding gibberish is my understanding, if you want a proper description please <a href="https://en.wikipedia.org/wiki/Sine_wave">consult wikipiedia</a>.</p>
+
+<p>Once you’ve got the $signal value you need to format it as a little-endian integeger:</p>
+
+<p><code>print pack("v", $signal);</code></p>
+
+<p>So you print to stdout and the shell does its piping and aplay does the rest.</p>
+
+<h1 id="making-the-signal-more-interesting">Making the signal more interesting</h1>
+
+<p>A sine wave is nice but you can do more interesting things than that. The first thing to do is modulate the pitch. The easiest way to do this is randomly module the pitch every so often:</p>
+
+<div class="highlight"><pre><code class="language-perl" data-lang="perl"><span class="lineno"> 1</span> <span class="k">my</span> <span class="nv">$base_freq</span> <span class="o">=</span> <span class="mi">1760</span><span class="n">Hz</span><span class="p">;</span> <span class="c1"># maximum frequency</span>
+<span class="lineno"> 2</span> 
+<span class="lineno"> 3</span> <span class="k">while</span> <span class="p">(</span> <span class="mi">1</span> <span class="p">)</span> <span class="p">{</span>
+<span class="lineno"> 4</span>     <span class="k">my</span> <span class="nv">$n</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="lineno"> 5</span> 
+<span class="lineno"> 6</span>     <span class="k">while</span> <span class="p">(</span> <span class="nv">$n</span> <span class="o">&lt;</span> <span class="mi">22050</span> <span class="p">)</span> <span class="p">{</span> <span class="c1"># half a second @ 44100 samplerate</span>
+<span class="lineno"> 7</span>         <span class="nv">$t</span> <span class="o">+=</span> <span class="nv">$increment</span><span class="p">;</span> <span class="c1"># Increment $t</span>
+<span class="lineno"> 8</span> 
+<span class="lineno"> 9</span>         <span class="k">my</span> <span class="nv">$signal</span> <span class="o">=</span> <span class="nb">sin</span><span class="p">(</span> <span class="nv">$freq</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">*</span> <span class="nv">$pi</span> <span class="o">*</span> <span class="nv">$t</span> <span class="p">)</span> <span class="o">*</span> <span class="nv">$amplitude</span><span class="p">;</span>
+<span class="lineno">10</span> 
+<span class="lineno">11</span>         <span class="k">print</span> <span class="nb">pack</span><span class="p">(</span><span class="s">&quot;v&quot;</span><span class="p">,</span> <span class="nv">$signal</span><span class="p">);</span>
+<span class="lineno">12</span> 
+<span class="lineno">13</span>         <span class="nv">$n</span><span class="o">++</span><span class="p">;</span>
+<span class="lineno">14</span>     <span class="p">}</span>
+<span class="lineno">15</span> 
+<span class="lineno">16</span>     <span class="nv">$freq</span> <span class="o">=</span> <span class="nb">rand</span><span class="p">(</span> <span class="mi">1</span> <span class="p">)</span> <span class="o">*</span> <span class="nv">$base_freq</span><span class="p">;</span>
+<span class="lineno">17</span> <span class="p">}</span></code></pre></div>
+
+<p>We’ve added an additional while loop to iterate through a fixed number of samples before we randomly change the frequency. (<code>$freq = rand( 1 ) * $base_freq</code> implies a range down to 0Hz, so be careful running this through speakers. <a href="https://www.youtube.com/watch?v=gIzSZH6oqeM">Watch your bass bins, I’m telling ya</a>.</p>
+
+<p>Incidentally, if you’re familiar with synthesizers, the above is equivalent to pitch-modulating sample hold.</p>
+
+<h1 id="adding-echoes">Adding echoes</h1>
+
+<p>For me the gold standard of any signal modulation is adding echoes. I grant you this will seem childish to proper DSP ninjas who like constructing fourth order <a href="https://en.wikipedia.org/wiki/Chebyshev_filter">Chebyshev filters</a>, but for me the space that echoes provide really is the place.</p>
+
+<p>An echo means holding playing a signal for a period of time. Arrays are perfect for this: bung your stream’s sample in memory and retrieve them for playback later.</p>
+
+<div class="highlight"><pre><code class="language-perl" data-lang="perl"><span class="lineno"> 1</span> <span class="c1"># initialise array of zeroed integers for delay line</span>
+<span class="lineno"> 2</span> <span class="k">my</span> <span class="nv">@delay</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="n">x</span> <span class="mi">22050</span><span class="p">;</span> <span class="c1"># == half a second of signal delay</span>
+<span class="lineno"> 3</span> 
+<span class="lineno"> 4</span> <span class="k">while</span> <span class="p">(</span> <span class="mi">1</span> <span class="p">)</span> <span class="p">{</span>
+<span class="lineno"> 5</span>     <span class="k">my</span> <span class="nv">$n</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="lineno"> 6</span> 
+<span class="lineno"> 7</span>     <span class="k">while</span> <span class="p">(</span> <span class="nv">$n</span> <span class="o">&lt;</span> <span class="mi">22050</span> <span class="p">)</span> <span class="p">{</span> <span class="c1"># half a second @ 44100 samplerate</span>
+<span class="lineno"> 8</span>         <span class="nv">$t</span> <span class="o">+=</span> <span class="nv">$increment</span><span class="p">;</span> <span class="c1"># Increment $t</span>
+<span class="lineno"> 9</span> 
+<span class="lineno">10</span>         <span class="k">my</span> <span class="nv">$signal</span> <span class="o">=</span> <span class="nb">sin</span><span class="p">(</span> <span class="nv">$freq</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">*</span> <span class="nv">$pi</span> <span class="o">*</span> <span class="nv">$t</span> <span class="p">)</span> <span class="o">*</span> <span class="nv">$amplitude</span><span class="p">;</span>
+<span class="lineno">11</span>         <span class="k">my</span> <span class="nv">$signal_delayed</span> <span class="o">=</span> <span class="p">(</span> <span class="nb">shift</span> <span class="nv">@delay</span> <span class="p">);</span>
+<span class="lineno">12</span> 
+<span class="lineno">13</span>         <span class="c1"># make delayed_signal 6dB quieter than main signal</span>
+<span class="lineno">14</span>         <span class="nv">$signal_delayed</span> <span class="o">*=</span> <span class="mf">0.5</span><span class="p">;</span>
+<span class="lineno">15</span> 
+<span class="lineno">16</span>         <span class="c1"># mix the two signals together</span>
+<span class="lineno">17</span>         <span class="nv">$signal</span> <span class="o">+=</span> <span class="nv">$signal_delayed</span><span class="p">;</span>
+<span class="lineno">18</span> 
+<span class="lineno">19</span>         <span class="c1"># increment @delay with signal plus previously delayed signal</span>
+<span class="lineno">20</span>         <span class="nb">push</span> <span class="nv">@delay</span><span class="p">,</span> <span class="nv">$signal</span><span class="p">;</span>
+<span class="lineno">21</span>         <span class="k">print</span> <span class="nb">pack</span><span class="p">(</span><span class="s">&quot;v&quot;</span><span class="p">,</span> <span class="nv">$signal</span><span class="p">);</span>
+<span class="lineno">22</span>         <span class="nv">$n</span><span class="o">++</span><span class="p">;</span>
+<span class="lineno">23</span>     <span class="p">}</span>
+<span class="lineno">24</span> 
+<span class="lineno">25</span>     <span class="nv">$freq</span> <span class="o">=</span> <span class="nb">rand</span><span class="p">(</span> <span class="mi">1</span> <span class="p">)</span> <span class="o">*</span> <span class="nv">$base_freq</span><span class="p">;</span>
+<span class="lineno">26</span> <span class="p">}</span></code></pre></div>
+
+<p>So we’re sitll sample-holding the pitch of the sine wave as before, but we’re now setting and retrieving values from an array, and mixing it with at a quieter bolume (-6dB) with the current signal. It still seems miraculous to me that simple addition (at the per sample level) can impose a new sound on top of the old, but it does.</p>
+
+<h1 id="where-does-this-take-us">Where does this take us?</h1>
+
+<p>Mid last year I went some way towards building my own drum machine/note sequencer system in Perl, using MooseX. I had track sequences written in JSON structures, some effects like flanging, ring modulation, and even reverse echoes (hint: use two arrays, swap them as required, and read the one you’re not writing to backwards). So it was all going swimmingly until I checked the CPU usage on my laptop: 100% playing a mono drum machine sequence and monophonic note sequence. Such a simple rig in a commercial audio software package would be expected to use 1-2% CPU.</p>
+
+<p>I suspect the reason for this problem is that interpreted languages like Perl are just too inefficient to be calculating large numbers of samples in real time. I attempted to make things more efficient by batch rendering content rather than running through the entire stack to calculate each sample. This didn’t seem to make any improvement.</p>
+
+<p>What I took away is that compiled languages like C and C++ are more appropriate for this sort of application, and I promptly ceased my activities. Even so, if you have simple ideas you want to try out, and/or vast system resources, Perl can do it.</p>
+</section>
+</article>
+
+<!-- Post navigation -->
+
+
+<!-- Disqus -->
+
+
+    </div>
+    
+<script src="/js/katex_init.js"></script>
+
+
+
+<footer class="site-footer">
+	<p class="text">Powered by <a href="http://jekyllrb.com">Jekyll</a> with <a href="https://rohanchandra.github.io/project/type/">Type Theme</a>
+</p>
+</footer>
+
+
+  </body>
+</html>
