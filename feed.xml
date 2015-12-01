@@ -5,7 +5,7 @@
     <atom:link href="https://concrete-mixer.github.io/feed.xml" rel="self" type="application/rss+xml"/>
     <link>https://concrete-mixer.github.io/</link>
     <description>This is a blog about audio coding that rambles through the work I’ve done over the past couple of years.</description>
-    <pubDate>Tue, 01 Dec 2015 21:14:42 +1300</pubDate>
+    <pubDate>Tue, 01 Dec 2015 22:04:21 +1300</pubDate>
     
       <item>
         <title>How I got to using ChucK</title>
@@ -116,7 +116,7 @@ To my mind the task of rendering sound worlds is a serious business, and Raspber
 &lt;span class=&quot;lineno&quot;&gt;33&lt;/span&gt;     &lt;span class=&quot;c1&quot;&gt;// randomly assign the oscillator frequency&lt;/span&gt;
 &lt;span class=&quot;lineno&quot;&gt;34&lt;/span&gt;     &lt;span class=&quot;nb&quot;&gt;Std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;rand2f&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4000&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;saw&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;freq&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
 &lt;span class=&quot;lineno&quot;&gt;35&lt;/span&gt; 
-&lt;span class=&quot;lineno&quot;&gt;36&lt;/span&gt;     &lt;span class=&quot;c1&quot;&gt;// randomly assign the oscillator frequency&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;36&lt;/span&gt;     &lt;span class=&quot;c1&quot;&gt;// randomly assign the filter frequency&lt;/span&gt;
 &lt;span class=&quot;lineno&quot;&gt;37&lt;/span&gt;     &lt;span class=&quot;nb&quot;&gt;Std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;rand2f&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4000&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lowpass&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;freq&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
 &lt;span class=&quot;lineno&quot;&gt;38&lt;/span&gt; 
 &lt;span class=&quot;lineno&quot;&gt;39&lt;/span&gt;     &lt;span class=&quot;c1&quot;&gt;// finally, move time on&lt;/span&gt;
