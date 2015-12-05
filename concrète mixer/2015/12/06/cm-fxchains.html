@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html class="no-js">
+  <head>
+	<meta charset="utf-8">
+	<title>
+        
+            About Concrète Mixer's effects chains
+        
+    </title>
+	<meta name="description" content="This post discusses Concrete Mixer’s effects chains system, which is governed by the playFx entity within CM.">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-Frame-Options" content="sameorigin">
+
+	<!-- CSS -->
+	<link rel="stylesheet" href="/css/main.css">
+
+	<!--Favicon-->
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+	<!-- Canonical -->
+	<link rel="canonical" href="https://concrete-mixer.github.io/concr%C3%A8te%20mixer/2015/12/06/cm-fxchains.html">
+
+	<!-- RSS -->
+	<link rel="alternate" type="application/atom+xml" title="Concrète Mixer - messing around with audio code" href="https://concrete-mixer.github.io/feed.xml" />
+
+	<!-- Font Awesome -->
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<!-- Google Fonts -->
+	
+	<link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,700italic,400italic" rel="stylesheet" type="text/css">
+	
+
+	<!-- KaTeX -->
+	
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.3.0/katex.min.css">
+	<script src="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.3.0/katex.min.js"></script>
+	
+
+	<!-- Google Analytics -->
+	
+	<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	ga('create', 'UA-70881154-1', 'auto');
+	ga('send', 'pageview');
+	</script>
+	
+</head>
+
+  <body>
+    <header class="site-header">
+	<div class="branding">
+		
+		<a href="/">
+			<img class="avatar" src="/img/highgate.jpg" alt=""/>
+		</a>
+		
+		<h1 class="site-title">
+			<a href="/">Concrète Mixer - messing around with audio code</a>
+		</h1>
+	</div>
+	<nav class="site-nav">
+		<ul>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<!-- Social icons from Font Awesome, if enabled -->
+			
+<li>
+	<a href="https://concrete-mixer.github.io/feed.xml" title="Follow RSS feed">
+		<i class="fa fa-fw fa-rss"></i>
+	</a>
+</li>
+
+
+
+<li>
+	<a href="mailto:concretemixer.audio@gmail.com" title="Email">
+		<i class="fa fa-fw fa-envelope"></i>
+	</a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li>
+	<a href="https://github.com/concrete-mixer" title="Follow on GitHub">
+		<i class="fa fa-fw fa-github"></i>
+	</a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li>
+	<a href="https://soundcloud.com/concrete-mixer" title="Follow on SoundCloud">
+		<i class="fa fa-fw fa-soundcloud"></i>
+	</a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		</ul>
+	</nav>
+</header>
+
+    <div class="content">
+      <article class="feature-image">
+  <header style="background-image: url('/img/concrete-feature.jpg')">
+    <h1 class="title">About Concrète Mixer's effects chains</h1>
+    <p class="meta">
+    December 6, 2015
+    
+    </p>
+  </header>
+  <section class="post-content"><p>This post discusses Concrete Mixer’s effects chains system, which is governed by the playFx entity within CM.</p>
+
+<h1 id="why-effects">Why effects?</h1>
+
+<p>Before we really get in to the discussion, it’s probably worth asking the fundamental question: why we need effects chains? For me there are two fundamental reasons:</p>
+
+<ul>
+  <li>to blend disparate sound sources</li>
+  <li>to dub it up a bit.</li>
+</ul>
+
+<h2 id="blending-files">Blending files</h2>
+
+<p>One or more raw recordings can be sound a bit sparse in the audio field, especially if they’re mono. An effects chain helps to add depth to the stereo field.</p>
+
+<p>In case you have recordings that are so bursting with incident they need no artificial enhancement, you can turn off the effects chain by specifying <code>fx_chain_enabled=0</code> in <code>conf/concrete.conf</code>).</p>
+
+<h2 id="dubbing-it-up">Dubbing it up</h2>
+
+<p>The main reason to alter a sound is to make it more interesting and/or appropriate for its intended use. My personal interest in this regard is similar to the approach taken in dub reggae, where vocal tracks are stripped back from the original multitrack and a variety of effects are applied to what’s left, in a manner convivial to herbal intoxication.</p>
+
+<p>There is of course an art to dub, and expecting a series of random effects choices to enhance a recording perfectly is to ask quite a bit. The secret is to have the effects change reasonably often (around a minute is good), so that if one combination comes up that ia suboptimal, there’s a good chance the next set will be more appropriate.</p>
+
+<h1 id="how-the-effects-chains-work">How the effects chains work</h1>
+
+<p>playFx defines 25 effects combinations. These chains are groupings of the effects libraries found in lib/Fx, like so:</p>
+
+<div class="highlight"><pre><code class="language-chuck" data-lang="chuck"><span class="lineno"> 1</span> <span class="n">if</span> <span class="o">(</span> <span class="n">choice</span> <span class="o">==</span> <span class="mi">1</span> <span class="o">)</span> <span class="o">{</span>
+<span class="lineno"> 2</span>     <span class="o">[</span>
+<span class="lineno"> 3</span>         <span class="k">new</span> <span class="n">FxFilter</span><span class="o">,</span>
+<span class="lineno"> 4</span>         <span class="k">new</span> <span class="n">FxDelay</span>
+<span class="lineno"> 5</span>     <span class="o">]</span> <span class="err">@</span><span class="o">=&gt;</span> <span class="n">fxChain</span><span class="o">;</span>
+<span class="lineno"> 6</span> <span class="o">}</span>
+<span class="lineno"> 7</span> 
+<span class="lineno"> 8</span> <span class="n">if</span> <span class="o">(</span> <span class="n">choice</span> <span class="o">==</span> <span class="mi">2</span> <span class="o">)</span> <span class="o">{</span>
+<span class="lineno"> 9</span>     <span class="o">[</span>
+<span class="lineno">10</span>         <span class="k">new</span> <span class="n">FxDelayVariable</span><span class="o">,</span>
+<span class="lineno">11</span>         <span class="k">new</span> <span class="n">FxDelay</span>
+<span class="lineno">12</span>     <span class="o">]</span> <span class="err">@</span><span class="o">=&gt;</span> <span class="n">fxChain</span><span class="o">;</span>
+<span class="lineno">13</span> <span class="o">}</span>
+<span class="lineno">14</span> 
+<span class="lineno">15</span> <span class="n">if</span> <span class="o">(</span> <span class="n">choice</span> <span class="o">==</span> <span class="mi">3</span> <span class="o">)</span> <span class="o">{</span>
+<span class="lineno">16</span>     <span class="o">[</span>
+<span class="lineno">17</span>         <span class="k">new</span> <span class="n">FxDelay</span><span class="o">,</span>
+<span class="lineno">18</span>         <span class="k">new</span> <span class="n">FxHarmonicDelay</span>
+<span class="lineno">19</span>     <span class="o">]</span> <span class="err">@</span><span class="o">=&gt;</span> <span class="n">fxChain</span><span class="o">;</span>
+<span class="lineno">20</span> <span class="o">}</span>
+<span class="lineno">21</span> 
+<span class="lineno">22</span> <span class="c1">// continued to choice 25</span></code></pre></div>
+
+<p>(It’s probably worth nothing again that ChucK doesn’t support <code>case</code> statements, or else you’d be thinking the implementation is idiotic.)</p>
+
+<p>The chains can be of arbitrary length, but the most you really want is four. This is partly because the cumulative result of too many effects is a mushy sound, but mostly because a Raspberry Pi has only limited CPU capacity and signal processing is expensive.</p>
+
+<p>You’ll note that each chain has a delay element. I think all the chains have some delay component, even if it’s reverb. It’s possible to have effects like flanging or frequency filters which track with the source sound in real time, but delay lines make the effects easier to discern, and also don’t muddy the sound of the original too much. If echoes killed your brother and you’d rather not hear them, you can always rewrite the chains by editing ‘lib/Modes/Concrete/playFxChain.ck`.</p>
+
+<p>Some Fx* classes (FxDelay and FxFilter being good examples) are wrappers for standard ChucK UGens. Others are custom (discussed below). ChucK users may be surprised that these effects have not been written as Chubgraphs (a convention for aggregating multiple Ugens together); this is for the simple reason that I hadn’t heard of them at the time I implemented Fx*. However, if I had my time over I definitely would, and it’s on the list for future refactoring.</p>
+
+<h1 id="custom-fx-libs">Custom Fx libs</h1>
+
+<p>The most interesting aspect of organising the effects chain for Concrete Mixer was to experiment with several ideas around Fx design. Most of these ideas have involved tinkering with existing ChucK UGens, but in mildly less conventional ways.</p>
+
+<h2 id="fxdelayvariable">FxDelayVariable</h2>
+
+<p>This effect randomly alters the delay amount, for the duration of the delay amount, meaning each echo is of different length to the last. This results in a skidding, skittering sound.</p>
+
+<div class="highlight"><pre><code class="language-chuck" data-lang="chuck"><span class="lineno"> 1</span> <span class="kd">fun</span> <span class="kt">void</span> <span class="nf">activity</span><span class="o">()</span> <span class="o">{</span>
+<span class="lineno"> 2</span>     <span class="k">while</span> <span class="o">(</span> <span class="n">active</span> <span class="o">)</span> <span class="o">{</span>
+<span class="lineno"> 3</span>         <span class="c1">// set duration for delay</span>
+<span class="lineno"> 4</span>         <span class="n">chooser</span><span class="o">.</span><span class="na">getDur</span><span class="o">(</span> <span class="mf">0.05</span><span class="o">,</span> <span class="mf">0.50</span> <span class="o">)</span> <span class="o">=&gt;</span> <span class="k">dur</span> <span class="n">duration</span><span class="o">;</span>
+<span class="lineno"> 5</span> 
+<span class="lineno"> 6</span>         <span class="n">duration</span> <span class="o">=&gt;</span> <span class="n">delay</span><span class="o">.</span><span class="na">delay</span><span class="o">;</span>
+<span class="lineno"> 7</span>         <span class="n">duration</span> <span class="o">-</span> <span class="mi">400</span><span class="o">::</span><span class="kc">samp</span> <span class="o">=&gt;</span> <span class="k">dur</span> <span class="n">mainDuration</span><span class="o">;</span>
+<span class="lineno"> 8</span> 
+<span class="lineno"> 9</span>         <span class="c1">// In the grand scheme of things we only need</span>
+<span class="lineno">10</span>         <span class="c1">// duration =&gt; now, but randomly changing delay</span>
+<span class="lineno">11</span>         <span class="c1">// times means there are discontinuities in the signal.</span>
+<span class="lineno">12</span>         <span class="c1">// To paper over these cracks (and pops) we fade the signal</span>
+<span class="lineno">13</span>         <span class="c1">// around the discontinuities</span>
+<span class="lineno">14</span> 
+<span class="lineno">15</span>         <span class="c1">// fade in</span>
+<span class="lineno">16</span>         <span class="n">fader</span><span class="o">.</span><span class="na">fadeIn</span><span class="o">(</span> <span class="mi">200</span><span class="o">::</span><span class="kc">samp</span><span class="o">,</span> <span class="mf">1.0</span><span class="o">,</span> <span class="n">output</span> <span class="o">);</span>
+<span class="lineno">17</span>         <span class="mi">200</span><span class="o">::</span><span class="kc">samp</span> <span class="o">=&gt;</span> <span class="kc">now</span><span class="o">;</span>
+<span class="lineno">18</span> 
+<span class="lineno">19</span>         <span class="c1">// work through mainDuration</span>
+<span class="lineno">20</span>         <span class="n">mainDuration</span> <span class="o">=&gt;</span> <span class="kc">now</span><span class="o">;</span>
+<span class="lineno">21</span> 
+<span class="lineno">22</span>         <span class="c1">// fade out</span>
+<span class="lineno">23</span>         <span class="n">fader</span><span class="o">.</span><span class="na">fadeOut</span><span class="o">(</span> <span class="mi">200</span><span class="o">::</span><span class="kc">samp</span><span class="o">,</span> <span class="n">output</span> <span class="o">);</span>
+<span class="lineno">24</span>         <span class="mi">200</span><span class="o">::</span><span class="kc">samp</span> <span class="o">=&gt;</span> <span class="kc">now</span><span class="o">;</span>
+<span class="lineno">25</span>     <span class="o">}</span>
+<span class="lineno">26</span> <span class="o">}</span></code></pre></div>
+
+<h2 id="fxflanger">FxFlanger</h2>
+
+<p>Flangers are a reasonably straightforward effect to produce. Flangers normally use a sine wave LFO to vary the delay value on the signal. With my implementation I’ve set an LFO on the feedback amount as well - I’m pretty sure I’ve never worked with a flanger that does this, though I guess it might be common. Certainly easy to do.</p>
+
+<div class="highlight"><pre><code class="language-chuck" data-lang="chuck"><span class="lineno">1</span> <span class="kd">fun</span> <span class="kt">void</span> <span class="nf">activity</span><span class="o">()</span> <span class="o">{</span>
+<span class="lineno">2</span>     <span class="k">while</span> <span class="o">(</span> <span class="n">active</span> <span class="o">)</span> <span class="o">{</span>
+<span class="lineno">3</span>         <span class="n">lfo</span><span class="o">.</span><span class="na">osc</span><span class="o">(</span> <span class="n">oscFreq</span><span class="o">,</span> <span class="n">oscAmount</span><span class="o">,</span> <span class="n">oscType</span> <span class="o">)</span> <span class="o">=&gt;</span> <span class="kt">float</span> <span class="n">freqDelta</span><span class="o">;</span>
+<span class="lineno">4</span>         <span class="nl">baseDelay:</span><span class="o">:</span><span class="kc">ms</span> <span class="o">+</span> <span class="nl">freqDelta:</span><span class="o">:</span><span class="kc">ms</span> <span class="o">=&gt;</span> <span class="n">flanger</span><span class="o">.</span><span class="na">delay</span><span class="o">;</span>
+<span class="lineno">5</span>         <span class="n">lfo</span><span class="o">.</span><span class="na">osc</span><span class="o">(</span> <span class="n">volFreq</span><span class="o">,</span> <span class="n">volAmount</span><span class="o">,</span> <span class="n">volType</span> <span class="o">)</span> <span class="o">=&gt;</span> <span class="n">feedback</span><span class="o">.</span><span class="na">gain</span><span class="o">;</span>
+<span class="lineno">6</span>         <span class="mi">10</span><span class="o">::</span><span class="kc">ms</span> <span class="o">=&gt;</span> <span class="kc">now</span><span class="o">;</span>
+<span class="lineno">7</span>     <span class="o">}</span>
+<span class="lineno">8</span> <span class="o">}</span></code></pre></div>
+
+<p>Notes:</p>
+
+<ul>
+  <li>flanger is a DelayA UGen.</li>
+  <li>This code is reasonably abstracted; the important part being the two lfo.osc lines. One oscillates the flanger object delay time, while the other oscillates the feedback.</li>
+  <li>The effect is recalculated every 10 milliseconds, which allows for LFO frequency resolution up to 50Hz.</li>
+  <li>When initialised, the randomised parameters for the flanger are calculated in two groups:
+    <ul>
+      <li>Slow mode - slow LFO frequency (less than 1Hz) and large feedback parameter</li>
+      <li>Fast mode - faster LFO frequency with a smaller feedback amount, producing more of a tremolo effect.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>The result of all this is that by assigning different LFO rates to the flange delay time and to the flange feedback time, you end up with a more chaotic, varying sound.</p>
+
+<h3 id="sample-hold-flanging">Sample Hold Flanging</h3>
+
+<p>A further twist on the classic flanger is that every so often, rather than apply the flange effect with a sine wave LFO, the LFO type is set to sample hold. This gives us a flanger version of FxDelayVariable.</p>
+
+<div class="highlight"><pre><code class="language-chuck" data-lang="chuck"><span class="lineno"> 1</span> <span class="kd">fun</span> <span class="nb">string</span> <span class="nf">getOscType</span><span class="o">()</span> <span class="o">{</span>
+<span class="lineno"> 2</span>     <span class="n">chooser</span><span class="o">.</span><span class="na">getInt</span><span class="o">(</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">4</span> <span class="o">)</span> <span class="o">=&gt;</span> <span class="kt">int</span> <span class="n">choice</span><span class="o">;</span>
+<span class="lineno"> 3</span> 
+<span class="lineno"> 4</span>     <span class="n">if</span> <span class="o">(</span> <span class="n">choice</span> <span class="o">==</span> <span class="mi">1</span> <span class="o">)</span> <span class="o">{</span>
+<span class="lineno"> 5</span>         <span class="k">return</span> <span class="s">&quot;sampleHold&quot;</span><span class="o">;</span>
+<span class="lineno"> 6</span>     <span class="o">}</span>
+<span class="lineno"> 7</span>     <span class="k">else</span> <span class="o">{</span>
+<span class="lineno"> 8</span>         <span class="c1">// we would go with sine 75% of the time</span>
+<span class="lineno"> 9</span>         <span class="k">return</span> <span class="s">&quot;sine&quot;</span><span class="o">;</span>
+<span class="lineno">10</span>     <span class="o">}</span>
+<span class="lineno">11</span> <span class="o">}</span></code></pre></div>
+
+<h2 id="fxharmonicdelay">FxHarmonicDelay</h2>
+
+<p>This effect is halfway between a flanger and variable delay. Here the delay’s amount switches between notes in a harmonic series (the root notes being randomly assigned from a pool of midi frequencies). The harmonic pitches are defined from the delay amount, meaning that very short delay amounts must be used. To get the harmonic effect a large amount of feedback must be used, which can lead to a somewhat volatile result. Half the time an LFO is placed on the feedback amount, which makes the effect a bit more bearable.</p>
+
+<p>The harmonic ‘notes’ played are assigned randomly, so again the result is sample hold effect. Another interesting twist would be to assign a sequence of pitches that are continually repeated or gradually modulated.</p>
+
+<h2 id="fxgate">FxGate</h2>
+
+<p>Your father’s tremolo effect involves applying an LFO to a gain so that the volume of the signal rapidly drops out and returns. In Concrete Mixer this effect has been made a bit more interesting because the LFO frequency itself is modulated with an LFO. Similar to FxVariableDelay, this creates a bit of variable mayhem.</p>
+
+<div class="highlight"><pre><code class="language-chuck" data-lang="chuck"><span class="lineno">1</span> <span class="kd">fun</span> <span class="kt">void</span> <span class="nf">activity</span><span class="o">()</span> <span class="o">{</span>
+<span class="lineno">2</span>         <span class="k">while</span> <span class="o">(</span> <span class="kc">true</span> <span class="o">)</span> <span class="o">{</span>
+<span class="lineno">3</span>             <span class="n">lfo</span><span class="o">.</span><span class="na">osc</span><span class="o">(</span> <span class="n">lfoOscFreq</span><span class="o">,</span> <span class="n">lfoOscAmount</span><span class="o">,</span> <span class="s">&quot;sine&quot;</span> <span class="o">)</span> <span class="o">=&gt;</span> <span class="kt">float</span> <span class="n">freqDelta</span><span class="o">;</span>
+<span class="lineno">4</span>             <span class="n">lfoBaseFreq</span> <span class="o">+</span> <span class="n">freqDelta</span> <span class="o">=&gt;</span> <span class="kt">float</span> <span class="n">lfoFreqFinal</span><span class="o">;</span>
+<span class="lineno">5</span>             <span class="n">lfo</span><span class="o">.</span><span class="na">osc</span><span class="o">(</span> <span class="n">lfoFreqFinal</span><span class="o">,</span> <span class="n">amount</span><span class="o">,</span> <span class="s">&quot;sine&quot;</span> <span class="o">)</span> <span class="o">=&gt;</span> <span class="kt">float</span> <span class="n">gainDelta</span><span class="o">;</span>
+<span class="lineno">6</span>             <span class="mf">0.5</span> <span class="o">+</span> <span class="n">gainDelta</span> <span class="o">=&gt;</span> <span class="n">g</span><span class="o">.</span><span class="na">gain</span><span class="o">;</span>
+<span class="lineno">7</span>             <span class="mi">1</span><span class="o">::</span><span class="kc">ms</span> <span class="o">=&gt;</span> <span class="kc">now</span><span class="o">;</span>
+<span class="lineno">8</span>         <span class="o">}</span>
+<span class="lineno">9</span>     <span class="o">}</span></code></pre></div>
+
+<h2 id="fxreversedelay">FxReverseDelay</h2>
+
+<p>This class relies on a custom Chugen called ReverseDelay. ReverseDelay is small enough to include here in full.</p>
+
+<div class="highlight"><pre><code class="language-chuck" data-lang="chuck"><span class="lineno"> 1</span> <span class="kd">public</span> <span class="kd">class</span> <span class="nc">ReverseDelay</span> <span class="kd">extends</span> <span class="nb">Chugen</span> <span class="o">{</span>
+<span class="lineno"> 2</span>     <span class="kt">float</span> <span class="n">readArray</span><span class="o">[</span><span class="mi">0</span><span class="o">];</span>
+<span class="lineno"> 3</span>     <span class="kt">float</span> <span class="n">writeArray</span><span class="o">[</span><span class="mi">0</span><span class="o">];</span>
+<span class="lineno"> 4</span>     <span class="kt">int</span> <span class="n">readCount</span><span class="o">;</span>
+<span class="lineno"> 5</span>     <span class="kt">int</span> <span class="n">writeCount</span><span class="o">;</span>
+<span class="lineno"> 6</span>     <span class="kt">float</span> <span class="n">sample</span><span class="o">;</span>
+<span class="lineno"> 7</span> 
+<span class="lineno"> 8</span>     <span class="kd">fun</span> <span class="kt">void</span> <span class="nf">delay</span><span class="o">(</span> <span class="kt">int</span> <span class="n">size</span> <span class="o">)</span> <span class="o">{</span>
+<span class="lineno"> 9</span>         <span class="n">readArray</span><span class="o">.</span><span class="na">size</span><span class="o">(</span> <span class="n">size</span> <span class="o">);</span>
+<span class="lineno">10</span>         <span class="n">writeArray</span><span class="o">.</span><span class="na">size</span><span class="o">(</span> <span class="n">size</span> <span class="o">);</span>
+<span class="lineno">11</span>         <span class="n">size</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">=&gt;</span> <span class="n">readCount</span><span class="o">;</span>
+<span class="lineno">12</span>     <span class="o">}</span>
+<span class="lineno">13</span> 
+<span class="lineno">14</span>     <span class="kd">fun</span> <span class="kt">float</span> <span class="nf">tick</span><span class="o">(</span> <span class="kt">float</span> <span class="n">in</span> <span class="o">)</span> <span class="o">{</span>
+<span class="lineno">15</span>         <span class="c1">// if readArray.size(), delay() has not been called</span>
+<span class="lineno">16</span>         <span class="c1">// do nothing</span>
+<span class="lineno">17</span>         <span class="n">if</span> <span class="o">(</span> <span class="o">!</span> <span class="n">readArray</span><span class="o">.</span><span class="na">cap</span><span class="o">()</span> <span class="o">)</span> <span class="o">{</span>
+<span class="lineno">18</span>             <span class="k">return</span> <span class="n">in</span><span class="o">;</span>
+<span class="lineno">19</span>         <span class="o">}</span>
+<span class="lineno">20</span> 
+<span class="lineno">21</span>         <span class="n">in</span> <span class="o">=&gt;</span> <span class="n">writeArray</span><span class="o">[</span> <span class="n">writeCount</span> <span class="o">];</span>
+<span class="lineno">22</span>         <span class="n">readArray</span><span class="o">[</span> <span class="n">readCount</span> <span class="o">]</span> <span class="o">=&gt;</span> <span class="n">sample</span><span class="o">;</span>
+<span class="lineno">23</span>         <span class="n">writeCount</span><span class="o">++;</span>
+<span class="lineno">24</span>         <span class="n">readCount</span><span class="o">--;</span>
+<span class="lineno">25</span> 
+<span class="lineno">26</span>         <span class="n">if</span> <span class="o">(</span> <span class="n">writeCount</span> <span class="o">==</span> <span class="n">writeArray</span><span class="o">.</span><span class="na">cap</span><span class="o">()</span> <span class="o">)</span> <span class="o">{</span>
+<span class="lineno">27</span>             <span class="n">switchArrays</span><span class="o">();</span>
+<span class="lineno">28</span>         <span class="o">}</span>
+<span class="lineno">29</span> 
+<span class="lineno">30</span>         <span class="k">return</span> <span class="n">sample</span><span class="o">;</span>
+<span class="lineno">31</span>     <span class="o">}</span>
+<span class="lineno">32</span> 
+<span class="lineno">33</span>     <span class="kd">fun</span> <span class="kt">void</span> <span class="nf">switchArrays</span><span class="o">()</span> <span class="o">{</span>
+<span class="lineno">34</span>         <span class="kt">float</span> <span class="n">tempArray</span><span class="o">[];</span>
+<span class="lineno">35</span> 
+<span class="lineno">36</span>         <span class="c1">// switch arrays</span>
+<span class="lineno">37</span>         <span class="n">readArray</span> <span class="err">@</span><span class="o">=&gt;</span> <span class="n">tempArray</span><span class="o">;</span>
+<span class="lineno">38</span>         <span class="n">writeArray</span> <span class="err">@</span><span class="o">=&gt;</span> <span class="n">readArray</span><span class="o">;</span>
+<span class="lineno">39</span>         <span class="n">tempArray</span> <span class="err">@</span><span class="o">=&gt;</span> <span class="n">writeArray</span><span class="o">;</span>
+<span class="lineno">40</span> 
+<span class="lineno">41</span>         <span class="c1">// reset counts</span>
+<span class="lineno">42</span>         <span class="mi">0</span> <span class="o">=&gt;</span> <span class="n">writeCount</span><span class="o">;</span>
+<span class="lineno">43</span>         <span class="n">readArray</span><span class="o">.</span><span class="na">cap</span><span class="o">()</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">=&gt;</span> <span class="n">readCount</span><span class="o">;</span>
+<span class="lineno">44</span>     <span class="o">}</span>
+<span class="lineno">45</span> <span class="o">}</span></code></pre></div>
+
+<p>The gist is that the current signal gets written to an array. Once the current array is full, it gets swapped with a second array. From then on values are read in reverse from the first array, providing the backwards delay signal, while current values get written to the second delay. This cycle repeats, and hey presto, reverse delay.</p>
+
+<p>The effect is very simple and it’s a surprise it (or perhaps a more acoustically sophisticated version) hasn’t been implemented natively in ChucK.</p>
+
+<p>Note: Chugens use a lot of system resources and this effect is not enabled by default for the Raspberry Pi.</p>
+
+<h2 id="chugins">Chugins</h2>
+
+<p>ChucK comes with a small number of effects components built in, but the language also supports Chugins, which are compiled signal processing modules which can be used like Ugens. Two are used in Concrete Mixer: Gverb and Bitcrusher. Gverb provides better quality reverb than ChucK’s native (and rather woeful) reverb Ugens. BitCrusher lowers bitrate and samplerate on a signal, turning it into metallic noise. These Chugins are incorporated into several CM effects chains.</p>
+
+<h1 id="concludings">Concludings</h1>
+
+<p>That’s an overview of Concrete Mixers effects system. There are other ideas I’d like to implement but at the moment there’s enough variety to be getting on with.</p>
+</section>
+</article>
+
+<!-- Post navigation -->
+
+
+<!-- Disqus -->
+
+<div class="comments">
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+	var disqus_shortname = 'concretemixer';
+	(function() {
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+</div>
+
+
+    </div>
+    
+<script src="/js/katex_init.js"></script>
+
+
+
+<footer class="site-footer">
+	<p class="text">Powered by <a href="http://jekyllrb.com">Jekyll</a> with <a href="https://rohanchandra.github.io/project/type/">Type Theme</a>
+</p>
+</footer>
+
+
+  </body>
+</html>
