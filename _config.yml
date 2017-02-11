@@ -5,14 +5,14 @@ url: "https://concrete-mixer.github.io" # the base hostname & protocol for your 
 # THEME-SPECIFIC CONFIGURATION
 theme:
   # Meta
-  title: Concrète Mixer - messing around with audio code
+  title: Concrète Mixer - shredded field recording ambience
   avatar: highgate.jpg
   gravatar: # Email MD5 hash
-  description: "This is a blog about audio coding that rambles through the work I’ve done over the past couple of years." # used by search engines
+  description: "This is a blog about audio coding that rambles through the work I’ve done on and off over the past few of years." # used by search engines
 
   # Header and footer text
   header_text: >
-     <p>This is a blog about audio coding that rambles through the work I’ve done over the past couple of years.</a>
+     <p>About Concrète Mixer and Radio Concrète. Listen now!</p>
   header_text_feature_image: img/concrete-banner.jpg
   post_header_image: img/concrete-feature.jpg
   footer_text: >

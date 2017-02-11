@@ -54,7 +54,7 @@ if ( choice == 3 ) {
 // continued to choice 25
 {% endhighlight %}
 
-(It's probably worth nothing again that ChucK doesn't support `case` statements, or else you'd be thinking the implementation is idiotic.)
+(In case you're wondering, no, ChucK _doesn't_ support `case` statements.)
 
 The chains can be of arbitrary length, but the most you really want is four. This is partly because the cumulative result of too many effects is a mushy sound, but mostly because a Raspberry Pi has only limited CPU capacity and signal processing is expensive.
 
