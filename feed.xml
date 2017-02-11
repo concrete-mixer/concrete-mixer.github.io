@@ -1,14 +1,111 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Concrète Mixer - messing around with audio code</title>
+    <title>Concrète Mixer - shredded field recording ambience</title>
     <atom:link href="https://concrete-mixer.github.io/feed.xml" rel="self" type="application/rss+xml"/>
     <link>https://concrete-mixer.github.io/</link>
-    <description>This is a blog about audio coding that rambles through the work I’ve done over the past couple of years.</description>
-    <pubDate>Sun, 06 Dec 2015 10:10:56 +1300</pubDate>
+    <description>This is a blog about audio coding that rambles through the work I’ve done on and off over the past few of years.</description>
+    <pubDate>Sat, 11 Feb 2017 21:07:35 +1300</pubDate>
     
       <item>
-        <title>About Concrète Mixer&#39;s effects chains</title>
+        <title>What's new</title>
+        <link>https://concrete-mixer.github.io/concr%C3%A8te%20mixer/2017/02/07/whats-new.html</link>
+        <guid isPermaLink="true">https://concrete-mixer.github.io/concr%C3%A8te%20mixer/2017/02/07/whats-new.html</guid>
+        <description>&lt;p&gt;I last updated this blog in December 2015. In 2016 my time was rather swamped by work and fatherhood, but I tinkered away now and then and undertook some major work toward the end of last year. The result of this is Concrète Mixer 2.0, and this post outlines what’s changed.&lt;/p&gt;
+
+&lt;h1 id=&quot;the-audio-is-much-the-same&quot;&gt;The audio is much the same&lt;/h1&gt;
+
+&lt;p&gt;Firstly, the least impressive bit: the audio rendering is much the same as before. Some new processing has been added to playSound, and some tweaks to playFx have been made here and there, but there’s not too much different. I have other ideas but most of the effort has been aimed at refactoring the app to make it more stable and (frankly) sane.&lt;/p&gt;
+
+&lt;h1 id=&quot;no-more-perl&quot;&gt;No more Perl&lt;/h1&gt;
+
+&lt;p&gt;The biggest change is that there’s no Perl wrapper for the app. Instead, the prior Perl functionality is now written in ChucK.&lt;/p&gt;
+
+&lt;p&gt;This change was facilitated by my discovery that ChucK has FileIO and regular expression libraries which I can read and parse the config file. I’m a bit rueful I didn’t discover these libs earlier, although to be fair neither of them is documented on the ChucK website.&lt;/p&gt;
+
+&lt;h1 id=&quot;hello-python---soundcloud-support&quot;&gt;Hello Python - Soundcloud support&lt;/h1&gt;
+
+&lt;p&gt;Even as I dispensed with Perl, I had an idea to add SoundCloud support, and decided to write this in Python.&lt;/p&gt;
+
+&lt;p&gt;For a while I’d thought that Soundcloud support for users could point the app at a Soundcloud playlists might be handy. This functionality has been added in 2.0, and works pretty well. There’s support for most sound codecs via lib-avconc (aka ffmpeg). Soundcloud support makes evaluation of the app easier, and the default &lt;code class=&quot;highlighter-rouge&quot;&gt;concrete.conf.sample&lt;/code&gt; points to some demo playlists.&lt;/p&gt;
+
+&lt;h1 id=&quot;concrte-mixer-in-docker&quot;&gt;Concrète Mixer in Docker&lt;/h1&gt;
+
+&lt;p&gt;I’ve decided to remove the compiled binary and selected chugins from the CM distribution - it wasn’t really appropriate to sling binaries in a github repo, and it’s certainly easier to get users to compile ChucK themselves. However this means that a prospective user now needs to:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;compile ChucK&lt;/li&gt;
+  &lt;li&gt;compile chugins&lt;/li&gt;
+  &lt;li&gt;install supporting Python libs (incl virtualenv)&lt;/li&gt;
+  &lt;li&gt;pip install requirements.txt (for soundcloud functionality)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;…which is quite an ask. As a response to this, I’ve built a &lt;a href=&quot;https://github.com/concrete-mixer/cm-docker-rpi-dac&quot;&gt;Docker image&lt;/a&gt; which installs all these prerequisites and kicks of CM execution. This image is built with Raspbian to run on a pi (preferably Pi3).&lt;/p&gt;
+
+&lt;h1 id=&quot;concrte-mixer-as-an-internet-radio-station&quot;&gt;Concrète Mixer as an internet radio station&lt;/h1&gt;
+
+&lt;p&gt;Finally, I’ve made &lt;a href=&quot;https://github.com/concrete-mixer/cm-docker-rpi-internet&quot;&gt;another Docker image&lt;/a&gt; which augments Concrète Mixer with &lt;a href=&quot;http://www.darkice.org&quot;&gt;Darkice&lt;/a&gt; and &lt;a href=&quot;https://www.icecast.org&quot;&gt;Icecast&lt;/a&gt; to create a Concrète Mixer radio station. Despite the extra processing this seems to run well on a Pi3. You can hear the result &lt;a href=&quot;http://concrete-mixer.venturus.io/concrete-mixer.mp3&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h1 id=&quot;things-to-come&quot;&gt;Things to come&lt;/h1&gt;
+
+&lt;p&gt;The development of 2.0 has tidied up a lot of ugliness in the original build and suggest a way forward for the future.&lt;/p&gt;
+
+&lt;h2 id=&quot;near-term---radio-concrte&quot;&gt;Near term - Radio Concrète&lt;/h2&gt;
+
+&lt;p&gt;I’ve always had a question mark in my head over how punters would use Concrète Mixer, who they would be and why they would want to use it. As an occasional sound recordist who likes mashing up audio, the use case seems obvious to me, and I guess there are others who might be keen, but whether they’d want little boxes to do it or not is still unknown to me.&lt;/p&gt;
+
+&lt;p&gt;Instead, Concrète Mixer as an internet radio station seems like a good focus to the project. The way forward seems to me to be to get more sounds. At the moment I have a half hour long battery of sounds, and that gets repetitive after a while. So I’ll go on the hunt.&lt;/p&gt;
+
+&lt;h2 id=&quot;longer-term&quot;&gt;Longer term&lt;/h2&gt;
+
+&lt;p&gt;There’s still a lot that could be done on the audio front:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;The effects chain is still mono (well fake stereo by the cheat of adding a short delay to a randomly chosen channel)&lt;/li&gt;
+  &lt;li&gt;I have some more sound mashing ideas on playback that I haven’t explored yet. Some of these ideas (eg stereo reverb) will have to wait until more powerful iterations of rpis are available.&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Tue, 07 Feb 2017 00:00:00 +1300</pubDate>
+      </item>
+    
+      <item>
+        <title>Randomness in sound</title>
+        <link>https://concrete-mixer.github.io/concr%C3%A8te%20mixer/2015/12/10/randomness.html</link>
+        <guid isPermaLink="true">https://concrete-mixer.github.io/concr%C3%A8te%20mixer/2015/12/10/randomness.html</guid>
+        <description>&lt;p&gt;A somewhat chin-strokey examination of how chance can be applied to open-ended electronic audio.&lt;/p&gt;
+
+&lt;p&gt;When starting out writing audio processing scripts my plan was to devise a system that would generate sound sufficiently complex that by listening to it I wouldn’t be able to determine how it had been constructed.  I’m not sure quite why this idea interests me, but I guess I like suprises.&lt;/p&gt;
+
+&lt;p&gt;The problem with this approach is that writing something that baffles you requires a lot of complexity and a lot of time - something at odds with the amount of time (generally, nocturnal dilettanting) that I can invest. Concrete Mixer ended up being a compromise. Take some real world sounds (ie don’t invest a lot of effort in complex signal generation) and devise a broad range of operations that could be applied to them, determined by chance.&lt;/p&gt;
+
+&lt;h1 id=&quot;go-plenty-random&quot;&gt;Go plenty random&lt;/h1&gt;
+
+&lt;p&gt;Concrete Mixer makes a lot of choices in determining the sound that is output:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;The order in which sound files are played (and which consequently which files will be mixed with each other). Even with a few dozen files the number of possible combinations of sounds in a single render run is enormous.&lt;/li&gt;
+  &lt;li&gt;The order in which effects are applied - there are 25 effects chains, which chosen randomly.&lt;/li&gt;
+  &lt;li&gt;The amount of time an effect or sound playback manipulation is applied: each sound playback is divided into random stretches of time. For 7/8 of these segments, sample playback will proceed in a normal fashion; for the other 1/8 sound manipulation will be performed. Similarly, each effects chain is applied for a random period. Multiplying these factors, in any 20 second period some change in playback is being determined.&lt;/li&gt;
+  &lt;li&gt;Further to this, each time some sound manipulation is performed, it may have many parameters that are determined randomly.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;What I really want to convey is that the parameter space for CM is huge and thus, however subtly it may seem, every time you listen to it it is playing in a way it has never played before, or will again.&lt;/p&gt;
+
+&lt;p&gt;Additionally, part of the process of improving CM is providing even more choices and consequently more variety and uniqueness.&lt;/p&gt;
+
+&lt;h1 id=&quot;but-never-go-full-random&quot;&gt;But never go full random&lt;/h1&gt;
+
+&lt;p&gt;Randomness is good, but there’s a hefty constraint to be applied: whatever and however many decisions get made, the result has to sound good. There’s no point writing an app that regularly presents its sounds in a way that listeners don’t like.&lt;/p&gt;
+
+&lt;p&gt;An early iteration of Concrete Mixer called Sound Forest frequently sounded poor, mostly because I had the parameter space for the effects chain so open that a often the choices made were nonsensical. Even so I remained undaunted: I even earnestly explained in the README file that although the app would often sound terrible, that this was in fact a virtue. Eventually it occurred to me that things had to be reined in a bit. I’ve always been sceptical about musicians who are enamoured with process over result, and going full random with awkward results is less ideal than providing a constrained but more rewarding set of possibilities.&lt;/p&gt;
+
+&lt;p&gt;Even so, there’s no way that a computer arbitrarily making choices will always make the optimum choice for the sound files being played. Not without some fiendish piece of sound analysis. In this sense CM will never be the equal of a deliberate composition of Musique Concrete. Looking at it another way though, when an apt choice does get made, you can appreciate it more for being a product of chance rather than intent.&lt;/p&gt;
+</description>
+        <pubDate>Thu, 10 Dec 2015 00:00:00 +1300</pubDate>
+      </item>
+    
+      <item>
+        <title>About Concrète Mixer's effects chains</title>
         <link>https://concrete-mixer.github.io/concr%C3%A8te%20mixer/2015/12/06/cm-fxchains.html</link>
         <guid isPermaLink="true">https://concrete-mixer.github.io/concr%C3%A8te%20mixer/2015/12/06/cm-fxchains.html</guid>
         <description>&lt;p&gt;This post discusses Concrete Mixer’s effects chains system, which is governed by the playFx entity within CM.&lt;/p&gt;
@@ -26,7 +123,7 @@
 
 &lt;p&gt;One or more raw recordings can be sound a bit sparse in the audio field, especially if they’re mono. An effects chain helps to add depth to the stereo field.&lt;/p&gt;
 
-&lt;p&gt;In case you have recordings that are so bursting with incident they need no artificial enhancement, you can turn off the effects chain by specifying &lt;code&gt;fx_chain_enabled=0&lt;/code&gt; in &lt;code&gt;conf/concrete.conf&lt;/code&gt;).&lt;/p&gt;
+&lt;p&gt;In case you have recordings that are so bursting with incident they need no artificial enhancement, you can turn off the effects chain by specifying &lt;code class=&quot;highlighter-rouge&quot;&gt;fx_chain_enabled=0&lt;/code&gt; in &lt;code class=&quot;highlighter-rouge&quot;&gt;conf/concrete.conf&lt;/code&gt;).&lt;/p&gt;
 
 &lt;h2 id=&quot;dubbing-it-up&quot;&gt;Dubbing it up&lt;/h2&gt;
 
@@ -38,30 +135,52 @@
 
 &lt;p&gt;playFx defines 25 effects combinations. These chains are groupings of the effects libraries found in lib/Fx, like so:&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-chuck&quot; data-lang=&quot;chuck&quot;&gt;&lt;span class=&quot;lineno&quot;&gt; 1&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;choice&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt; 2&lt;/span&gt;     &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt; 3&lt;/span&gt;         &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;FxFilter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt; 4&lt;/span&gt;         &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;FxDelay&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt; 5&lt;/span&gt;     &lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fxChain&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt; 6&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt; 7&lt;/span&gt; 
-&lt;span class=&quot;lineno&quot;&gt; 8&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;choice&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt; 9&lt;/span&gt;     &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;10&lt;/span&gt;         &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;FxDelayVariable&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;11&lt;/span&gt;         &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;FxDelay&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;12&lt;/span&gt;     &lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fxChain&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;13&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;14&lt;/span&gt; 
-&lt;span class=&quot;lineno&quot;&gt;15&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;choice&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;16&lt;/span&gt;     &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;17&lt;/span&gt;         &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;FxDelay&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;18&lt;/span&gt;         &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;FxHarmonicDelay&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;19&lt;/span&gt;     &lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fxChain&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;20&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;21&lt;/span&gt; 
-&lt;span class=&quot;lineno&quot;&gt;22&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// continued to choice 25&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-chuck&quot; data-lang=&quot;chuck&quot;&gt;&lt;table style=&quot;border-spacing: 0&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter gl&quot; style=&quot;text-align: right&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;if ( choice == 1 ) {
+    [
+        new FxFilter,
+        new FxDelay
+    ] @=&amp;gt; fxChain;
+}
 
-&lt;p&gt;(It’s probably worth nothing again that ChucK doesn’t support &lt;code&gt;case&lt;/code&gt; statements, or else you’d be thinking the implementation is idiotic.)&lt;/p&gt;
+if ( choice == 2 ) {
+    [
+        new FxDelayVariable,
+        new FxDelay
+    ] @=&amp;gt; fxChain;
+}
+
+if ( choice == 3 ) {
+    [
+        new FxDelay,
+        new FxHarmonicDelay
+    ] @=&amp;gt; fxChain;
+}
+
+// continued to choice 25&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;(In case you’re wondering, no, ChucK &lt;em&gt;doesn’t&lt;/em&gt; support &lt;code class=&quot;highlighter-rouge&quot;&gt;case&lt;/code&gt; statements.)&lt;/p&gt;
 
 &lt;p&gt;The chains can be of arbitrary length, but the most you really want is four. This is partly because the cumulative result of too many effects is a mushy sound, but mostly because a Raspberry Pi has only limited CPU capacity and signal processing is expensive.&lt;/p&gt;
 
@@ -77,45 +196,79 @@
 
 &lt;p&gt;This effect randomly alters the delay amount, for the duration of the delay amount, meaning each echo is of different length to the last. This results in a skidding, skittering sound.&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-chuck&quot; data-lang=&quot;chuck&quot;&gt;&lt;span class=&quot;lineno&quot;&gt; 1&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;activity&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt; 2&lt;/span&gt;     &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;active&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt; 3&lt;/span&gt;         &lt;span class=&quot;c1&quot;&gt;// set duration for delay&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt; 4&lt;/span&gt;         &lt;span class=&quot;n&quot;&gt;chooser&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getDur&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.05&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.50&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;dur&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;duration&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt; 5&lt;/span&gt; 
-&lt;span class=&quot;lineno&quot;&gt; 6&lt;/span&gt;         &lt;span class=&quot;n&quot;&gt;duration&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;delay&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;delay&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt; 7&lt;/span&gt;         &lt;span class=&quot;n&quot;&gt;duration&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;400&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;samp&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;dur&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mainDuration&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt; 8&lt;/span&gt; 
-&lt;span class=&quot;lineno&quot;&gt; 9&lt;/span&gt;         &lt;span class=&quot;c1&quot;&gt;// In the grand scheme of things we only need&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;10&lt;/span&gt;         &lt;span class=&quot;c1&quot;&gt;// duration =&amp;gt; now, but randomly changing delay&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;11&lt;/span&gt;         &lt;span class=&quot;c1&quot;&gt;// times means there are discontinuities in the signal.&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;12&lt;/span&gt;         &lt;span class=&quot;c1&quot;&gt;// To paper over these cracks (and pops) we fade the signal&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;13&lt;/span&gt;         &lt;span class=&quot;c1&quot;&gt;// around the discontinuities&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;14&lt;/span&gt; 
-&lt;span class=&quot;lineno&quot;&gt;15&lt;/span&gt;         &lt;span class=&quot;c1&quot;&gt;// fade in&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;16&lt;/span&gt;         &lt;span class=&quot;n&quot;&gt;fader&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;fadeIn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;200&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;samp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;1.0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;output&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;17&lt;/span&gt;         &lt;span class=&quot;mi&quot;&gt;200&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;samp&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;now&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;18&lt;/span&gt; 
-&lt;span class=&quot;lineno&quot;&gt;19&lt;/span&gt;         &lt;span class=&quot;c1&quot;&gt;// work through mainDuration&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;20&lt;/span&gt;         &lt;span class=&quot;n&quot;&gt;mainDuration&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;now&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;21&lt;/span&gt; 
-&lt;span class=&quot;lineno&quot;&gt;22&lt;/span&gt;         &lt;span class=&quot;c1&quot;&gt;// fade out&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;23&lt;/span&gt;         &lt;span class=&quot;n&quot;&gt;fader&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;fadeOut&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;200&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;samp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;output&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;24&lt;/span&gt;         &lt;span class=&quot;mi&quot;&gt;200&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;samp&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;now&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;25&lt;/span&gt;     &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;26&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-chuck&quot; data-lang=&quot;chuck&quot;&gt;&lt;table style=&quot;border-spacing: 0&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter gl&quot; style=&quot;text-align: right&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;fun void activity() {
+    while ( active ) {
+        // set duration for delay
+        chooser.getDur( 0.05, 0.50 ) =&amp;gt; dur duration;
+
+        duration =&amp;gt; delay.delay;
+        duration - 400::samp =&amp;gt; dur mainDuration;
+
+        // In the grand scheme of things we only need
+        // duration =&amp;gt; now, but randomly changing delay
+        // times means there are discontinuities in the signal.
+        // To paper over these cracks (and pops) we fade the signal
+        // around the discontinuities
+
+        // fade in
+        fader.fadeIn( 200::samp, 1.0, output );
+        200::samp =&amp;gt; now;
+
+        // work through mainDuration
+        mainDuration =&amp;gt; now;
+
+        // fade out
+        fader.fadeOut( 200::samp, output );
+        200::samp =&amp;gt; now;
+    }
+}&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;h2 id=&quot;fxflanger&quot;&gt;FxFlanger&lt;/h2&gt;
 
 &lt;p&gt;Flangers are a reasonably straightforward effect to produce. Flangers normally use a sine wave LFO to vary the delay value on the signal. With my implementation I’ve set an LFO on the feedback amount as well - I’m pretty sure I’ve never worked with a flanger that does this, though I guess it might be common. Certainly easy to do.&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-chuck&quot; data-lang=&quot;chuck&quot;&gt;&lt;span class=&quot;lineno&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;activity&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;2&lt;/span&gt;     &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;active&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;3&lt;/span&gt;         &lt;span class=&quot;n&quot;&gt;lfo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;osc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;oscFreq&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;oscAmount&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;oscType&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;float&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;freqDelta&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;4&lt;/span&gt;         &lt;span class=&quot;nl&quot;&gt;baseDelay:&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;ms&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;freqDelta:&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;ms&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;flanger&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;delay&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;5&lt;/span&gt;         &lt;span class=&quot;n&quot;&gt;lfo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;osc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;volFreq&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;volAmount&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;volType&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;feedback&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;gain&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;6&lt;/span&gt;         &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;ms&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;now&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;7&lt;/span&gt;     &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;8&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-chuck&quot; data-lang=&quot;chuck&quot;&gt;&lt;table style=&quot;border-spacing: 0&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter gl&quot; style=&quot;text-align: right&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+4
+5
+6
+7
+8&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;fun void activity() {
+    while ( active ) {
+        lfo.osc( oscFreq, oscAmount, oscType ) =&amp;gt; float freqDelta;
+        baseDelay::ms + freqDelta::ms =&amp;gt; flanger.delay;
+        lfo.osc( volFreq, volAmount, volType ) =&amp;gt; feedback.gain;
+        10::ms =&amp;gt; now;
+    }
+}&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Notes:&lt;/p&gt;
 
@@ -137,17 +290,28 @@
 
 &lt;p&gt;A further twist on the classic flanger is that every so often, rather than apply the flange effect with a sine wave LFO, the LFO type is set to sample hold. This gives us a flanger version of FxDelayVariable.&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-chuck&quot; data-lang=&quot;chuck&quot;&gt;&lt;span class=&quot;lineno&quot;&gt; 1&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getOscType&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt; 2&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;chooser&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getInt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;choice&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt; 3&lt;/span&gt; 
-&lt;span class=&quot;lineno&quot;&gt; 4&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;choice&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt; 5&lt;/span&gt;         &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;sampleHold&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt; 6&lt;/span&gt;     &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt; 7&lt;/span&gt;     &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt; 8&lt;/span&gt;         &lt;span class=&quot;c1&quot;&gt;// we would go with sine 75% of the time&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt; 9&lt;/span&gt;         &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;sine&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;10&lt;/span&gt;     &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;11&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-chuck&quot; data-lang=&quot;chuck&quot;&gt;&lt;table style=&quot;border-spacing: 0&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter gl&quot; style=&quot;text-align: right&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;fun string getOscType() {
+    chooser.getInt( 1, 4 ) =&amp;gt; int choice;
+
+    if ( choice == 1 ) {
+        return &quot;sampleHold&quot;;
+    }
+    else {
+        // we would go with sine 75% of the time
+        return &quot;sine&quot;;
+    }
+}&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;h2 id=&quot;fxharmonicdelay&quot;&gt;FxHarmonicDelay&lt;/h2&gt;
 
@@ -159,65 +323,119 @@
 
 &lt;p&gt;Your father’s tremolo effect involves applying an LFO to a gain so that the volume of the signal rapidly drops out and returns. In Concrete Mixer this effect has been made a bit more interesting because the LFO frequency itself is modulated with an LFO. Similar to FxVariableDelay, this creates a bit of variable mayhem.&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-chuck&quot; data-lang=&quot;chuck&quot;&gt;&lt;span class=&quot;lineno&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;activity&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;2&lt;/span&gt;         &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;3&lt;/span&gt;             &lt;span class=&quot;n&quot;&gt;lfo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;osc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lfoOscFreq&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lfoOscAmount&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;sine&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;float&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;freqDelta&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;4&lt;/span&gt;             &lt;span class=&quot;n&quot;&gt;lfoBaseFreq&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;freqDelta&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;float&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lfoFreqFinal&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;5&lt;/span&gt;             &lt;span class=&quot;n&quot;&gt;lfo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;osc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lfoFreqFinal&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;amount&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;sine&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;float&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;gainDelta&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;6&lt;/span&gt;             &lt;span class=&quot;mf&quot;&gt;0.5&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;gainDelta&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;g&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;gain&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;7&lt;/span&gt;             &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;ms&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;now&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;8&lt;/span&gt;         &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;9&lt;/span&gt;     &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-chuck&quot; data-lang=&quot;chuck&quot;&gt;&lt;table style=&quot;border-spacing: 0&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter gl&quot; style=&quot;text-align: right&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+4
+5
+6
+7
+8
+9&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;    fun void activity() {
+        while ( true ) {
+            lfo.osc( lfoOscFreq, lfoOscAmount, &quot;sine&quot; ) =&amp;gt; float freqDelta;
+            lfoBaseFreq + freqDelta =&amp;gt; float lfoFreqFinal;
+            lfo.osc( lfoFreqFinal, amount, &quot;sine&quot; ) =&amp;gt; float gainDelta;
+            0.5 + gainDelta =&amp;gt; g.gain;
+            1::ms =&amp;gt; now;
+        }
+    }&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;h2 id=&quot;fxreversedelay&quot;&gt;FxReverseDelay&lt;/h2&gt;
 
 &lt;p&gt;This class relies on a custom Chugen called ReverseDelay. ReverseDelay is small enough to include here in full.&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-chuck&quot; data-lang=&quot;chuck&quot;&gt;&lt;span class=&quot;lineno&quot;&gt; 1&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ReverseDelay&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Chugen&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt; 2&lt;/span&gt;     &lt;span class=&quot;kt&quot;&gt;float&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;readArray&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;];&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt; 3&lt;/span&gt;     &lt;span class=&quot;kt&quot;&gt;float&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;writeArray&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;];&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt; 4&lt;/span&gt;     &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;readCount&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt; 5&lt;/span&gt;     &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;writeCount&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt; 6&lt;/span&gt;     &lt;span class=&quot;kt&quot;&gt;float&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sample&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt; 7&lt;/span&gt; 
-&lt;span class=&quot;lineno&quot;&gt; 8&lt;/span&gt;     &lt;span class=&quot;kd&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;delay&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;size&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt; 9&lt;/span&gt;         &lt;span class=&quot;n&quot;&gt;readArray&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;size&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;10&lt;/span&gt;         &lt;span class=&quot;n&quot;&gt;writeArray&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;size&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;11&lt;/span&gt;         &lt;span class=&quot;n&quot;&gt;size&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;readCount&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;12&lt;/span&gt;     &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;13&lt;/span&gt; 
-&lt;span class=&quot;lineno&quot;&gt;14&lt;/span&gt;     &lt;span class=&quot;kd&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;float&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;tick&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;float&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;15&lt;/span&gt;         &lt;span class=&quot;c1&quot;&gt;// if readArray.size(), delay() has not been called&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;16&lt;/span&gt;         &lt;span class=&quot;c1&quot;&gt;// do nothing&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;17&lt;/span&gt;         &lt;span class=&quot;n&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;readArray&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;cap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;18&lt;/span&gt;             &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;in&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;19&lt;/span&gt;         &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;20&lt;/span&gt; 
-&lt;span class=&quot;lineno&quot;&gt;21&lt;/span&gt;         &lt;span class=&quot;n&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;writeArray&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;writeCount&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;];&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;22&lt;/span&gt;         &lt;span class=&quot;n&quot;&gt;readArray&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;readCount&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sample&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;23&lt;/span&gt;         &lt;span class=&quot;n&quot;&gt;writeCount&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++;&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;24&lt;/span&gt;         &lt;span class=&quot;n&quot;&gt;readCount&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;--;&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;25&lt;/span&gt; 
-&lt;span class=&quot;lineno&quot;&gt;26&lt;/span&gt;         &lt;span class=&quot;n&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;writeCount&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;writeArray&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;cap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;27&lt;/span&gt;             &lt;span class=&quot;n&quot;&gt;switchArrays&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;28&lt;/span&gt;         &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;29&lt;/span&gt; 
-&lt;span class=&quot;lineno&quot;&gt;30&lt;/span&gt;         &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sample&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;31&lt;/span&gt;     &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;32&lt;/span&gt; 
-&lt;span class=&quot;lineno&quot;&gt;33&lt;/span&gt;     &lt;span class=&quot;kd&quot;&gt;fun&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;switchArrays&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;34&lt;/span&gt;         &lt;span class=&quot;kt&quot;&gt;float&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tempArray&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[];&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;35&lt;/span&gt; 
-&lt;span class=&quot;lineno&quot;&gt;36&lt;/span&gt;         &lt;span class=&quot;c1&quot;&gt;// switch arrays&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;37&lt;/span&gt;         &lt;span class=&quot;n&quot;&gt;readArray&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tempArray&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;38&lt;/span&gt;         &lt;span class=&quot;n&quot;&gt;writeArray&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;readArray&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;39&lt;/span&gt;         &lt;span class=&quot;n&quot;&gt;tempArray&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;writeArray&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;40&lt;/span&gt; 
-&lt;span class=&quot;lineno&quot;&gt;41&lt;/span&gt;         &lt;span class=&quot;c1&quot;&gt;// reset counts&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;42&lt;/span&gt;         &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;writeCount&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;43&lt;/span&gt;         &lt;span class=&quot;n&quot;&gt;readArray&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;cap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;readCount&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;44&lt;/span&gt;     &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;45&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-chuck&quot; data-lang=&quot;chuck&quot;&gt;&lt;table style=&quot;border-spacing: 0&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter gl&quot; style=&quot;text-align: right&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;public class ReverseDelay extends Chugen {
+    float readArray[0];
+    float writeArray[0];
+    int readCount;
+    int writeCount;
+    float sample;
+
+    fun void delay( int size ) {
+        readArray.size( size );
+        writeArray.size( size );
+        size - 1 =&amp;gt; readCount;
+    }
+
+    fun float tick( float in ) {
+        // if readArray.size(), delay() has not been called
+        // do nothing
+        if ( ! readArray.cap() ) {
+            return in;
+        }
+
+        in =&amp;gt; writeArray[ writeCount ];
+        readArray[ readCount ] =&amp;gt; sample;
+        writeCount++;
+        readCount--;
+
+        if ( writeCount == writeArray.cap() ) {
+            switchArrays();
+        }
+
+        return sample;
+    }
+
+    fun void switchArrays() {
+        float tempArray[];
+
+        // switch arrays
+        readArray @=&amp;gt; tempArray;
+        writeArray @=&amp;gt; readArray;
+        tempArray @=&amp;gt; writeArray;
+
+        // reset counts
+        0 =&amp;gt; writeCount;
+        readArray.cap() - 1 =&amp;gt; readCount;
+    }
+}&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;The gist is that the current signal gets written to an array. Once the current array is full, it gets swapped with a second array. From then on values are read in reverse from the first array, providing the backwards delay signal, while current values get written to the second delay. This cycle repeats, and hey presto, reverse delay.&lt;/p&gt;
 
@@ -296,67 +514,119 @@ To my mind the task of rendering sound worlds is a serious business, and Raspber
 
 &lt;p&gt;In the end I went with ChucK because it’s the simplest, most intuitive (for me anyway) language I came across. (This doesn’t mean it’s the best.)&lt;/p&gt;
 
-&lt;p&gt;So &lt;a href=&quot;http://chuck.cs.princeton.edu/&quot;&gt;ChucK&lt;/a&gt; is a C++ish OO scripting language which describes itself as “strongly typed and strongly timed”. Time is tamed with the use of the &lt;code&gt;dur&lt;/code&gt; (duration) type as well as being able to delay execution in a very ‘timely’ (teehee!) context:&lt;/p&gt;
+&lt;p&gt;So &lt;a href=&quot;http://chuck.cs.princeton.edu/&quot;&gt;ChucK&lt;/a&gt; is a C++ish OO scripting language which describes itself as “strongly typed and strongly timed”. Time is tamed with the use of the &lt;code class=&quot;highlighter-rouge&quot;&gt;dur&lt;/code&gt; (duration) type as well as being able to delay execution in a very ‘timely’ (teehee!) context:&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-chuck&quot; data-lang=&quot;chuck&quot;&gt;&lt;span class=&quot;lineno&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;441&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;samp&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;dur&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;interval&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 441 samples or 1/100 of a second&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;2&lt;/span&gt; 
-&lt;span class=&quot;lineno&quot;&gt;3&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// ie do this continually&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;4&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;interval&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;now&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// wait for this duration to pass&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;5&lt;/span&gt;     &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;I waited&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;interval&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;samples and then I did something&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// log to stdout&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;6&lt;/span&gt; 
-&lt;span class=&quot;lineno&quot;&gt;7&lt;/span&gt;     &lt;span class=&quot;c1&quot;&gt;// will print the above message 100 times a second&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;8&lt;/span&gt;     &lt;span class=&quot;c1&quot;&gt;// you would never want to do this&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;9&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-chuck&quot; data-lang=&quot;chuck&quot;&gt;&lt;table style=&quot;border-spacing: 0&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter gl&quot; style=&quot;text-align: right&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+4
+5
+6
+7
+8
+9&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;441::samp =&amp;gt; dur interval; // 441 samples or 1/100 of a second
+
+while ( 1 ) { // ie do this continually
+    interval =&amp;gt; now; // wait for this duration to pass
+    &amp;lt;&amp;lt;&amp;lt; &quot;I waited&quot;, interval, &quot;samples and then I did something&quot; &amp;gt;&amp;gt;&amp;gt;; // log to stdout
+
+    // will print the above message 100 times a second
+    // you would never want to do this
+}&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;It should be reasonably clear that this is perfect for scheduling and sequencing changes in signal - be it pitch, timbre, silence, etc.&lt;/p&gt;
 
-&lt;p&gt;ChucK’s other eccentricity is the &lt;code&gt;=&amp;gt;&lt;/code&gt; ‘ChucK’ assignment operator, which both assigns variables (back to front) as well as links audio components in the same way you might plug a guitar into an amp and from an amp into a mixer:&lt;/p&gt;
+&lt;p&gt;ChucK’s other eccentricity is the &lt;code class=&quot;highlighter-rouge&quot;&gt;=&amp;gt;&lt;/code&gt; ‘ChucK’ assignment operator, which both assigns variables (back to front) as well as links audio components in the same way you might plug a guitar into an amp and from an amp into a mixer:&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-chuck&quot; data-lang=&quot;chuck&quot;&gt;&lt;span class=&quot;lineno&quot;&gt; 1&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// this listing demonstrates various uses of the =&amp;gt; operator&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt; 2&lt;/span&gt; 
-&lt;span class=&quot;lineno&quot;&gt; 3&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// declare signal generating/filtering elements&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt; 4&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// in ChucK parlance these are generically called Ugens.&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt; 5&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// instantiate a sawtooth oscillator called saw&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt; 6&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// and a low pass filter called low pass&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt; 7&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;SawOsc&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;saw&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;LPF&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lowpass&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt; 8&lt;/span&gt; 
-&lt;span class=&quot;lineno&quot;&gt; 9&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// set the gain of the sawtooth osc to a quarter of maximum&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;10&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// it is strongly advisable to do this&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;11&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// note scale is logarithmic so this is actually -12ish decibels&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;12&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.25&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;saw&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;gain&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;13&lt;/span&gt; 
-&lt;span class=&quot;lineno&quot;&gt;14&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;440&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;saw&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;freq&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// initialise the oscillator frequency to A4&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;15&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// note saw.freq(440) does the same thing&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;16&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4000&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;inty&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// variable assignment&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;17&lt;/span&gt; 
-&lt;span class=&quot;lineno&quot;&gt;18&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// set the lowpass filter to 4Khz (frequency response will roll&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;19&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// off above this value with a steepness according to the filter&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;20&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// type&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;21&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;inty&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;saw&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;freq&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;22&lt;/span&gt; 
-&lt;span class=&quot;lineno&quot;&gt;23&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// route saw oscillator to lowpass and then on to the soundcard output&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;24&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// and route that to the sound card (dac)&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;25&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;saw&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lowpass&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;dac&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;26&lt;/span&gt; 
-&lt;span class=&quot;lineno&quot;&gt;27&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// note you can declare and chuck at the same time, so we could have gone:&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;28&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// SawOsc saw =&amp;gt; LPF lowpass =&amp;gt; dac;&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;29&lt;/span&gt; 
-&lt;span class=&quot;lineno&quot;&gt;30&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// loop forever&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;31&lt;/span&gt;     &lt;span class=&quot;c1&quot;&gt;// Get some sample hold going&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;32&lt;/span&gt; 
-&lt;span class=&quot;lineno&quot;&gt;33&lt;/span&gt;     &lt;span class=&quot;c1&quot;&gt;// randomly assign the oscillator frequency&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;34&lt;/span&gt;     &lt;span class=&quot;nb&quot;&gt;Std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;rand2f&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4000&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;saw&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;freq&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;35&lt;/span&gt; 
-&lt;span class=&quot;lineno&quot;&gt;36&lt;/span&gt;     &lt;span class=&quot;c1&quot;&gt;// randomly assign the filter frequency&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;37&lt;/span&gt;     &lt;span class=&quot;nb&quot;&gt;Std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;rand2f&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4000&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lowpass&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;freq&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;38&lt;/span&gt; 
-&lt;span class=&quot;lineno&quot;&gt;39&lt;/span&gt;     &lt;span class=&quot;c1&quot;&gt;// finally, move time on&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;40&lt;/span&gt;     &lt;span class=&quot;c1&quot;&gt;// you can define duration in both increments of time and samples&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;41&lt;/span&gt;     &lt;span class=&quot;mf&quot;&gt;0.5&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;second&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;now&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; 
-&lt;span class=&quot;lineno&quot;&gt;42&lt;/span&gt;     
-&lt;span class=&quot;lineno&quot;&gt;43&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-chuck&quot; data-lang=&quot;chuck&quot;&gt;&lt;table style=&quot;border-spacing: 0&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter gl&quot; style=&quot;text-align: right&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;// this listing demonstrates various uses of the =&amp;gt; operator
 
-&lt;p&gt;ChucKing durations to &lt;code&gt;now&lt;/code&gt; means advancing time. Once you have your components in place they will do their thing (ie oscillate or filter) without you having to worry about them doing it.&lt;/p&gt;
+// declare signal generating/filtering elements
+// in ChucK parlance these are generically called Ugens.
+// instantiate a sawtooth oscillator called saw
+// and a low pass filter called low pass
+SawOsc saw, LPF lowpass;
+
+// set the gain of the sawtooth osc to a quarter of maximum
+// it is strongly advisable to do this
+// note scale is logarithmic so this is actually -12ish decibels
+0.25 =&amp;gt; saw.gain;
+
+440 =&amp;gt; saw.freq; // initialise the oscillator frequency to A4
+// note saw.freq(440) does the same thing
+4000 =&amp;gt; int inty; // variable assignment
+
+// set the lowpass filter to 4Khz (frequency response will roll
+// off above this value with a steepness according to the filter
+// type
+inty =&amp;gt; saw.freq;
+
+// route saw oscillator to lowpass and then on to the soundcard output
+// and route that to the sound card (dac)
+saw =&amp;gt; lowpass =&amp;gt; dac;
+
+// note you can declare and chuck at the same time, so we could have gone:
+// SawOsc saw =&amp;gt; LPF lowpass =&amp;gt; dac;
+
+while ( 1 ) { // loop forever
+    // Get some sample hold going
+
+    // randomly assign the oscillator frequency
+    Std.rand2f( 20, 4000 ) =&amp;gt; saw.freq;
+
+    // randomly assign the filter frequency
+    Std.rand2f( 20, 4000 ) =&amp;gt; lowpass.freq;
+
+    // finally, move time on
+    // you can define duration in both increments of time and samples
+    0.5::second =&amp;gt; now; 
+    
+}&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;ChucKing durations to &lt;code class=&quot;highlighter-rouge&quot;&gt;now&lt;/code&gt; means advancing time. Once you have your components in place they will do their thing (ie oscillate or filter) without you having to worry about them doing it.&lt;/p&gt;
 
 &lt;p&gt;When I studied ChucK all this made intuitive sense to me. Consequently I’ve ended up using ChucK for most of my recent tinkering.&lt;/p&gt;
 
@@ -365,7 +635,7 @@ To my mind the task of rendering sound worlds is a serious business, and Raspber
 &lt;p&gt;ChucK is 10 years old, and you’d expect a language of that age to be mature. However ChucK’s developer and userbase is small, and academic, and ChucK thus has few pressures on it. Development has focused on a narrow range of applications, notably “live programming”. I don’t dispute the suitability of this narrow focus, but it also means that ChucK often feels like a ‘toy language’, missing many features you’d expect. I guess I had better give examples:&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;Barebones syntax, eg no &lt;code&gt;case&lt;/code&gt; statements or much in the way of syntactic sugar.&lt;/li&gt;
+  &lt;li&gt;Barebones syntax, eg no &lt;code class=&quot;highlighter-rouge&quot;&gt;case&lt;/code&gt; statements or much in the way of syntactic sugar.&lt;/li&gt;
   &lt;li&gt;No base library loading - you need to explicitly load every library file you want access to. You can’t just provide ChucK with a lib directory environment variable and have all libraries in that directory loaded automatically.&lt;/li&gt;
   &lt;li&gt;A lack of file system tools (for example, there is no way in ChucK to access the file system, other than to load ChucK files).&lt;/li&gt;
   &lt;li&gt;A lack of concern for memory leakage, or performance generally (a major problem for a sound system like Concrete Mixer which is intended to run indefinitely on a Raspberry Pi).&lt;/li&gt;
@@ -378,6 +648,188 @@ To my mind the task of rendering sound worlds is a serious business, and Raspber
 &lt;p&gt;My criticisms of ChucK are (in my view, obviously) reasonable, but I suspect if I had gone with any of the alternatives I could compile a list of different but equivalent drawbacks for them too, so singling out ChucK in this way is a little unfair. The fact is I’m still using ChucK and I’ve barely scratched the surface of its audio manipulation capabilities. I’m also unlikely to jump ship to another language any time soon. Although if you do know of something you think is better, let me know!&lt;/p&gt;
 </description>
         <pubDate>Tue, 01 Dec 2015 00:00:00 +1300</pubDate>
+      </item>
+    
+      <item>
+        <title>Perl sine wave demo</title>
+        <link>https://concrete-mixer.github.io/audio%20coding/2015/11/23/perl-sine-wave.html</link>
+        <guid isPermaLink="true">https://concrete-mixer.github.io/audio%20coding/2015/11/23/perl-sine-wave.html</guid>
+        <description>&lt;p&gt;There is no good reason to write audio code in Perl, but on the other hand, no reason not to, so here we go.&lt;/p&gt;
+
+&lt;h1 id=&quot;piping-hot-sound&quot;&gt;Piping hot sound&lt;/h1&gt;
+
+&lt;p&gt;Someone may have written an audio library for Perl which interfaces with Alsa in a ‘proper’ way, but there’s a grubbier and consequently more appropriate way of doing it: through the shell.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;$ perl script.pl | aplay -f cd&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;This command pipes the output of a perl script to Alsa’s aplay utility, which can take a data stream as input. The &lt;code class=&quot;highlighter-rouge&quot;&gt;-f cd&lt;/code&gt; means fire the stream to the soundcard at a sample rate of 44Khz, which is the samplerate a CD uses.&lt;/p&gt;
+
+&lt;p&gt;With this in play, you need to write a script that will generate an audio-appropriate stream of data. The simplest sound you can generate is white noise, because you just generate a set of random values within a 16 bit range of amplitudes. We’re a bit more sophisticated, than that, however, so we’re going to start by generating a sine wave:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-perl&quot; data-lang=&quot;perl&quot;&gt;&lt;table style=&quot;border-spacing: 0&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter gl&quot; style=&quot;text-align: right&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;c1&quot;&gt;#!/usr/bin/perl&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;strict&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;warnings&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;my&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$PI&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;3.1415926&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# Amplitude for signal, roughly 50% of max (32768) or -6db&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;my&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$amplitude&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;16384&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;my&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$freq&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;440&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# Frequency in Hertz ('A4' note)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;my&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$sample_rate&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;44100&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# define time increment for calculating the wave&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;my&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$increment&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$sample_rate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;my&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$t&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# do this perpetually&lt;/span&gt;
+    &lt;span class=&quot;nv&quot;&gt;$t&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$increment&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# Time in seconds&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;my&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$signal&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$amplitude&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;sin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$freq&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$PI&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;pack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;v&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$signal&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;The guts of this script is &lt;code class=&quot;highlighter-rouge&quot;&gt;my $signal = $amplitude * sin($freq * 2 * $PI * $t);&lt;/code&gt;. This is high school maths/physics (I’m told, it’s all so long ago now I can’t actually remember :/). Essentially you generate a sine wave by rotating through a circle (2*pi radians) and plotting the sine of the angle of rotation (0 - 360, or phase) as an amplitude through time. (The preceding gibberish is my understanding, if you want a proper description please &lt;a href=&quot;https://en.wikipedia.org/wiki/Sine_wave&quot;&gt;consult wikipiedia&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Once you’ve got the $signal value you need to format it as a little-endian integeger:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;print pack(&quot;v&quot;, $signal);&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;So you print to stdout and the shell does its piping and aplay does the rest.&lt;/p&gt;
+
+&lt;h1 id=&quot;making-the-signal-more-interesting&quot;&gt;Making the signal more interesting&lt;/h1&gt;
+
+&lt;p&gt;A sine wave is nice but you can do more interesting things than that. The first thing to do is modulate the pitch. The easiest way to do this is randomly module the pitch every so often:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-perl&quot; data-lang=&quot;perl&quot;&gt;&lt;table style=&quot;border-spacing: 0&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter gl&quot; style=&quot;text-align: right&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;k&quot;&gt;my&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$base_freq&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1760&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;Hz&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# maximum frequency&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;my&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;22050&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# half a second @ 44100 samplerate&lt;/span&gt;
+        &lt;span class=&quot;nv&quot;&gt;$t&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$increment&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# Increment $t&lt;/span&gt;
+
+        &lt;span class=&quot;k&quot;&gt;my&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$signal&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;sin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$freq&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$pi&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$t&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$amplitude&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;pack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;v&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$signal&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+        &lt;span class=&quot;nv&quot;&gt;$n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;nv&quot;&gt;$freq&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;rand&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$base_freq&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;We’ve added an additional while loop to iterate through a fixed number of samples before we randomly change the frequency. (&lt;code class=&quot;highlighter-rouge&quot;&gt;$freq = rand( 1 ) * $base_freq&lt;/code&gt; implies a range down to 0Hz, so be careful running this through speakers. &lt;a href=&quot;https://www.youtube.com/watch?v=gIzSZH6oqeM&quot;&gt;Watch your bass bins, I’m telling ya&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Incidentally, if you’re familiar with synthesizers, the above is equivalent to pitch-modulating sample hold.&lt;/p&gt;
+
+&lt;h1 id=&quot;adding-echoes&quot;&gt;Adding echoes&lt;/h1&gt;
+
+&lt;p&gt;For me the gold standard of any signal modulation is adding echoes. I grant you this will seem childish to proper DSP ninjas who like constructing fourth order &lt;a href=&quot;https://en.wikipedia.org/wiki/Chebyshev_filter&quot;&gt;Chebyshev filters&lt;/a&gt;, but for me the space that echoes provide really is the place.&lt;/p&gt;
+
+&lt;p&gt;An echo means holding playing a signal for a period of time. Arrays are perfect for this: bung your stream’s sample in memory and retrieve them for playback later.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-perl&quot; data-lang=&quot;perl&quot;&gt;&lt;table style=&quot;border-spacing: 0&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter gl&quot; style=&quot;text-align: right&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;c1&quot;&gt;# initialise array of zeroed integers for delay line&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;my&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;@delay&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;22050&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# == half a second of signal delay&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;my&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;22050&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# half a second @ 44100 samplerate&lt;/span&gt;
+        &lt;span class=&quot;nv&quot;&gt;$t&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$increment&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# Increment $t&lt;/span&gt;
+
+        &lt;span class=&quot;k&quot;&gt;my&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$signal&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;sin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$freq&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$pi&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$t&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$amplitude&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;my&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$signal_delayed&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;shift&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;@delay&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+        &lt;span class=&quot;c1&quot;&gt;# make delayed_signal 6dB quieter than main signal&lt;/span&gt;
+        &lt;span class=&quot;nv&quot;&gt;$signal_delayed&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*=&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+        &lt;span class=&quot;c1&quot;&gt;# mix the two signals together&lt;/span&gt;
+        &lt;span class=&quot;nv&quot;&gt;$signal&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$signal_delayed&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+        &lt;span class=&quot;c1&quot;&gt;# increment @delay with signal plus previously delayed signal&lt;/span&gt;
+        &lt;span class=&quot;nb&quot;&gt;push&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;@delay&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$signal&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;pack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;v&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$signal&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;nv&quot;&gt;$n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;nv&quot;&gt;$freq&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;rand&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$base_freq&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;So we’re sitll sample-holding the pitch of the sine wave as before, but we’re now setting and retrieving values from an array, and mixing it with at a quieter bolume (-6dB) with the current signal. It still seems miraculous to me that simple addition (at the per sample level) can impose a new sound on top of the old, but it does.&lt;/p&gt;
+
+&lt;h1 id=&quot;where-does-this-take-us&quot;&gt;Where does this take us?&lt;/h1&gt;
+
+&lt;p&gt;Mid last year I went some way towards building my own drum machine/note sequencer system in Perl, using MooseX. I had track sequences written in JSON structures, some effects like flanging, ring modulation, and even reverse echoes (hint: use two arrays, swap them as required, and read the one you’re not writing to backwards). So it was all going swimmingly until I checked the CPU usage on my laptop: 100% playing a mono drum machine sequence and monophonic note sequence. Such a simple rig in a commercial audio software package would be expected to use 1-2% CPU.&lt;/p&gt;
+
+&lt;p&gt;I suspect the reason for this problem is that interpreted languages like Perl are just too inefficient to be calculating large numbers of samples in real time. I attempted to make things more efficient by batch rendering content rather than running through the entire stack to calculate each sample. This didn’t seem to make any improvement.&lt;/p&gt;
+
+&lt;p&gt;What I took away is that compiled languages like C and C++ are more appropriate for this sort of application, and I promptly ceased my activities. Even so, if you have simple ideas you want to try out, and/or vast system resources, Perl can do it.&lt;/p&gt;
+</description>
+        <pubDate>Mon, 23 Nov 2015 00:00:00 +1300</pubDate>
       </item>
     
       <item>
@@ -396,69 +848,132 @@ To my mind the task of rendering sound worlds is a serious business, and Raspber
 
 &lt;p&gt;And here’s the underlying ‘dot’ code used to generate the file (sorry the syntax highlighting is a bit rubbish, but the &lt;a href=&quot;http://pygments.org/&quot;&gt;pygments&lt;/a&gt; lexer I found for this is a bit minimal):&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-dot&quot; data-lang=&quot;dot&quot;&gt;&lt;span class=&quot;lineno&quot;&gt; 1&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;digraph&lt;/span&gt;  {
-&lt;span class=&quot;lineno&quot;&gt; 2&lt;/span&gt;     &lt;span class=&quot;c&quot;&gt;/* declare chartwide settings */&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt; 3&lt;/span&gt;     &lt;span class=&quot;na&quot;&gt;penwidth&lt;/span&gt;=2.0;
-&lt;span class=&quot;lineno&quot;&gt; 4&lt;/span&gt;     &lt;span class=&quot;na&quot;&gt;label&lt;/span&gt;just=left;
-&lt;span class=&quot;lineno&quot;&gt; 5&lt;/span&gt;     &lt;span class=&quot;k&quot;&gt;node&lt;/span&gt; [fontname=&amp;quot;Helvetica&amp;quot;,penwidth=&amp;quot;2.0&amp;quot;,fontcolor=white,style=filled];
-&lt;span class=&quot;lineno&quot;&gt; 6&lt;/span&gt;     &lt;span class=&quot;k&quot;&gt;edge&lt;/span&gt; [penwidth=&amp;quot;2.0&amp;quot;];
-&lt;span class=&quot;lineno&quot;&gt; 7&lt;/span&gt;     &lt;span class=&quot;na&quot;&gt;fontname&lt;/span&gt;=helvetica;
-&lt;span class=&quot;lineno&quot;&gt; 8&lt;/span&gt;     &lt;span class=&quot;na&quot;&gt;fontsize&lt;/span&gt;=16;
-&lt;span class=&quot;lineno&quot;&gt; 9&lt;/span&gt; 
-&lt;span class=&quot;lineno&quot;&gt;10&lt;/span&gt;     &lt;span class=&quot;c&quot;&gt;/* subgraphs allow you to group nodes */&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;11&lt;/span&gt;     &lt;span class=&quot;k&quot;&gt;subgraph&lt;/span&gt; cluster_0 {
-&lt;span class=&quot;lineno&quot;&gt;12&lt;/span&gt;         &lt;span class=&quot;k&quot;&gt;node&lt;/span&gt; [fillcolor=chocolate,color=chocolate];
-&lt;span class=&quot;lineno&quot;&gt;13&lt;/span&gt;         &lt;span class=&quot;k&quot;&gt;graph&lt;/span&gt; [color=chocolate];
-&lt;span class=&quot;lineno&quot;&gt;14&lt;/span&gt;         &lt;span class=&quot;na&quot;&gt;label&lt;/span&gt;=&amp;quot;Perl&amp;quot;;
-&lt;span class=&quot;lineno&quot;&gt;15&lt;/span&gt;         &lt;span class=&quot;na&quot;&gt;fontcolor&lt;/span&gt;=chocolate;
-&lt;span class=&quot;lineno&quot;&gt;16&lt;/span&gt;         concretepm [label=&amp;quot;Concrete.pm\nOSC server&amp;quot;];
-&lt;span class=&quot;lineno&quot;&gt;17&lt;/span&gt;         &lt;span class=&quot;k&quot;&gt;node&lt;/span&gt; [fillcolor=brown,color=brown];
-&lt;span class=&quot;lineno&quot;&gt;18&lt;/span&gt;     }
-&lt;span class=&quot;lineno&quot;&gt;19&lt;/span&gt; 
-&lt;span class=&quot;lineno&quot;&gt;20&lt;/span&gt;     &lt;span class=&quot;k&quot;&gt;subgraph&lt;/span&gt; cluster_1 {
-&lt;span class=&quot;lineno&quot;&gt;21&lt;/span&gt;         &lt;span class=&quot;k&quot;&gt;node&lt;/span&gt; [fillcolor=darkorchid,color=darkorchid];
-&lt;span class=&quot;lineno&quot;&gt;22&lt;/span&gt;         &lt;span class=&quot;k&quot;&gt;graph&lt;/span&gt; [color=darkorchid];
-&lt;span class=&quot;lineno&quot;&gt;23&lt;/span&gt;         &lt;span class=&quot;na&quot;&gt;label&lt;/span&gt;=&amp;quot;WAV files&amp;quot;;
-&lt;span class=&quot;lineno&quot;&gt;24&lt;/span&gt;         &lt;span class=&quot;na&quot;&gt;fontcolor&lt;/span&gt;=darkorchid;
-&lt;span class=&quot;lineno&quot;&gt;25&lt;/span&gt;         main [label=&amp;quot;Main&amp;quot;];
-&lt;span class=&quot;lineno&quot;&gt;26&lt;/span&gt;         alt [label=&amp;quot;Alt&amp;quot;];
-&lt;span class=&quot;lineno&quot;&gt;27&lt;/span&gt;     }
-&lt;span class=&quot;lineno&quot;&gt;28&lt;/span&gt; 
-&lt;span class=&quot;lineno&quot;&gt;29&lt;/span&gt;     &lt;span class=&quot;k&quot;&gt;subgraph&lt;/span&gt; cluster_2 {
-&lt;span class=&quot;lineno&quot;&gt;30&lt;/span&gt;         &lt;span class=&quot;k&quot;&gt;graph&lt;/span&gt; [color=forestgreen];
-&lt;span class=&quot;lineno&quot;&gt;31&lt;/span&gt;         &lt;span class=&quot;na&quot;&gt;fontcolor&lt;/span&gt;=forestgreen;
-&lt;span class=&quot;lineno&quot;&gt;32&lt;/span&gt;         &lt;span class=&quot;na&quot;&gt;label&lt;/span&gt;=&amp;quot;ChucK&amp;quot;;
-&lt;span class=&quot;lineno&quot;&gt;33&lt;/span&gt;         &lt;span class=&quot;k&quot;&gt;node&lt;/span&gt; [fillcolor=forestgreen,color=forestgreen];
-&lt;span class=&quot;lineno&quot;&gt;34&lt;/span&gt;         playsound [label=&amp;quot;playSound.ck&amp;quot;];
-&lt;span class=&quot;lineno&quot;&gt;35&lt;/span&gt;         playfx [label=&amp;quot;playFxChain.ck&amp;quot;];
-&lt;span class=&quot;lineno&quot;&gt;36&lt;/span&gt;     }
-&lt;span class=&quot;lineno&quot;&gt;37&lt;/span&gt; 
-&lt;span class=&quot;lineno&quot;&gt;38&lt;/span&gt;     &lt;span class=&quot;c&quot;&gt;/* the rest of the chart markup defines edges between nodes plus non subgraph nodes */&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;39&lt;/span&gt;     &lt;span class=&quot;k&quot;&gt;node&lt;/span&gt; [fillcolor=hotpink,color=hotpink];
-&lt;span class=&quot;lineno&quot;&gt;40&lt;/span&gt;     shell [label=&amp;quot;Linux shell $&amp;quot;,color=hotpink];
-&lt;span class=&quot;lineno&quot;&gt;41&lt;/span&gt;     &lt;span class=&quot;k&quot;&gt;edge&lt;/span&gt; [color=hotpink];
-&lt;span class=&quot;lineno&quot;&gt;42&lt;/span&gt;     shell -&amp;gt; concretepm;
-&lt;span class=&quot;lineno&quot;&gt;43&lt;/span&gt; 
-&lt;span class=&quot;lineno&quot;&gt;44&lt;/span&gt;     &lt;span class=&quot;c&quot;&gt;/* wav file flow */&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;45&lt;/span&gt;     &lt;span class=&quot;k&quot;&gt;edge&lt;/span&gt; [color=darkorchid];
-&lt;span class=&quot;lineno&quot;&gt;46&lt;/span&gt;     main -&amp;gt; concretepm;
-&lt;span class=&quot;lineno&quot;&gt;47&lt;/span&gt;     alt -&amp;gt; concretepm;
-&lt;span class=&quot;lineno&quot;&gt;48&lt;/span&gt;     concretepm -&amp;gt; playsound;
-&lt;span class=&quot;lineno&quot;&gt;49&lt;/span&gt; 
-&lt;span class=&quot;lineno&quot;&gt;50&lt;/span&gt;     &lt;span class=&quot;c&quot;&gt;/* play*-OSC server interactions */&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;51&lt;/span&gt;     &lt;span class=&quot;k&quot;&gt;edge&lt;/span&gt; [color=chocolate];
-&lt;span class=&quot;lineno&quot;&gt;52&lt;/span&gt;     concretepm -&amp;gt; playsound;
-&lt;span class=&quot;lineno&quot;&gt;53&lt;/span&gt;     concretepm -&amp;gt; playfx;
-&lt;span class=&quot;lineno&quot;&gt;54&lt;/span&gt;     playfx -&amp;gt; concretepm;
-&lt;span class=&quot;lineno&quot;&gt;55&lt;/span&gt;     playsound -&amp;gt; concretepm;
-&lt;span class=&quot;lineno&quot;&gt;56&lt;/span&gt; 
-&lt;span class=&quot;lineno&quot;&gt;57&lt;/span&gt;     &lt;span class=&quot;c&quot;&gt;/* audio connections through to the dac */&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;58&lt;/span&gt;     &lt;span class=&quot;k&quot;&gt;node&lt;/span&gt; [fillcolor=steelblue,color=steelblue];
-&lt;span class=&quot;lineno&quot;&gt;59&lt;/span&gt;     &lt;span class=&quot;k&quot;&gt;edge&lt;/span&gt; [color=steelblue];
-&lt;span class=&quot;lineno&quot;&gt;60&lt;/span&gt;     playsound -&amp;gt; DAC;
-&lt;span class=&quot;lineno&quot;&gt;61&lt;/span&gt;     playsound -&amp;gt; playfx;
-&lt;span class=&quot;lineno&quot;&gt;62&lt;/span&gt;     playfx -&amp;gt; DAC;
-&lt;span class=&quot;lineno&quot;&gt;63&lt;/span&gt; }&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-dot&quot; data-lang=&quot;dot&quot;&gt;&lt;table style=&quot;border-spacing: 0&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;gutter gl&quot; style=&quot;text-align: right&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;digraph  {
+    /* declare chartwide settings */
+    penwidth=2.0;
+    labeljust=left;
+    node [fontname=&quot;Helvetica&quot;,penwidth=&quot;2.0&quot;,fontcolor=white,style=filled];
+    edge [penwidth=&quot;2.0&quot;];
+    fontname=helvetica;
+    fontsize=16;
+
+    /* subgraphs allow you to group nodes */
+    subgraph cluster_0 {
+        node [fillcolor=chocolate,color=chocolate];
+        graph [color=chocolate];
+        label=&quot;Perl&quot;;
+        fontcolor=chocolate;
+        concretepm [label=&quot;Concrete.pm\nOSC server&quot;];
+        node [fillcolor=brown,color=brown];
+    }
+
+    subgraph cluster_1 {
+        node [fillcolor=darkorchid,color=darkorchid];
+        graph [color=darkorchid];
+        label=&quot;WAV files&quot;;
+        fontcolor=darkorchid;
+        main [label=&quot;Main&quot;];
+        alt [label=&quot;Alt&quot;];
+    }
+
+    subgraph cluster_2 {
+        graph [color=forestgreen];
+        fontcolor=forestgreen;
+        label=&quot;ChucK&quot;;
+        node [fillcolor=forestgreen,color=forestgreen];
+        playsound [label=&quot;playSound.ck&quot;];
+        playfx [label=&quot;playFxChain.ck&quot;];
+    }
+
+    /* the rest of the chart markup defines edges between nodes plus non subgraph nodes */
+    node [fillcolor=hotpink,color=hotpink];
+    shell [label=&quot;Linux shell $&quot;,color=hotpink];
+    edge [color=hotpink];
+    shell -&amp;gt; concretepm;
+
+    /* wav file flow */
+    edge [color=darkorchid];
+    main -&amp;gt; concretepm;
+    alt -&amp;gt; concretepm;
+    concretepm -&amp;gt; playsound;
+
+    /* play*-OSC server interactions */
+    edge [color=chocolate];
+    concretepm -&amp;gt; playsound;
+    concretepm -&amp;gt; playfx;
+    playfx -&amp;gt; concretepm;
+    playsound -&amp;gt; concretepm;
+
+    /* audio connections through to the dac */
+    node [fillcolor=steelblue,color=steelblue];
+    edge [color=steelblue];
+    playsound -&amp;gt; DAC;
+    playsound -&amp;gt; playfx;
+    playfx -&amp;gt; DAC;
+}&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;The bulk of the markup is colour declarations and changes, so while this looks like a lot of work, the subgroup and and node interrelationships can be defined in about half the number of lines.&lt;/p&gt;
 
@@ -466,11 +981,11 @@ To my mind the task of rendering sound worlds is a serious business, and Raspber
 
 &lt;p&gt;Installing graphviz in debian/ubuntu land requires the following:&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;$ sudo apt-get install graphviz&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;$ sudo apt-get install graphviz&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;To generate an SVG all you have to run is:&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;$ dot -T svg -O cm-schematic-minimal.dot&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;$ dot -T svg -O cm-schematic-minimal.dot&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;…and an SVG file called cm-schematic-minimal.dot.svg is created.&lt;/p&gt;
 
@@ -517,7 +1032,7 @@ To my mind the task of rendering sound worlds is a serious business, and Raspber
 &lt;ul&gt;
   &lt;li&gt;The audio processing is written in &lt;a href=&quot;http://chuck.cs.princeton.edu/&quot;&gt;ChucK&lt;/a&gt;.&lt;/li&gt;
   &lt;li&gt;The ChucK libraries are enveloped by a sticky layer of &lt;a href=&quot;https://www.perl.org&quot;&gt;Perl&lt;/a&gt; which is there to do the things ChucK can’t do.&lt;/li&gt;
-  &lt;li&gt;The Perl layer identifies the audio files to play (from directories the user has specified in &lt;code&gt;conf/concrete.conf&lt;/code&gt;)&lt;/li&gt;
+  &lt;li&gt;The Perl layer identifies the audio files to play (from directories the user has specified in &lt;code class=&quot;highlighter-rouge&quot;&gt;conf/concrete.conf&lt;/code&gt;)&lt;/li&gt;
   &lt;li&gt;There are two distinct sound entities in play:
     &lt;ul&gt;
       &lt;li&gt;playSound (of which there can be multiple concurrent instances)&lt;/li&gt;
@@ -525,7 +1040,7 @@ To my mind the task of rendering sound worlds is a serious business, and Raspber
     &lt;/ul&gt;
   &lt;/li&gt;
   &lt;li&gt;The app takes at least one but possibly two directories of WAV files as the sound source&lt;/li&gt;
-  &lt;li&gt;The app will stop playback once it has run out of wave files to play, or, because ChucK leaks memory, when the app has used more than half the system RAM. Alternatively, if the user configures &lt;code&gt;endless_play=1&lt;/code&gt; in &lt;code&gt;conf/concrete.conf&lt;/code&gt;, the app will restart rather than end, and will thus play perpetually.&lt;/li&gt;
+  &lt;li&gt;The app will stop playback once it has run out of wave files to play, or, because ChucK leaks memory, when the app has used more than half the system RAM. Alternatively, if the user configures &lt;code class=&quot;highlighter-rouge&quot;&gt;endless_play=1&lt;/code&gt; in &lt;code class=&quot;highlighter-rouge&quot;&gt;conf/concrete.conf&lt;/code&gt;, the app will restart rather than end, and will thus play perpetually.&lt;/li&gt;
   &lt;li&gt;The app operates an OSC server in Perl space which receives signals from playSound and playFxChain that they have completed their tasks, and will generate new instances of both, until there are no more files left to play.&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -533,7 +1048,7 @@ To my mind the task of rendering sound worlds is a serious business, and Raspber
 
 &lt;h2 id=&quot;playsound&quot;&gt;playSound&lt;/h2&gt;
 
-&lt;p&gt;The playSound entity is there to play wave files. The entity gets passed a filename by the OSC server, and then loads the file for playback. The playback period is divided into random lengths of time (dertived from the &lt;code&gt;bpm&lt;/code&gt; value specified in &lt;code&gt;conf/global.conf&lt;/code&gt;) in which the sound can be altered in some way. For any given period, there is a 1/8 chance that playback will be altered. When the decision to alter playback is made, a further random choice is taken as to what should be done. Possibilities include:&lt;/p&gt;
+&lt;p&gt;The playSound entity is there to play wave files. The entity gets passed a filename by the OSC server, and then loads the file for playback. The playback period is divided into random lengths of time (dertived from the &lt;code class=&quot;highlighter-rouge&quot;&gt;bpm&lt;/code&gt; value specified in &lt;code class=&quot;highlighter-rouge&quot;&gt;conf/global.conf&lt;/code&gt;) in which the sound can be altered in some way. For any given period, there is a 1/8 chance that playback will be altered. When the decision to alter playback is made, a further random choice is taken as to what should be done. Possibilities include:&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;reversing playback&lt;/li&gt;
@@ -593,7 +1108,7 @@ To my mind the task of rendering sound worlds is a serious business, and Raspber
       </item>
     
       <item>
-        <title>What&#39;s going on here?</title>
+        <title>What's going on here?</title>
         <link>https://concrete-mixer.github.io/meta/2015/11/07/intro.html</link>
         <guid isPermaLink="true">https://concrete-mixer.github.io/meta/2015/11/07/intro.html</guid>
         <description>&lt;p&gt;This is a blog about audio coding that rambles through the work I’ve done over the past couple of years. It will be mostly focused on the &lt;a href=&quot;https://github.com/concrete-mixer/concrete-mixer&quot;&gt;Concrète Mixer app&lt;/a&gt;, but will also cover a couple of side projects.&lt;/p&gt;

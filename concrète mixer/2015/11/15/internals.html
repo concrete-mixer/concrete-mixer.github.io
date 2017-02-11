@@ -21,7 +21,7 @@
 	<link rel="canonical" href="https://concrete-mixer.github.io/concr%C3%A8te%20mixer/2015/11/15/internals.html">
 
 	<!-- RSS -->
-	<link rel="alternate" type="application/atom+xml" title="Concrète Mixer - messing around with audio code" href="https://concrete-mixer.github.io/feed.xml" />
+	<link rel="alternate" type="application/atom+xml" title="Concrète Mixer - shredded field recording ambience" href="https://concrete-mixer.github.io/feed.xml" />
 
 	<!-- Font Awesome -->
 	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
@@ -60,7 +60,7 @@
 		</a>
 		
 		<h1 class="site-title">
-			<a href="/">Concrète Mixer - messing around with audio code</a>
+			<a href="/">Concrète Mixer - shredded field recording ambience</a>
 		</h1>
 	</div>
 	<nav class="site-nav">
@@ -184,7 +184,7 @@
 <ul>
   <li>The audio processing is written in <a href="http://chuck.cs.princeton.edu/">ChucK</a>.</li>
   <li>The ChucK libraries are enveloped by a sticky layer of <a href="https://www.perl.org">Perl</a> which is there to do the things ChucK can’t do.</li>
-  <li>The Perl layer identifies the audio files to play (from directories the user has specified in <code>conf/concrete.conf</code>)</li>
+  <li>The Perl layer identifies the audio files to play (from directories the user has specified in <code class="highlighter-rouge">conf/concrete.conf</code>)</li>
   <li>There are two distinct sound entities in play:
     <ul>
       <li>playSound (of which there can be multiple concurrent instances)</li>
@@ -192,7 +192,7 @@
     </ul>
   </li>
   <li>The app takes at least one but possibly two directories of WAV files as the sound source</li>
-  <li>The app will stop playback once it has run out of wave files to play, or, because ChucK leaks memory, when the app has used more than half the system RAM. Alternatively, if the user configures <code>endless_play=1</code> in <code>conf/concrete.conf</code>, the app will restart rather than end, and will thus play perpetually.</li>
+  <li>The app will stop playback once it has run out of wave files to play, or, because ChucK leaks memory, when the app has used more than half the system RAM. Alternatively, if the user configures <code class="highlighter-rouge">endless_play=1</code> in <code class="highlighter-rouge">conf/concrete.conf</code>, the app will restart rather than end, and will thus play perpetually.</li>
   <li>The app operates an OSC server in Perl space which receives signals from playSound and playFxChain that they have completed their tasks, and will generate new instances of both, until there are no more files left to play.</li>
 </ul>
 
@@ -200,7 +200,7 @@
 
 <h2 id="playsound">playSound</h2>
 
-<p>The playSound entity is there to play wave files. The entity gets passed a filename by the OSC server, and then loads the file for playback. The playback period is divided into random lengths of time (dertived from the <code>bpm</code> value specified in <code>conf/global.conf</code>) in which the sound can be altered in some way. For any given period, there is a 1/8 chance that playback will be altered. When the decision to alter playback is made, a further random choice is taken as to what should be done. Possibilities include:</p>
+<p>The playSound entity is there to play wave files. The entity gets passed a filename by the OSC server, and then loads the file for playback. The playback period is divided into random lengths of time (dertived from the <code class="highlighter-rouge">bpm</code> value specified in <code class="highlighter-rouge">conf/global.conf</code>) in which the sound can be altered in some way. For any given period, there is a 1/8 chance that playback will be altered. When the decision to alter playback is made, a further random choice is taken as to what should be done. Possibilities include:</p>
 
 <ul>
   <li>reversing playback</li>

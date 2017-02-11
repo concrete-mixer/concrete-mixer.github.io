@@ -21,7 +21,7 @@
 	<link rel="canonical" href="https://concrete-mixer.github.io/concr%C3%A8te%20mixer/2015/12/06/cm-fxchains.html">
 
 	<!-- RSS -->
-	<link rel="alternate" type="application/atom+xml" title="Concrète Mixer - messing around with audio code" href="https://concrete-mixer.github.io/feed.xml" />
+	<link rel="alternate" type="application/atom+xml" title="Concrète Mixer - shredded field recording ambience" href="https://concrete-mixer.github.io/feed.xml" />
 
 	<!-- Font Awesome -->
 	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
@@ -60,7 +60,7 @@
 		</a>
 		
 		<h1 class="site-title">
-			<a href="/">Concrète Mixer - messing around with audio code</a>
+			<a href="/">Concrète Mixer - shredded field recording ambience</a>
 		</h1>
 	</div>
 	<nav class="site-nav">
@@ -169,7 +169,7 @@
 
 <p>One or more raw recordings can be sound a bit sparse in the audio field, especially if they’re mono. An effects chain helps to add depth to the stereo field.</p>
 
-<p>In case you have recordings that are so bursting with incident they need no artificial enhancement, you can turn off the effects chain by specifying <code>fx_chain_enabled=0</code> in <code>conf/concrete.conf</code>).</p>
+<p>In case you have recordings that are so bursting with incident they need no artificial enhancement, you can turn off the effects chain by specifying <code class="highlighter-rouge">fx_chain_enabled=0</code> in <code class="highlighter-rouge">conf/concrete.conf</code>).</p>
 
 <h2 id="dubbing-it-up">Dubbing it up</h2>
 
@@ -181,30 +181,52 @@
 
 <p>playFx defines 25 effects combinations. These chains are groupings of the effects libraries found in lib/Fx, like so:</p>
 
-<div class="highlight"><pre><code class="language-chuck" data-lang="chuck"><span class="lineno"> 1</span> <span class="n">if</span> <span class="o">(</span> <span class="n">choice</span> <span class="o">==</span> <span class="mi">1</span> <span class="o">)</span> <span class="o">{</span>
-<span class="lineno"> 2</span>     <span class="o">[</span>
-<span class="lineno"> 3</span>         <span class="k">new</span> <span class="n">FxFilter</span><span class="o">,</span>
-<span class="lineno"> 4</span>         <span class="k">new</span> <span class="n">FxDelay</span>
-<span class="lineno"> 5</span>     <span class="o">]</span> <span class="err">@</span><span class="o">=&gt;</span> <span class="n">fxChain</span><span class="o">;</span>
-<span class="lineno"> 6</span> <span class="o">}</span>
-<span class="lineno"> 7</span> 
-<span class="lineno"> 8</span> <span class="n">if</span> <span class="o">(</span> <span class="n">choice</span> <span class="o">==</span> <span class="mi">2</span> <span class="o">)</span> <span class="o">{</span>
-<span class="lineno"> 9</span>     <span class="o">[</span>
-<span class="lineno">10</span>         <span class="k">new</span> <span class="n">FxDelayVariable</span><span class="o">,</span>
-<span class="lineno">11</span>         <span class="k">new</span> <span class="n">FxDelay</span>
-<span class="lineno">12</span>     <span class="o">]</span> <span class="err">@</span><span class="o">=&gt;</span> <span class="n">fxChain</span><span class="o">;</span>
-<span class="lineno">13</span> <span class="o">}</span>
-<span class="lineno">14</span> 
-<span class="lineno">15</span> <span class="n">if</span> <span class="o">(</span> <span class="n">choice</span> <span class="o">==</span> <span class="mi">3</span> <span class="o">)</span> <span class="o">{</span>
-<span class="lineno">16</span>     <span class="o">[</span>
-<span class="lineno">17</span>         <span class="k">new</span> <span class="n">FxDelay</span><span class="o">,</span>
-<span class="lineno">18</span>         <span class="k">new</span> <span class="n">FxHarmonicDelay</span>
-<span class="lineno">19</span>     <span class="o">]</span> <span class="err">@</span><span class="o">=&gt;</span> <span class="n">fxChain</span><span class="o">;</span>
-<span class="lineno">20</span> <span class="o">}</span>
-<span class="lineno">21</span> 
-<span class="lineno">22</span> <span class="c1">// continued to choice 25</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-chuck" data-lang="chuck"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22</pre></td><td class="code"><pre>if ( choice == 1 ) {
+    [
+        new FxFilter,
+        new FxDelay
+    ] @=&gt; fxChain;
+}
 
-<p>(It’s probably worth nothing again that ChucK doesn’t support <code>case</code> statements, or else you’d be thinking the implementation is idiotic.)</p>
+if ( choice == 2 ) {
+    [
+        new FxDelayVariable,
+        new FxDelay
+    ] @=&gt; fxChain;
+}
+
+if ( choice == 3 ) {
+    [
+        new FxDelay,
+        new FxHarmonicDelay
+    ] @=&gt; fxChain;
+}
+
+// continued to choice 25<span class="w">
+</span></pre></td></tr></tbody></table></code></pre></figure>
+
+<p>(In case you’re wondering, no, ChucK <em>doesn’t</em> support <code class="highlighter-rouge">case</code> statements.)</p>
 
 <p>The chains can be of arbitrary length, but the most you really want is four. This is partly because the cumulative result of too many effects is a mushy sound, but mostly because a Raspberry Pi has only limited CPU capacity and signal processing is expensive.</p>
 
@@ -220,45 +242,79 @@
 
 <p>This effect randomly alters the delay amount, for the duration of the delay amount, meaning each echo is of different length to the last. This results in a skidding, skittering sound.</p>
 
-<div class="highlight"><pre><code class="language-chuck" data-lang="chuck"><span class="lineno"> 1</span> <span class="kd">fun</span> <span class="kt">void</span> <span class="nf">activity</span><span class="o">()</span> <span class="o">{</span>
-<span class="lineno"> 2</span>     <span class="k">while</span> <span class="o">(</span> <span class="n">active</span> <span class="o">)</span> <span class="o">{</span>
-<span class="lineno"> 3</span>         <span class="c1">// set duration for delay</span>
-<span class="lineno"> 4</span>         <span class="n">chooser</span><span class="o">.</span><span class="na">getDur</span><span class="o">(</span> <span class="mf">0.05</span><span class="o">,</span> <span class="mf">0.50</span> <span class="o">)</span> <span class="o">=&gt;</span> <span class="k">dur</span> <span class="n">duration</span><span class="o">;</span>
-<span class="lineno"> 5</span> 
-<span class="lineno"> 6</span>         <span class="n">duration</span> <span class="o">=&gt;</span> <span class="n">delay</span><span class="o">.</span><span class="na">delay</span><span class="o">;</span>
-<span class="lineno"> 7</span>         <span class="n">duration</span> <span class="o">-</span> <span class="mi">400</span><span class="o">::</span><span class="kc">samp</span> <span class="o">=&gt;</span> <span class="k">dur</span> <span class="n">mainDuration</span><span class="o">;</span>
-<span class="lineno"> 8</span> 
-<span class="lineno"> 9</span>         <span class="c1">// In the grand scheme of things we only need</span>
-<span class="lineno">10</span>         <span class="c1">// duration =&gt; now, but randomly changing delay</span>
-<span class="lineno">11</span>         <span class="c1">// times means there are discontinuities in the signal.</span>
-<span class="lineno">12</span>         <span class="c1">// To paper over these cracks (and pops) we fade the signal</span>
-<span class="lineno">13</span>         <span class="c1">// around the discontinuities</span>
-<span class="lineno">14</span> 
-<span class="lineno">15</span>         <span class="c1">// fade in</span>
-<span class="lineno">16</span>         <span class="n">fader</span><span class="o">.</span><span class="na">fadeIn</span><span class="o">(</span> <span class="mi">200</span><span class="o">::</span><span class="kc">samp</span><span class="o">,</span> <span class="mf">1.0</span><span class="o">,</span> <span class="n">output</span> <span class="o">);</span>
-<span class="lineno">17</span>         <span class="mi">200</span><span class="o">::</span><span class="kc">samp</span> <span class="o">=&gt;</span> <span class="kc">now</span><span class="o">;</span>
-<span class="lineno">18</span> 
-<span class="lineno">19</span>         <span class="c1">// work through mainDuration</span>
-<span class="lineno">20</span>         <span class="n">mainDuration</span> <span class="o">=&gt;</span> <span class="kc">now</span><span class="o">;</span>
-<span class="lineno">21</span> 
-<span class="lineno">22</span>         <span class="c1">// fade out</span>
-<span class="lineno">23</span>         <span class="n">fader</span><span class="o">.</span><span class="na">fadeOut</span><span class="o">(</span> <span class="mi">200</span><span class="o">::</span><span class="kc">samp</span><span class="o">,</span> <span class="n">output</span> <span class="o">);</span>
-<span class="lineno">24</span>         <span class="mi">200</span><span class="o">::</span><span class="kc">samp</span> <span class="o">=&gt;</span> <span class="kc">now</span><span class="o">;</span>
-<span class="lineno">25</span>     <span class="o">}</span>
-<span class="lineno">26</span> <span class="o">}</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-chuck" data-lang="chuck"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26</pre></td><td class="code"><pre>fun void activity() {
+    while ( active ) {
+        // set duration for delay
+        chooser.getDur( 0.05, 0.50 ) =&gt; dur duration;
+
+        duration =&gt; delay.delay;
+        duration - 400::samp =&gt; dur mainDuration;
+
+        // In the grand scheme of things we only need
+        // duration =&gt; now, but randomly changing delay
+        // times means there are discontinuities in the signal.
+        // To paper over these cracks (and pops) we fade the signal
+        // around the discontinuities
+
+        // fade in
+        fader.fadeIn( 200::samp, 1.0, output );
+        200::samp =&gt; now;
+
+        // work through mainDuration
+        mainDuration =&gt; now;
+
+        // fade out
+        fader.fadeOut( 200::samp, output );
+        200::samp =&gt; now;
+    }
+}<span class="w">
+</span></pre></td></tr></tbody></table></code></pre></figure>
 
 <h2 id="fxflanger">FxFlanger</h2>
 
 <p>Flangers are a reasonably straightforward effect to produce. Flangers normally use a sine wave LFO to vary the delay value on the signal. With my implementation I’ve set an LFO on the feedback amount as well - I’m pretty sure I’ve never worked with a flanger that does this, though I guess it might be common. Certainly easy to do.</p>
 
-<div class="highlight"><pre><code class="language-chuck" data-lang="chuck"><span class="lineno">1</span> <span class="kd">fun</span> <span class="kt">void</span> <span class="nf">activity</span><span class="o">()</span> <span class="o">{</span>
-<span class="lineno">2</span>     <span class="k">while</span> <span class="o">(</span> <span class="n">active</span> <span class="o">)</span> <span class="o">{</span>
-<span class="lineno">3</span>         <span class="n">lfo</span><span class="o">.</span><span class="na">osc</span><span class="o">(</span> <span class="n">oscFreq</span><span class="o">,</span> <span class="n">oscAmount</span><span class="o">,</span> <span class="n">oscType</span> <span class="o">)</span> <span class="o">=&gt;</span> <span class="kt">float</span> <span class="n">freqDelta</span><span class="o">;</span>
-<span class="lineno">4</span>         <span class="nl">baseDelay:</span><span class="o">:</span><span class="kc">ms</span> <span class="o">+</span> <span class="nl">freqDelta:</span><span class="o">:</span><span class="kc">ms</span> <span class="o">=&gt;</span> <span class="n">flanger</span><span class="o">.</span><span class="na">delay</span><span class="o">;</span>
-<span class="lineno">5</span>         <span class="n">lfo</span><span class="o">.</span><span class="na">osc</span><span class="o">(</span> <span class="n">volFreq</span><span class="o">,</span> <span class="n">volAmount</span><span class="o">,</span> <span class="n">volType</span> <span class="o">)</span> <span class="o">=&gt;</span> <span class="n">feedback</span><span class="o">.</span><span class="na">gain</span><span class="o">;</span>
-<span class="lineno">6</span>         <span class="mi">10</span><span class="o">::</span><span class="kc">ms</span> <span class="o">=&gt;</span> <span class="kc">now</span><span class="o">;</span>
-<span class="lineno">7</span>     <span class="o">}</span>
-<span class="lineno">8</span> <span class="o">}</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-chuck" data-lang="chuck"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8</pre></td><td class="code"><pre>fun void activity() {
+    while ( active ) {
+        lfo.osc( oscFreq, oscAmount, oscType ) =&gt; float freqDelta;
+        baseDelay::ms + freqDelta::ms =&gt; flanger.delay;
+        lfo.osc( volFreq, volAmount, volType ) =&gt; feedback.gain;
+        10::ms =&gt; now;
+    }
+}<span class="w">
+</span></pre></td></tr></tbody></table></code></pre></figure>
 
 <p>Notes:</p>
 
@@ -280,17 +336,28 @@
 
 <p>A further twist on the classic flanger is that every so often, rather than apply the flange effect with a sine wave LFO, the LFO type is set to sample hold. This gives us a flanger version of FxDelayVariable.</p>
 
-<div class="highlight"><pre><code class="language-chuck" data-lang="chuck"><span class="lineno"> 1</span> <span class="kd">fun</span> <span class="nb">string</span> <span class="nf">getOscType</span><span class="o">()</span> <span class="o">{</span>
-<span class="lineno"> 2</span>     <span class="n">chooser</span><span class="o">.</span><span class="na">getInt</span><span class="o">(</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">4</span> <span class="o">)</span> <span class="o">=&gt;</span> <span class="kt">int</span> <span class="n">choice</span><span class="o">;</span>
-<span class="lineno"> 3</span> 
-<span class="lineno"> 4</span>     <span class="n">if</span> <span class="o">(</span> <span class="n">choice</span> <span class="o">==</span> <span class="mi">1</span> <span class="o">)</span> <span class="o">{</span>
-<span class="lineno"> 5</span>         <span class="k">return</span> <span class="s">&quot;sampleHold&quot;</span><span class="o">;</span>
-<span class="lineno"> 6</span>     <span class="o">}</span>
-<span class="lineno"> 7</span>     <span class="k">else</span> <span class="o">{</span>
-<span class="lineno"> 8</span>         <span class="c1">// we would go with sine 75% of the time</span>
-<span class="lineno"> 9</span>         <span class="k">return</span> <span class="s">&quot;sine&quot;</span><span class="o">;</span>
-<span class="lineno">10</span>     <span class="o">}</span>
-<span class="lineno">11</span> <span class="o">}</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-chuck" data-lang="chuck"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11</pre></td><td class="code"><pre>fun string getOscType() {
+    chooser.getInt( 1, 4 ) =&gt; int choice;
+
+    if ( choice == 1 ) {
+        return "sampleHold";
+    }
+    else {
+        // we would go with sine 75% of the time
+        return "sine";
+    }
+}<span class="w">
+</span></pre></td></tr></tbody></table></code></pre></figure>
 
 <h2 id="fxharmonicdelay">FxHarmonicDelay</h2>
 
@@ -302,65 +369,119 @@
 
 <p>Your father’s tremolo effect involves applying an LFO to a gain so that the volume of the signal rapidly drops out and returns. In Concrete Mixer this effect has been made a bit more interesting because the LFO frequency itself is modulated with an LFO. Similar to FxVariableDelay, this creates a bit of variable mayhem.</p>
 
-<div class="highlight"><pre><code class="language-chuck" data-lang="chuck"><span class="lineno">1</span> <span class="kd">fun</span> <span class="kt">void</span> <span class="nf">activity</span><span class="o">()</span> <span class="o">{</span>
-<span class="lineno">2</span>         <span class="k">while</span> <span class="o">(</span> <span class="kc">true</span> <span class="o">)</span> <span class="o">{</span>
-<span class="lineno">3</span>             <span class="n">lfo</span><span class="o">.</span><span class="na">osc</span><span class="o">(</span> <span class="n">lfoOscFreq</span><span class="o">,</span> <span class="n">lfoOscAmount</span><span class="o">,</span> <span class="s">&quot;sine&quot;</span> <span class="o">)</span> <span class="o">=&gt;</span> <span class="kt">float</span> <span class="n">freqDelta</span><span class="o">;</span>
-<span class="lineno">4</span>             <span class="n">lfoBaseFreq</span> <span class="o">+</span> <span class="n">freqDelta</span> <span class="o">=&gt;</span> <span class="kt">float</span> <span class="n">lfoFreqFinal</span><span class="o">;</span>
-<span class="lineno">5</span>             <span class="n">lfo</span><span class="o">.</span><span class="na">osc</span><span class="o">(</span> <span class="n">lfoFreqFinal</span><span class="o">,</span> <span class="n">amount</span><span class="o">,</span> <span class="s">&quot;sine&quot;</span> <span class="o">)</span> <span class="o">=&gt;</span> <span class="kt">float</span> <span class="n">gainDelta</span><span class="o">;</span>
-<span class="lineno">6</span>             <span class="mf">0.5</span> <span class="o">+</span> <span class="n">gainDelta</span> <span class="o">=&gt;</span> <span class="n">g</span><span class="o">.</span><span class="na">gain</span><span class="o">;</span>
-<span class="lineno">7</span>             <span class="mi">1</span><span class="o">::</span><span class="kc">ms</span> <span class="o">=&gt;</span> <span class="kc">now</span><span class="o">;</span>
-<span class="lineno">8</span>         <span class="o">}</span>
-<span class="lineno">9</span>     <span class="o">}</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-chuck" data-lang="chuck"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9</pre></td><td class="code"><pre>    fun void activity() {
+        while ( true ) {
+            lfo.osc( lfoOscFreq, lfoOscAmount, "sine" ) =&gt; float freqDelta;
+            lfoBaseFreq + freqDelta =&gt; float lfoFreqFinal;
+            lfo.osc( lfoFreqFinal, amount, "sine" ) =&gt; float gainDelta;
+            0.5 + gainDelta =&gt; g.gain;
+            1::ms =&gt; now;
+        }
+    }<span class="w">
+</span></pre></td></tr></tbody></table></code></pre></figure>
 
 <h2 id="fxreversedelay">FxReverseDelay</h2>
 
 <p>This class relies on a custom Chugen called ReverseDelay. ReverseDelay is small enough to include here in full.</p>
 
-<div class="highlight"><pre><code class="language-chuck" data-lang="chuck"><span class="lineno"> 1</span> <span class="kd">public</span> <span class="kd">class</span> <span class="nc">ReverseDelay</span> <span class="kd">extends</span> <span class="nb">Chugen</span> <span class="o">{</span>
-<span class="lineno"> 2</span>     <span class="kt">float</span> <span class="n">readArray</span><span class="o">[</span><span class="mi">0</span><span class="o">];</span>
-<span class="lineno"> 3</span>     <span class="kt">float</span> <span class="n">writeArray</span><span class="o">[</span><span class="mi">0</span><span class="o">];</span>
-<span class="lineno"> 4</span>     <span class="kt">int</span> <span class="n">readCount</span><span class="o">;</span>
-<span class="lineno"> 5</span>     <span class="kt">int</span> <span class="n">writeCount</span><span class="o">;</span>
-<span class="lineno"> 6</span>     <span class="kt">float</span> <span class="n">sample</span><span class="o">;</span>
-<span class="lineno"> 7</span> 
-<span class="lineno"> 8</span>     <span class="kd">fun</span> <span class="kt">void</span> <span class="nf">delay</span><span class="o">(</span> <span class="kt">int</span> <span class="n">size</span> <span class="o">)</span> <span class="o">{</span>
-<span class="lineno"> 9</span>         <span class="n">readArray</span><span class="o">.</span><span class="na">size</span><span class="o">(</span> <span class="n">size</span> <span class="o">);</span>
-<span class="lineno">10</span>         <span class="n">writeArray</span><span class="o">.</span><span class="na">size</span><span class="o">(</span> <span class="n">size</span> <span class="o">);</span>
-<span class="lineno">11</span>         <span class="n">size</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">=&gt;</span> <span class="n">readCount</span><span class="o">;</span>
-<span class="lineno">12</span>     <span class="o">}</span>
-<span class="lineno">13</span> 
-<span class="lineno">14</span>     <span class="kd">fun</span> <span class="kt">float</span> <span class="nf">tick</span><span class="o">(</span> <span class="kt">float</span> <span class="n">in</span> <span class="o">)</span> <span class="o">{</span>
-<span class="lineno">15</span>         <span class="c1">// if readArray.size(), delay() has not been called</span>
-<span class="lineno">16</span>         <span class="c1">// do nothing</span>
-<span class="lineno">17</span>         <span class="n">if</span> <span class="o">(</span> <span class="o">!</span> <span class="n">readArray</span><span class="o">.</span><span class="na">cap</span><span class="o">()</span> <span class="o">)</span> <span class="o">{</span>
-<span class="lineno">18</span>             <span class="k">return</span> <span class="n">in</span><span class="o">;</span>
-<span class="lineno">19</span>         <span class="o">}</span>
-<span class="lineno">20</span> 
-<span class="lineno">21</span>         <span class="n">in</span> <span class="o">=&gt;</span> <span class="n">writeArray</span><span class="o">[</span> <span class="n">writeCount</span> <span class="o">];</span>
-<span class="lineno">22</span>         <span class="n">readArray</span><span class="o">[</span> <span class="n">readCount</span> <span class="o">]</span> <span class="o">=&gt;</span> <span class="n">sample</span><span class="o">;</span>
-<span class="lineno">23</span>         <span class="n">writeCount</span><span class="o">++;</span>
-<span class="lineno">24</span>         <span class="n">readCount</span><span class="o">--;</span>
-<span class="lineno">25</span> 
-<span class="lineno">26</span>         <span class="n">if</span> <span class="o">(</span> <span class="n">writeCount</span> <span class="o">==</span> <span class="n">writeArray</span><span class="o">.</span><span class="na">cap</span><span class="o">()</span> <span class="o">)</span> <span class="o">{</span>
-<span class="lineno">27</span>             <span class="n">switchArrays</span><span class="o">();</span>
-<span class="lineno">28</span>         <span class="o">}</span>
-<span class="lineno">29</span> 
-<span class="lineno">30</span>         <span class="k">return</span> <span class="n">sample</span><span class="o">;</span>
-<span class="lineno">31</span>     <span class="o">}</span>
-<span class="lineno">32</span> 
-<span class="lineno">33</span>     <span class="kd">fun</span> <span class="kt">void</span> <span class="nf">switchArrays</span><span class="o">()</span> <span class="o">{</span>
-<span class="lineno">34</span>         <span class="kt">float</span> <span class="n">tempArray</span><span class="o">[];</span>
-<span class="lineno">35</span> 
-<span class="lineno">36</span>         <span class="c1">// switch arrays</span>
-<span class="lineno">37</span>         <span class="n">readArray</span> <span class="err">@</span><span class="o">=&gt;</span> <span class="n">tempArray</span><span class="o">;</span>
-<span class="lineno">38</span>         <span class="n">writeArray</span> <span class="err">@</span><span class="o">=&gt;</span> <span class="n">readArray</span><span class="o">;</span>
-<span class="lineno">39</span>         <span class="n">tempArray</span> <span class="err">@</span><span class="o">=&gt;</span> <span class="n">writeArray</span><span class="o">;</span>
-<span class="lineno">40</span> 
-<span class="lineno">41</span>         <span class="c1">// reset counts</span>
-<span class="lineno">42</span>         <span class="mi">0</span> <span class="o">=&gt;</span> <span class="n">writeCount</span><span class="o">;</span>
-<span class="lineno">43</span>         <span class="n">readArray</span><span class="o">.</span><span class="na">cap</span><span class="o">()</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">=&gt;</span> <span class="n">readCount</span><span class="o">;</span>
-<span class="lineno">44</span>     <span class="o">}</span>
-<span class="lineno">45</span> <span class="o">}</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-chuck" data-lang="chuck"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45</pre></td><td class="code"><pre>public class ReverseDelay extends Chugen {
+    float readArray[0];
+    float writeArray[0];
+    int readCount;
+    int writeCount;
+    float sample;
+
+    fun void delay( int size ) {
+        readArray.size( size );
+        writeArray.size( size );
+        size - 1 =&gt; readCount;
+    }
+
+    fun float tick( float in ) {
+        // if readArray.size(), delay() has not been called
+        // do nothing
+        if ( ! readArray.cap() ) {
+            return in;
+        }
+
+        in =&gt; writeArray[ writeCount ];
+        readArray[ readCount ] =&gt; sample;
+        writeCount++;
+        readCount--;
+
+        if ( writeCount == writeArray.cap() ) {
+            switchArrays();
+        }
+
+        return sample;
+    }
+
+    fun void switchArrays() {
+        float tempArray[];
+
+        // switch arrays
+        readArray @=&gt; tempArray;
+        writeArray @=&gt; readArray;
+        tempArray @=&gt; writeArray;
+
+        // reset counts
+        0 =&gt; writeCount;
+        readArray.cap() - 1 =&gt; readCount;
+    }
+}<span class="w">
+</span></pre></td></tr></tbody></table></code></pre></figure>
 
 <p>The gist is that the current signal gets written to an array. Once the current array is full, it gets swapped with a second array. From then on values are read in reverse from the first array, providing the backwards delay signal, while current values get written to the second delay. This cycle repeats, and hey presto, reverse delay.</p>
 
