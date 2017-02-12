@@ -8,11 +8,11 @@ theme:
   title: Concrète Mixer - shredded field recording ambience
   avatar: highgate.jpg
   gravatar: # Email MD5 hash
-  description: "This is a blog about audio coding that rambles through the work I’ve done on and off over the past few of years." # used by search engines
+  description: "Aaudio coding, ambient sound, musique concrète, internet radio." # used by search engines
 
   # Header and footer text
   header_text: >
-     <p>About Concrète Mixer and Radio Concrète. Listen now!</p>
+     <p>This is the site for the Concrète Mixer software and its internet radio stream. Listen now! <a href="/concrète mixer radio/2017/02/12/call-for-field-recordings.html">Participate!</a></p>
   header_text_feature_image: img/concrete-banner.jpg
   post_header_image: img/concrete-feature.jpg
   footer_text: >
