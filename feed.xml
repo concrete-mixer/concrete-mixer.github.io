@@ -5,7 +5,34 @@
     <atom:link href="https://concrete-mixer.github.io/feed.xml" rel="self" type="application/rss+xml"/>
     <link>https://concrete-mixer.github.io/</link>
     <description>This is a blog about audio coding that rambles through the work I’ve done on and off over the past few of years.</description>
-    <pubDate>Sat, 11 Feb 2017 21:07:35 +1300</pubDate>
+    <pubDate>Sun, 12 Feb 2017 21:44:46 +1300</pubDate>
+    
+      <item>
+        <title>Call for field recordings</title>
+        <link>https://concrete-mixer.github.io/concr%C3%A8te%20mixer%20radio/2017/02/12/call-for-field-recordings.html</link>
+        <guid isPermaLink="true">https://concrete-mixer.github.io/concr%C3%A8te%20mixer%20radio/2017/02/12/call-for-field-recordings.html</guid>
+        <description>&lt;p&gt;So as a side-project (or perhaps the main point?) of Concrète Mixer, I’ve set up an Icecast server running a live internet radio stream of the software’s output. Currently the supplied audio is recordings I’ve made, but I don’t get out so much these days so I’d like to open it up to recordings by other people.&lt;/p&gt;
+
+&lt;p&gt;Some bullet points:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;The ideal recording length seems to be about 90 to 150 seconds. Too short and the sound feels too abrupt; too long and the listener can lose interest.&lt;/li&gt;
+  &lt;li&gt;I’m not after particularly high quality audio (some of my recordings were made on camcorders, dictaphones, mp3 players); that said, the recording has to be &lt;em&gt;fairly&lt;/em&gt; intelligible.&lt;/li&gt;
+  &lt;li&gt;The recording has to have some sort innate interest, some element that engages a listener’s interest. I can’t really define that more than “I know it when I hear it”.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This probably isn’t an especially helpful guide. To provide something more concrete (haha!), here’s two SoundCloud playlists of the sounds I’m currently using, as a very loose guide.&lt;/p&gt;
+
+&lt;iframe width=&quot;100%&quot; height=&quot;450&quot; scrolling=&quot;no&quot; frameborder=&quot;no&quot; src=&quot;https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/283085828&amp;amp;auto_play=false&amp;amp;hide_related=false&amp;amp;show_comments=true&amp;amp;show_user=true&amp;amp;show_reposts=false&amp;amp;visual=true&quot;&gt;&lt;/iframe&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;iframe width=&quot;100%&quot; height=&quot;450&quot; scrolling=&quot;no&quot; frameborder=&quot;no&quot; src=&quot;https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/283082840&amp;amp;auto_play=false&amp;amp;hide_related=false&amp;amp;show_comments=true&amp;amp;show_user=true&amp;amp;show_reposts=false&amp;amp;visual=true&quot;&gt;&lt;/iframe&gt;
+&lt;p&gt;&lt;br /&gt;
+Sadly I’m not in a position to pay you for your contributions, but aside from the inherent glory you’ll gain in donating a recording to this project, I’ll do what I can to give you recognition.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;If you would like to submit a sound to be added to the Concrète Mixer live stream, please &lt;a href=&quot;&amp;#109;&amp;#097;&amp;#105;&amp;#108;&amp;#116;&amp;#111;:&amp;#099;&amp;#111;&amp;#110;&amp;#099;&amp;#114;&amp;#101;&amp;#116;&amp;#101;&amp;#109;&amp;#105;&amp;#120;&amp;#101;&amp;#114;&amp;#046;&amp;#097;&amp;#117;&amp;#100;&amp;#105;&amp;#111;&amp;#064;&amp;#103;&amp;#109;&amp;#097;&amp;#105;&amp;#108;&amp;#046;&amp;#099;&amp;#111;&amp;#109;&quot;&gt;email me&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
+</description>
+        <pubDate>Sun, 12 Feb 2017 00:00:00 +1300</pubDate>
+      </item>
     
       <item>
         <title>What's new</title>
