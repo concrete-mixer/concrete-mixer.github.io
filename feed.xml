@@ -5,7 +5,54 @@
     <atom:link href="https://concrete-mixer.github.io/feed.xml" rel="self" type="application/rss+xml"/>
     <link>https://concrete-mixer.github.io/</link>
     <description>Aaudio coding, ambient sound, musique concrète, internet radio.</description>
-    <pubDate>Sun, 12 Feb 2017 21:56:58 +1300</pubDate>
+    <pubDate>Sun, 05 Mar 2017 21:32:36 +1300</pubDate>
+    
+      <item>
+        <title>New sounds by Sebastian Brock added to Concrète Mixer radio</title>
+        <link>https://concrete-mixer.github.io/concr%C3%A8te%20mixer%20radio/2017/03/05/new-sounds-bemtevi.html</link>
+        <guid isPermaLink="true">https://concrete-mixer.github.io/concr%C3%A8te%20mixer%20radio/2017/03/05/new-sounds-bemtevi.html</guid>
+        <description>&lt;p&gt;As mentioned last post I’m keen to add more sound recordings to &lt;a href=&quot;http://concrete-mixer.github.io/concrete-mixer.mp3&quot;&gt;Concrète Mixer Radio (CMR)&lt;/a&gt; put out a call for contributions. I also hit up several recent uploaders of field recordings asking if I could use recordings of theirs I liked.&lt;/p&gt;
+
+&lt;p&gt;The first to give a green light was &lt;a href=&quot;http://bemtevi.de/&quot;&gt;Sebastian Brock&lt;/a&gt; (aka Bemtevi), who has &lt;a href=&quot;https://soundcloud.com/user-466564937&quot;&gt;many recordings on Soundcloud&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h1 id=&quot;the-recordings&quot;&gt;The recordings&lt;/h1&gt;
+
+&lt;h2 id=&quot;hckerschwne-mute-swan-cygnus-olor&quot;&gt;Höckerschwäne (mute swan, &lt;em&gt;cygnus olor&lt;/em&gt;)&lt;/h2&gt;
+
+&lt;iframe width=&quot;100%&quot; height=&quot;450&quot; scrolling=&quot;no&quot; frameborder=&quot;no&quot; src=&quot;https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/254959798&amp;amp;auto_play=false&amp;amp;hide_related=false&amp;amp;show_comments=true&amp;amp;show_user=true&amp;amp;show_reposts=false&amp;amp;visual=true&quot;&gt;&lt;/iframe&gt;
+
+&lt;p&gt;This is a recording of some very unmute swan(s?) on Lake Werbeliner in northern Saxony (or so Wikipedia tells me). I love how the birds’ otherworldly calls are hypnotically locked in step, yet the sound gradually evolves.&lt;/p&gt;
+
+&lt;p&gt;The swans sound to me like a real-world rendition of a classic &lt;a href=&quot;https://en.wikipedia.org/wiki/Dub_music&quot;&gt;dub&lt;/a&gt; effect where a signal is briefly fed through an echo unit with a feedback loop so the sound becomes increasingly louder and more distorted. (Incidentally Concrète Mixer has an implementation of this effect, so I’m looking forward with some curiosity to hearing how it might sound applied tothis recording.)&lt;/p&gt;
+
+&lt;h2 id=&quot;wind-3---zaun-fence&quot;&gt;Wind 3 - Zaun (fence)&lt;/h2&gt;
+
+&lt;iframe width=&quot;100%&quot; height=&quot;450&quot; scrolling=&quot;no&quot; frameborder=&quot;no&quot; src=&quot;https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/299761333&amp;amp;auto_play=false&amp;amp;hide_related=false&amp;amp;show_comments=true&amp;amp;show_user=true&amp;amp;show_reposts=false&amp;amp;visual=true&quot;&gt;&lt;/iframe&gt;
+
+&lt;p&gt;This is quite an eerie recording and it will be interesting to see how it blends with the others in the sound pool. It seems to be a contact mic recording of a wire fence. Sounds involving metal wires (stringed instruments, high tension cables) are always interesting. What makes this recording intriguing is the smaller frequency range that contact microphones produce makes the recording sound like it’s been slowed down. There’s also a science fiction vibe to the recording, like the groaning winds of a postapocalyptic world…&lt;/p&gt;
+
+&lt;h2 id=&quot;montpellier&quot;&gt;Montpellier&lt;/h2&gt;
+
+&lt;iframe width=&quot;100%&quot; height=&quot;450&quot; scrolling=&quot;no&quot; frameborder=&quot;no&quot; src=&quot;https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/250477151&amp;amp;auto_play=false&amp;amp;hide_related=false&amp;amp;show_comments=true&amp;amp;show_user=true&amp;amp;show_reposts=false&amp;amp;visual=true&quot;&gt;&lt;/iframe&gt;
+
+&lt;p&gt;This recording catches several moods in the French town of Montpellier, from church bells to cafe conversation to what sounds like a very vigorous street parade. I cut this recording into several two minute sections which work in well with other.&lt;/p&gt;
+
+&lt;h2 id=&quot;der-strand-von-nizza&quot;&gt;Der strand von Nizza&lt;/h2&gt;
+
+&lt;iframe width=&quot;100%&quot; height=&quot;450&quot; scrolling=&quot;no&quot; frameborder=&quot;no&quot; src=&quot;https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/273828849&amp;amp;auto_play=false&amp;amp;hide_related=false&amp;amp;show_comments=true&amp;amp;show_user=true&amp;amp;show_reposts=false&amp;amp;visual=true&quot;&gt;&lt;/iframe&gt;
+
+&lt;p&gt;Recording waves on a beach is an obvious target for those wishing to record the natural world, and deservedly so. Though you would think if you’d heard one you’d heard them all, there’s as many variations on this sonic theme as there are miles of coastline in the world.&lt;/p&gt;
+
+&lt;p&gt;I’ve already got a couple of seashore recordings in the Concrète Mixer stream, but this recording is better because there’s more variation in the noise contour of the waves and more sucking grittiness as the water ebbs. I’m not certain but I wonder if there’s a hydrophone or contact microphone involved.&lt;/p&gt;
+
+&lt;p&gt;Additionally, just above the the sound of the waves you can sometimes hear the voices of people on the beach. From my own recording experience it’s annoying to have extraneous noise in your recordings, but in this instance it adds another dimension to the sound, grounding it in a real location, and ultimately making the recording more interesting. Makes you feel like you’ve washed up on the French Riviera…&lt;/p&gt;
+
+&lt;p&gt;Many thanks to Sebastian for letting me use his sounds!&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;If you want to hear more of Sebastian’s work you can check out &lt;a href=&quot;http://bemtevi.de/&quot;&gt;his website&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
+</description>
+        <pubDate>Sun, 05 Mar 2017 00:00:00 +1300</pubDate>
+      </item>
     
       <item>
         <title>Call for field recordings</title>
