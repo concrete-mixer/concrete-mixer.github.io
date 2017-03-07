@@ -1,2 +1,7 @@
 .sass-cache
 *.swp
+Gemfile
+Gemfile.lock
+README.md
+pygments.css
+run.sh
