@@ -8,7 +8,7 @@ theme:
   title: Concrète Mixer - shredded field recording ambience
   avatar: highgate.jpg
   gravatar: # Email MD5 hash
-  description: "Aaudio coding, ambient sound, musique concrète, internet radio." # used by search engines
+  description: "Audio coding, ambient sound, musique concrète, internet radio." # used by search engines
 
   # Header and footer text
   header_text: >
