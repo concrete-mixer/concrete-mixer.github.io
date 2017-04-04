@@ -5,12 +5,12 @@
     <atom:link href="https://concrete-mixer.github.io/feed.xml" rel="self" type="application/rss+xml"/>
     <link>https://concrete-mixer.github.io/</link>
     <description>Audio coding, ambient sound, musique concrète, internet radio.</description>
-    <pubDate>Sat, 01 Apr 2017 21:47:40 +1300</pubDate>
+    <pubDate>Tue, 04 Apr 2017 21:08:06 +1200</pubDate>
     
       <item>
         <title>New sounds by Adrien Capozzi</title>
-        <link>https://concrete-mixer.github.io/concr%C3%A8te%20mixer%20radio/2017/04/01/new-sounds-adrien.html</link>
-        <guid isPermaLink="true">https://concrete-mixer.github.io/concr%C3%A8te%20mixer%20radio/2017/04/01/new-sounds-adrien.html</guid>
+        <link>https://concrete-mixer.github.io/2017/04/new-sounds-adrien</link>
+        <guid isPermaLink="true">https://concrete-mixer.github.io/2017/04/new-sounds-adrien</guid>
         <description>&lt;p&gt;In my quest to get contributions to Concrete Mixer I’ve turned to muso friends with the view that, well, everyone who has dabbled in electronica has made field recordings, right? Well my LA-based chum &lt;a href=&quot;http://www.adrien75.com/adrien75.html&quot;&gt;Adrien Capozzi&lt;/a&gt; said he hadn’t, but that he’d make some, and a few days later emailed me two tracks. That’s exactly the sort of spirit I’m after! Well done that man.&lt;/p&gt;
 
 &lt;h2 id=&quot;contributions&quot;&gt;Contributions&lt;/h2&gt;
@@ -34,8 +34,8 @@
     
       <item>
         <title>New sounds by Rob Szeliga added to Concrète Mixer radio</title>
-        <link>https://concrete-mixer.github.io/concr%C3%A8te%20mixer%20radio/2017/03/21/new-sounds-rszeliga.html</link>
-        <guid isPermaLink="true">https://concrete-mixer.github.io/concr%C3%A8te%20mixer%20radio/2017/03/21/new-sounds-rszeliga.html</guid>
+        <link>https://concrete-mixer.github.io/2017/03/new-sounds-rszeliga</link>
+        <guid isPermaLink="true">https://concrete-mixer.github.io/2017/03/new-sounds-rszeliga</guid>
         <description>&lt;p&gt;Our second sound donor (praise him with great praise!) is &lt;a href=&quot;http://www.rszoniq.com&quot;&gt;Rob Szeliga&lt;/a&gt;, a UK-based sound designer, and he’s sent through a nice range of recordings.&lt;/p&gt;
 
 &lt;h2 id=&quot;contributions&quot;&gt;Contributions&lt;/h2&gt;
@@ -87,8 +87,8 @@
     
       <item>
         <title>New sounds by Sebastian Brock added to Concrète Mixer radio</title>
-        <link>https://concrete-mixer.github.io/concr%C3%A8te%20mixer%20radio/2017/03/05/new-sounds-bemtevi.html</link>
-        <guid isPermaLink="true">https://concrete-mixer.github.io/concr%C3%A8te%20mixer%20radio/2017/03/05/new-sounds-bemtevi.html</guid>
+        <link>https://concrete-mixer.github.io/2017/03/new-sounds-bemtevi</link>
+        <guid isPermaLink="true">https://concrete-mixer.github.io/2017/03/new-sounds-bemtevi</guid>
         <description>&lt;p&gt;As mentioned last post I’m keen to add more sound recordings to &lt;a href=&quot;http://concrete-mixer.github.io/concrete-mixer.mp3&quot;&gt;Concrète Mixer Radio (CMR)&lt;/a&gt; and have &lt;a href=&quot;/concrète mixer radio/2017/02/12/call-for-field-recordings.html&quot;&gt;put out a call&lt;/a&gt; for contributions. I’ve also poked around on Soundcloud hitting up users asking for field recordings of theirs I like.&lt;/p&gt;
 
 &lt;p&gt;Our first contributer is &lt;a href=&quot;http://bemtevi.de/&quot;&gt;Sebastian Brock&lt;/a&gt; (aka Bemtevi), who has &lt;a href=&quot;https://soundcloud.com/user-466564937&quot;&gt;many recordings on Soundcloud&lt;/a&gt;.&lt;/p&gt;
@@ -132,8 +132,8 @@
     
       <item>
         <title>Call for field recordings</title>
-        <link>https://concrete-mixer.github.io/concr%C3%A8te%20mixer%20radio/2017/02/12/call-for-field-recordings.html</link>
-        <guid isPermaLink="true">https://concrete-mixer.github.io/concr%C3%A8te%20mixer%20radio/2017/02/12/call-for-field-recordings.html</guid>
+        <link>https://concrete-mixer.github.io/2017/02/call-for-field-recordings</link>
+        <guid isPermaLink="true">https://concrete-mixer.github.io/2017/02/call-for-field-recordings</guid>
         <description>&lt;p&gt;So as a side-project (or perhaps the main point?) of Concrète Mixer, I’ve set up an Icecast server running a live internet radio stream of the software’s output. Currently the supplied audio is recordings I’ve made, but I don’t get out so much these days so I’d like to open it up to recordings by other people.&lt;/p&gt;
 
 &lt;p&gt;Some bullet points:&lt;/p&gt;
@@ -159,8 +159,8 @@ Sadly I’m not in a position to pay you for your contributions, but aside from 
     
       <item>
         <title>What's new</title>
-        <link>https://concrete-mixer.github.io/concr%C3%A8te%20mixer/2017/02/07/whats-new.html</link>
-        <guid isPermaLink="true">https://concrete-mixer.github.io/concr%C3%A8te%20mixer/2017/02/07/whats-new.html</guid>
+        <link>https://concrete-mixer.github.io/2017/02/whats-new</link>
+        <guid isPermaLink="true">https://concrete-mixer.github.io/2017/02/whats-new</guid>
         <description>&lt;p&gt;I last updated this blog in December 2015. In 2016 my time was rather swamped by work and fatherhood, but I tinkered away now and then and undertook some major work toward the end of last year. The result of this is Concrète Mixer 2.0, and this post outlines what’s changed.&lt;/p&gt;
 
 &lt;h1 id=&quot;the-audio-is-much-the-same&quot;&gt;The audio is much the same&lt;/h1&gt;
@@ -169,15 +169,25 @@ Sadly I’m not in a position to pay you for your contributions, but aside from 
 
 &lt;h1 id=&quot;no-more-perl&quot;&gt;No more Perl&lt;/h1&gt;
 
-&lt;p&gt;The biggest change is that there’s no Perl wrapper for the app. Instead, the prior Perl functionality is now written in ChucK.&lt;/p&gt;
+&lt;p&gt;The biggest change to the codebase is that there’s no Perl wrapper for the app. Instead, the functionality formerly implemented in Perl has been rewritten in ChucK.&lt;/p&gt;
 
 &lt;p&gt;This change was facilitated by my discovery that ChucK has FileIO and regular expression libraries which I can read and parse the config file. I’m a bit rueful I didn’t discover these libs earlier, although to be fair neither of them is documented on the ChucK website.&lt;/p&gt;
 
 &lt;h1 id=&quot;hello-python---soundcloud-support&quot;&gt;Hello Python - Soundcloud support&lt;/h1&gt;
 
-&lt;p&gt;Even as I dispensed with Perl, I had an idea to add SoundCloud support, and decided to write this in Python.&lt;/p&gt;
+&lt;p&gt;Even as I dispensed with Perl, I had an idea to add SoundCloud support, and decided use the Python Soundcloud library.&lt;/p&gt;
 
-&lt;p&gt;For a while I’d thought that Soundcloud support for users could point the app at a Soundcloud playlists might be handy. This functionality has been added in 2.0, and works pretty well. There’s support for most sound codecs via lib-avconc (aka ffmpeg). Soundcloud support makes evaluation of the app easier, and the default &lt;code class=&quot;highlighter-rouge&quot;&gt;concrete.conf.sample&lt;/code&gt; points to some demo playlists.&lt;/p&gt;
+&lt;p&gt;For a while I’d thought that Soundcloud support for users might be handy.&lt;/p&gt;
+
+&lt;h2 id=&quot;how-it-works&quot;&gt;How it works&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Make a playlist in Soundcloud, making all the files downloadable&lt;/li&gt;
+  &lt;li&gt;Put the playlist URL(s) into the concrete.conf file.&lt;/li&gt;
+  &lt;li&gt;Concrete Mixer will progressively download the files from the playlist and play them when needed.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;There’s support for most sound codecs via the lib-avconc library (aka ffmpeg). Soundcloud support makes evaluation of the app easier, and the default &lt;code class=&quot;highlighter-rouge&quot;&gt;concrete.conf.sample&lt;/code&gt; points to some demo playlists.&lt;/p&gt;
 
 &lt;h1 id=&quot;concrte-mixer-in-docker&quot;&gt;Concrète Mixer in Docker&lt;/h1&gt;
 
@@ -186,15 +196,14 @@ Sadly I’m not in a position to pay you for your contributions, but aside from 
 &lt;ul&gt;
   &lt;li&gt;compile ChucK&lt;/li&gt;
   &lt;li&gt;compile chugins&lt;/li&gt;
-  &lt;li&gt;install supporting Python libs (incl virtualenv)&lt;/li&gt;
-  &lt;li&gt;pip install requirements.txt (for soundcloud functionality)&lt;/li&gt;
+  &lt;li&gt;install the supporting Python libs for Soundcloud support&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;…which is quite an ask. As a response to this, I’ve built a &lt;a href=&quot;https://github.com/concrete-mixer/cm-docker-rpi-dac&quot;&gt;Docker image&lt;/a&gt; which installs all these prerequisites and kicks of CM execution. This image is built with Raspbian to run on a pi (preferably Pi3).&lt;/p&gt;
+&lt;p&gt;…which is a bit messy. As a response to this, I’ve built a &lt;a href=&quot;https://github.com/concrete-mixer/cm-docker-rpi-dac&quot;&gt;Docker image&lt;/a&gt; which installs all these prerequisites and kicks off CM execution. This image is built with Raspbian to run on a Raspberry Pi.&lt;/p&gt;
 
 &lt;h1 id=&quot;concrte-mixer-as-an-internet-radio-station&quot;&gt;Concrète Mixer as an internet radio station&lt;/h1&gt;
 
-&lt;p&gt;Finally, I’ve made &lt;a href=&quot;https://github.com/concrete-mixer/cm-docker-rpi-internet&quot;&gt;another Docker image&lt;/a&gt; which augments Concrète Mixer with &lt;a href=&quot;http://www.darkice.org&quot;&gt;Darkice&lt;/a&gt; and &lt;a href=&quot;https://www.icecast.org&quot;&gt;Icecast&lt;/a&gt; to create a Concrète Mixer radio station. Despite the extra processing this seems to run well on a Pi3. You can hear the result &lt;a href=&quot;http://concrete-mixer.venturus.io/concrete-mixer.mp3&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Finally, I’ve made &lt;a href=&quot;https://github.com/concrete-mixer/cm-docker-rpi-internet&quot;&gt;another Docker image&lt;/a&gt; which augments Concrète Mixer with &lt;a href=&quot;http://www.darkice.org&quot;&gt;Darkice&lt;/a&gt; and &lt;a href=&quot;https://www.icecast.org&quot;&gt;Icecast&lt;/a&gt; to create a Concrète Mixer radio station. Despite the extra processing required, this setup runs pretty well on a Pi3. You can hear the result &lt;a href=&quot;http://concrete-mixer.venturus.io/concrete-mixer.mp3&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h1 id=&quot;things-to-come&quot;&gt;Things to come&lt;/h1&gt;
 
@@ -204,15 +213,15 @@ Sadly I’m not in a position to pay you for your contributions, but aside from 
 
 &lt;p&gt;I’ve always had a question mark in my head over how punters would use Concrète Mixer, who they would be and why they would want to use it. As an occasional sound recordist who likes mashing up audio, the use case seems obvious to me, and I guess there are others who might be keen, but whether they’d want little boxes to do it or not is still unknown to me.&lt;/p&gt;
 
-&lt;p&gt;Instead, Concrète Mixer as an internet radio station seems like a good focus to the project. The way forward seems to me to be to get more sounds. At the moment I have a half hour long battery of sounds, and that gets repetitive after a while. So I’ll go on the hunt.&lt;/p&gt;
+&lt;p&gt;Instead, Concrète Mixer as an internet radio station seems like a good focus to the project. The way forward seems to me to be to get more sounds, and refine the effects/playback system.&lt;/p&gt;
 
 &lt;h2 id=&quot;longer-term&quot;&gt;Longer term&lt;/h2&gt;
 
 &lt;p&gt;There’s still a lot that could be done on the audio front:&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;The effects chain is still mono (well fake stereo by the cheat of adding a short delay to a randomly chosen channel)&lt;/li&gt;
-  &lt;li&gt;I have some more sound mashing ideas on playback that I haven’t explored yet. Some of these ideas (eg stereo reverb) will have to wait until more powerful iterations of rpis are available.&lt;/li&gt;
+  &lt;li&gt;The effects chain is still mono (hidden with a bit of delay on a randomly selected channel&lt;/li&gt;
+  &lt;li&gt;I have some more sound mashing ideas on playback that I haven’t explored yet. Some of these ideas (eg stereo reverb) will have to wait until more powerful Raspberry Pis are available.&lt;/li&gt;
 &lt;/ul&gt;
 </description>
         <pubDate>Tue, 07 Feb 2017 00:00:00 +1300</pubDate>
@@ -220,8 +229,8 @@ Sadly I’m not in a position to pay you for your contributions, but aside from 
     
       <item>
         <title>Randomness in sound</title>
-        <link>https://concrete-mixer.github.io/concr%C3%A8te%20mixer/2015/12/10/randomness.html</link>
-        <guid isPermaLink="true">https://concrete-mixer.github.io/concr%C3%A8te%20mixer/2015/12/10/randomness.html</guid>
+        <link>https://concrete-mixer.github.io/2015/12/randomness</link>
+        <guid isPermaLink="true">https://concrete-mixer.github.io/2015/12/randomness</guid>
         <description>&lt;p&gt;A somewhat chin-strokey examination of how chance can be applied to open-ended electronic audio.&lt;/p&gt;
 
 &lt;p&gt;When starting out writing audio processing scripts my plan was to devise a system that would generate sound sufficiently complex that by listening to it I wouldn’t be able to determine how it had been constructed.  I’m not sure quite why this idea interests me, but I guess I like suprises.&lt;/p&gt;
@@ -256,8 +265,8 @@ Sadly I’m not in a position to pay you for your contributions, but aside from 
     
       <item>
         <title>About Concrète Mixer's effects chains</title>
-        <link>https://concrete-mixer.github.io/concr%C3%A8te%20mixer/2015/12/06/cm-fxchains.html</link>
-        <guid isPermaLink="true">https://concrete-mixer.github.io/concr%C3%A8te%20mixer/2015/12/06/cm-fxchains.html</guid>
+        <link>https://concrete-mixer.github.io/2015/12/cm-fxchains</link>
+        <guid isPermaLink="true">https://concrete-mixer.github.io/2015/12/cm-fxchains</guid>
         <description>&lt;p&gt;This post discusses Concrete Mixer’s effects chains system, which is governed by the playFx entity within CM.&lt;/p&gt;
 
 &lt;h1 id=&quot;why-effects&quot;&gt;Why effects?&lt;/h1&gt;
@@ -606,8 +615,8 @@ if ( choice == 3 ) {
     
       <item>
         <title>How I got to using ChucK</title>
-        <link>https://concrete-mixer.github.io/concr%C3%A8te%20mixer/2015/12/01/chuck.html</link>
-        <guid isPermaLink="true">https://concrete-mixer.github.io/concr%C3%A8te%20mixer/2015/12/01/chuck.html</guid>
+        <link>https://concrete-mixer.github.io/2015/12/chuck</link>
+        <guid isPermaLink="true">https://concrete-mixer.github.io/2015/12/chuck</guid>
         <description>&lt;p&gt;This is a brief outline of how I went from using ‘standard’ music making software and ended up coding in ChucK.&lt;/p&gt;
 
 &lt;p&gt;When I started looking at doing audio software development I looked at several options. The way I write it sounds like I went about this task in a very precise way, but in reality I drifted in and out of things, with some dabbling occurring after I had already settled on ChucK.&lt;/p&gt;
@@ -802,8 +811,8 @@ while ( 1 ) { // loop forever
     
       <item>
         <title>Perl sine wave demo</title>
-        <link>https://concrete-mixer.github.io/audio%20coding/2015/11/23/perl-sine-wave.html</link>
-        <guid isPermaLink="true">https://concrete-mixer.github.io/audio%20coding/2015/11/23/perl-sine-wave.html</guid>
+        <link>https://concrete-mixer.github.io/2015/11/perl-sine-wave</link>
+        <guid isPermaLink="true">https://concrete-mixer.github.io/2015/11/perl-sine-wave</guid>
         <description>&lt;p&gt;There is no good reason to write audio code in Perl, but on the other hand, no reason not to, so here we go.&lt;/p&gt;
 
 &lt;h1 id=&quot;piping-hot-sound&quot;&gt;Piping hot sound&lt;/h1&gt;
@@ -984,8 +993,8 @@ while ( 1 ) { // loop forever
     
       <item>
         <title>Using dot to make charts</title>
-        <link>https://concrete-mixer.github.io/concr%C3%A8te%20mixer/2015/11/20/dot.html</link>
-        <guid isPermaLink="true">https://concrete-mixer.github.io/concr%C3%A8te%20mixer/2015/11/20/dot.html</guid>
+        <link>https://concrete-mixer.github.io/2015/11/dot</link>
+        <guid isPermaLink="true">https://concrete-mixer.github.io/2015/11/dot</guid>
         <description>&lt;p&gt;As this is a software blog I may as well mention how I generated the charts in the last post. As background I’ve had experience in the past drawing flow charts in Visio and Fireworks (those were the days), and was looking for something similar. Being in Linux land I tried Inkscape and dia, but Inkscape was a bit bewildering and dia was a bit rubbish (sorry dia developers!). I knew vaguely of tools that could generate charts from text and tried flowchart.js, but found the whole business of rendering a chart by loading a web page a bit inelegant. In the end I found dot, part of the &lt;a href=&quot;http://graphviz.org/&quot;&gt;GraphViz package&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h1 id=&quot;the-output-flow-diagram&quot;&gt;The output flow diagram&lt;/h1&gt;
@@ -1150,8 +1159,8 @@ while ( 1 ) { // loop forever
     
       <item>
         <title>Gastroscopy of Concrète Mixer</title>
-        <link>https://concrete-mixer.github.io/concr%C3%A8te%20mixer/2015/11/15/internals.html</link>
-        <guid isPermaLink="true">https://concrete-mixer.github.io/concr%C3%A8te%20mixer/2015/11/15/internals.html</guid>
+        <link>https://concrete-mixer.github.io/2015/11/internals</link>
+        <guid isPermaLink="true">https://concrete-mixer.github.io/2015/11/internals</guid>
         <description>&lt;p&gt;This post describes what Concrète Mixer is doing when it does its thing.&lt;/p&gt;
 
 &lt;h1 id=&quot;complicated-diagram&quot;&gt;Complicated diagram&lt;/h1&gt;
@@ -1226,8 +1235,8 @@ while ( 1 ) { // loop forever
     
       <item>
         <title>About Concrète Mixer</title>
-        <link>https://concrete-mixer.github.io/concr%C3%A8te%20mixer/2015/11/09/concrete-mixer.html</link>
-        <guid isPermaLink="true">https://concrete-mixer.github.io/concr%C3%A8te%20mixer/2015/11/09/concrete-mixer.html</guid>
+        <link>https://concrete-mixer.github.io/2015/11/concrete-mixer</link>
+        <guid isPermaLink="true">https://concrete-mixer.github.io/2015/11/concrete-mixer</guid>
         <description>&lt;p&gt;So this blog is mainly focused on Concrète Mixer, a sound app I’ve built to be run on a Raspberry Pi. In this post I brief description of the app as a starter. Later posts will get in to more detailed explorations.&lt;/p&gt;
 
 &lt;h1 id=&quot;what-is&quot;&gt;What is?&lt;/h1&gt;
@@ -1259,8 +1268,8 @@ while ( 1 ) { // loop forever
     
       <item>
         <title>What's going on here?</title>
-        <link>https://concrete-mixer.github.io/meta/2015/11/07/intro.html</link>
-        <guid isPermaLink="true">https://concrete-mixer.github.io/meta/2015/11/07/intro.html</guid>
+        <link>https://concrete-mixer.github.io/2015/11/intro</link>
+        <guid isPermaLink="true">https://concrete-mixer.github.io/2015/11/intro</guid>
         <description>&lt;p&gt;This is a blog about audio coding that rambles through the work I’ve done over the past couple of years. It will be mostly focused on the &lt;a href=&quot;https://github.com/concrete-mixer/concrete-mixer&quot;&gt;Concrète Mixer app&lt;/a&gt;, but will also cover a couple of side projects.&lt;/p&gt;
 </description>
         <pubDate>Sat, 07 Nov 2015 00:00:00 +1300</pubDate>
