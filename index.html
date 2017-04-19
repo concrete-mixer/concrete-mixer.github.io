@@ -4,8 +4,10 @@ layout: default
 
 <div class="home">
   {% if site.theme.header_text %}
-  <div class="call-out" 
-  style="background-image: url('{{ site.baseurl }}/{{ site.theme.header_text_feature_image }}')">
+  <div
+    class="call-out"
+    style="background-image: url('{{ site.baseurl }}/{{ site.theme.header_text_feature_image }}')"
+  >
     {{ site.theme.header_text }}
     <div>
       <audio
@@ -13,8 +15,15 @@ layout: default
         volume="0.5"
         controls
       >
+      </audio>
+
+      <div id="nowPlaying" style="display:none">
+        <p id="nowPlayingLabel">Now playing:</p>
+        <p id="stream1" style="display:none"></p>
+        <p id="stream2" style="display:none"></p>
+      </div>
     </div>
-    </audio>
+
   </div>
   {% endif %}
 

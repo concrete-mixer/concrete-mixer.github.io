@@ -12,7 +12,7 @@ theme:
 
   # Header and footer text
   header_text: >
-     <p>This is the site for the Concrète Mixer software and its internet radio stream. Listen now! <a href="/concrète mixer radio/2017/02/12/call-for-field-recordings.html">Participate!</a></p>
+      <p>This is the site for the Concrète Mixer software and its internet radio stream. Listen now! <a href="/concrète mixer radio/2017/02/12/call-for-field-recordings.html">Participate!</a></p>
   header_text_feature_image: img/concrete-banner.jpg
   post_header_image: img/concrete-feature.jpg
   page_header_image: img/page-header.jpg
