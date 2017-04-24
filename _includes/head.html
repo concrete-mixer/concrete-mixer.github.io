@@ -72,6 +72,8 @@
         var $el = $(id)
 
         if ( $el ) {
+          $('.call-out').addClass('now-playing')
+
           $('#nowPlaying').fadeIn(500, function() {
             $el.fadeOut(500, function() {
               if ( data.soundcloudTrackId ) {
