@@ -9,7 +9,6 @@
     </title>
 	<meta name="description" content="So as a side-project (or perhaps the main point?) of Concrète Mixer, I’ve set up an Icecast server running a live internet radio stream of the software’s out...">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta http-equiv="X-Frame-Options" content="sameorigin">
 
 	<!-- CSS -->
 	<link rel="stylesheet" href="/css/main.css">
@@ -49,6 +48,58 @@
 	ga('send', 'pageview');
 	</script>
 	
+
+  <script src="https://cdn.jsdelivr.net/sockjs/1/sockjs.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="https://connect.soundcloud.com/sdk/sdk-3.1.2.js"></script>
+  <script>
+    // heyho, it's jquery
+    $(document).ready(function() {
+      // initialise soundcloud client
+      SC.initialize({
+        client_id: '11bab725274cff587d5908c18cd501c2'
+      });
+
+      // kick off sockJS connection
+      var sock = new SockJS('http://concrete-mixer.venturus.io/cm-data');
+      sock.onopen = function() {
+        console.log('WS connection open');
+      };
+
+      sock.onmessage = function(e) {
+        var data = JSON.parse(e.data)
+        var id = '#stream' + data.stream
+        var $el = $(id)
+
+        if ( $el ) {
+          $('.call-out').addClass('now-playing')
+
+          $('#nowPlaying').fadeIn(500, function() {
+            $el.fadeOut(500, function() {
+              if ( data.soundcloudTrackId ) {
+                SC.get('/tracks/' + data.soundcloudTrackId)
+                  .then(function(track) {
+                    $el.html(
+                      data.recordist + ': <a href="' + track.permalink_url
+                      + '" target="_blank">' + data.file + '</a>'
+                    )
+                    $el.fadeIn(500)
+                  });
+              }
+              else {
+                $el.html(data.recordist + ': ' + data.file);
+                $el.fadeIn(500)
+              }
+            })
+          })
+        }
+      };
+
+      sock.onclose = function() {
+        console.log('WS connection closed');
+      };
+    });
+  </script>
 </head>
 
   <body>
@@ -71,7 +122,7 @@
 			
 			<li>
 				<a class="page-link" href="/contributors">
-					Concrète Mixer Radio Contributors
+					Concrète Mixer radio contributors
 				</a>
 			</li>
 			

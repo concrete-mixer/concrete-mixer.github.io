@@ -4,12 +4,11 @@
 	<meta charset="utf-8">
 	<title>
         
-            Concrète Mixer Radio Contributors
+            Concrète Mixer radio contributors
         
     </title>
 	<meta name="description" content="Audio coding, ambient sound, musique concrète, internet radio.">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta http-equiv="X-Frame-Options" content="sameorigin">
 
 	<!-- CSS -->
 	<link rel="stylesheet" href="/css/main.css">
@@ -49,6 +48,58 @@
 	ga('send', 'pageview');
 	</script>
 	
+
+  <script src="https://cdn.jsdelivr.net/sockjs/1/sockjs.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="https://connect.soundcloud.com/sdk/sdk-3.1.2.js"></script>
+  <script>
+    // heyho, it's jquery
+    $(document).ready(function() {
+      // initialise soundcloud client
+      SC.initialize({
+        client_id: '11bab725274cff587d5908c18cd501c2'
+      });
+
+      // kick off sockJS connection
+      var sock = new SockJS('http://concrete-mixer.venturus.io/cm-data');
+      sock.onopen = function() {
+        console.log('WS connection open');
+      };
+
+      sock.onmessage = function(e) {
+        var data = JSON.parse(e.data)
+        var id = '#stream' + data.stream
+        var $el = $(id)
+
+        if ( $el ) {
+          $('.call-out').addClass('now-playing')
+
+          $('#nowPlaying').fadeIn(500, function() {
+            $el.fadeOut(500, function() {
+              if ( data.soundcloudTrackId ) {
+                SC.get('/tracks/' + data.soundcloudTrackId)
+                  .then(function(track) {
+                    $el.html(
+                      data.recordist + ': <a href="' + track.permalink_url
+                      + '" target="_blank">' + data.file + '</a>'
+                    )
+                    $el.fadeIn(500)
+                  });
+              }
+              else {
+                $el.html(data.recordist + ': ' + data.file);
+                $el.fadeIn(500)
+              }
+            })
+          })
+        }
+      };
+
+      sock.onclose = function() {
+        console.log('WS connection closed');
+      };
+    });
+  </script>
 </head>
 
   <body>
@@ -71,7 +122,7 @@
 			
 			<li>
 				<a class="page-link" href="/contributors">
-					Concrète Mixer Radio Contributors
+					Concrète Mixer radio contributors
 				</a>
 			</li>
 			
@@ -164,15 +215,12 @@
     <div class="content">
       <article class="feature-image">
   <header style="background-image: url('/img/page-header.jpg')">
-    <h1 class="title">Concrète Mixer Radio Contributors</h1>
+    <h1 class="title">Concrète Mixer radio contributors</h1>
   </header>
-  <section class="post-content"><p>A list recordists who have contributed sounds to Concrète Mixer Radio.</p>
-
-<ul>
-  <li><a href="/2017/04/new-sounds-adrien">Adrien Capozzi</a></li>
-  <li><a href="/2017/03/new-sounds-rszeliga">Rob Szeliga</a></li>
-  <li><a href="/2017/03/new-sounds-bemtevi">Sebastian Brock</a></li>
-</ul>
+  <section class="post-content"><p>A list of recordists who have contributed recordings to Concrète Mixer radio:
+- <a href="/2017/04/new-sounds-adrien">Adrien Capozzi</a>
+- <a href="/2017/03/new-sounds-rszeliga">Rob Szeliga</a>
+- <a href="/2017/03/new-sounds-bemtevi">Sebastian Brock</a></p>
 </section>
 </article>
 
