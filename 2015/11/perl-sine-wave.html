@@ -55,6 +55,13 @@
   <script>
     // heyho, it's jquery
     $(document).ready(function() {
+      // do it like this for now
+      contributor_sites = {
+        'Rob Szeliga': 'http://www.rszoniq.com',
+        'Sebastian Brock': 'http://bemtevi.de/',
+        'Adrien Capozzi': 'http://www.adrien75.com/adrien75.html'
+      }
+
       // initialise soundcloud client
       SC.initialize({
         client_id: '11bab725274cff587d5908c18cd501c2'
@@ -76,18 +83,28 @@
 
           $('#nowPlaying').fadeIn(500, function() {
             $el.fadeOut(500, function() {
+              var contributorName = data.recordist
+
+              if ( contributor_sites[data.recordist] !== undefined ) {
+                contributorName = '<a href="'
+                  + contributor_sites[data.recordist]
+                  + '">' + data.recordist + '</a>'
+              }
+
               if ( data.soundcloudTrackId ) {
                 SC.get('/tracks/' + data.soundcloudTrackId)
                   .then(function(track) {
                     $el.html(
-                      data.recordist + ': <a href="' + track.permalink_url
+                      contributorName
+                      + ': <a href="' + track.permalink_url
                       + '" target="_blank">' + data.file + '</a>'
                     )
+
                     $el.fadeIn(500)
                   });
               }
               else {
-                $el.html(data.recordist + ': ' + data.file);
+                $el.html(contributorName + ': ' + data.file);
                 $el.fadeIn(500)
               }
             })
