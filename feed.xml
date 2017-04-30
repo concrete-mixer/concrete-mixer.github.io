@@ -5,7 +5,38 @@
     <atom:link href="https://concrete-mixer.github.io/feed.xml" rel="self" type="application/rss+xml"/>
     <link>https://concrete-mixer.github.io/</link>
     <description>Audio coding, ambient sound, musique concrète, internet radio.</description>
-    <pubDate>Sun, 30 Apr 2017 20:57:49 +1200</pubDate>
+    <pubDate>Sun, 30 Apr 2017 21:43:57 +1200</pubDate>
+    
+      <item>
+        <title>Real time track data added to home page</title>
+        <link>https://concrete-mixer.github.io/2017/04/real-time-track-data</link>
+        <guid isPermaLink="true">https://concrete-mixer.github.io/2017/04/real-time-track-data</guid>
+        <description>&lt;p&gt;You should notice that there’s a “Now playing” section in the “hero image” on the home page which lists tracks currently playing in the Concrète Mixer audio stream. I’ve achieved this by:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Adding extra &lt;a href=&quot;http://opensoundcontrol.org&quot;&gt;OSC&lt;/a&gt; request calls to &lt;code class=&quot;highlighter-rouge&quot;&gt;playSound.ck&lt;/code&gt; within Concrète Mixer, which broadcast the file name being played&lt;/li&gt;
+  &lt;li&gt;Adding a &lt;a href=&quot;https://nodejs.org&quot;&gt;nodejs&lt;/a&gt; server which:
+    &lt;ul&gt;
+      &lt;li&gt;Listens for OSC notifications from &lt;code class=&quot;highlighter-rouge&quot;&gt;playSound.ck&lt;/code&gt;, converting the file name into three parts:
+        &lt;ol&gt;
+          &lt;li&gt;Sound contributor&lt;/li&gt;
+          &lt;li&gt;Description of sound&lt;/li&gt;
+          &lt;li&gt;Soundcloud track ID (if available)&lt;/li&gt;
+        &lt;/ol&gt;
+      &lt;/li&gt;
+      &lt;li&gt;Broadcasts the data to connected browsers via websockets (or other appropriate technology via &lt;a href=&quot;https://github.com/sockjs&quot;&gt;sock.js&lt;/a&gt;)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Added &lt;a href=&quot;https://www.nginx.com&quot;&gt;nginx&lt;/a&gt; to proxy both the node server and the mp3 stream to downstream consumers&lt;/li&gt;
+  &lt;li&gt;Adding javascript (humble &lt;a href=&quot;https://jquery.com/&quot;&gt;jQuery&lt;/a&gt;) to the homepage which updates the text under the player when a new track is played.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;So far the Pi hasn’t taken on any extra load from these services (the bulk of the CPU usage lies - understandably - with chuck and darkice). Admittedly the Pi’s not serving many simultaneous connections. Still, what an awesome little machine, eh?&lt;/p&gt;
+
+&lt;p&gt;There’s more work that could be done: as the metadata is currently bundled into the filename it’s tempting to set up a database to keep track of the data at the node end, and simplify the file names to simple ids. The db would be built in sqlite or maybe one of those fancy nosql dbs I’ve hearing about. So many possibilities…&lt;/p&gt;
+</description>
+        <pubDate>Sun, 30 Apr 2017 00:00:00 +1200</pubDate>
+      </item>
     
       <item>
         <title>New sounds by Adrien Capozzi</title>
