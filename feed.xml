@@ -5,7 +5,20 @@
     <atom:link href="https://concrete-mixer.github.io/feed.xml" rel="self" type="application/rss+xml"/>
     <link>https://concrete-mixer.github.io/</link>
     <description>Audio coding, ambient sound, musique concrète, internet radio.</description>
-    <pubDate>Sun, 30 Apr 2017 21:43:57 +1200</pubDate>
+    <pubDate>Sat, 06 May 2017 21:54:54 +1200</pubDate>
+    
+      <item>
+        <title>Concrète Mixer now available on TuneIn</title>
+        <link>https://concrete-mixer.github.io/2017/05/tunein</link>
+        <guid isPermaLink="true">https://concrete-mixer.github.io/2017/05/tunein</guid>
+        <description>&lt;p&gt;Concrète Mixer is now available in TuneIn, either &lt;a href=&quot;http://tunein.com/radio/Concr%C3%A8te-Mixer-s291379/&quot;&gt;from the website&lt;/a&gt; or via its various apps.&lt;/p&gt;
+
+&lt;p&gt;Just to prove it, here’s a TuneIn embedded player for the station:&lt;/p&gt;
+
+&lt;iframe src=&quot;http://tunein.com/embed/player/s291379/&quot; style=&quot;width:100%;height:100px;&quot; scrolling=&quot;no&quot; frameborder=&quot;no&quot;&gt;&lt;/iframe&gt;
+</description>
+        <pubDate>Sat, 06 May 2017 00:00:00 +1200</pubDate>
+      </item>
     
       <item>
         <title>Real time track data added to home page</title>
