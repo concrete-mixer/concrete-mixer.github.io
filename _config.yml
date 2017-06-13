@@ -1,0 +1,39 @@
+# Site settings
+title: Concrète Mixer
+description: 'Shredded field recording ambience'
+url: 'https://concrete-mixer.github.io'
+baseurl: '/'
+# google_analytics: 'UA-XXXXXX-X'
+# disqus_shortname: 'your-disqus-name'
+
+author:
+  name: 'Concrète Mixer'
+  email: concretemixer.audio@gmail.com
+  twitter_username: soundsconcrete
+  facebook_username:
+  github_username:  concrete-mixer
+  linkedin_username:
+
+defaults:
+  -
+    scope:
+      path: ''
+      type: 'posts'
+    values:
+        layout: 'post'
+
+# Build settings
+destination: _site
+paginate: 10
+permalink: /:year/:month/:title/
+markdown: kramdown
+highlighter: rouge
+
+kramdown:
+  # use Github Flavored Markdown
+  input: GFM
+  # do not replace newlines by <br>s
+  hard_wrap: false
+
+gems: ['jekyll-paginate']
+exclude: ['README.md', 'Gemfile', 'Gemfile.lock', 'screenshot.png']
