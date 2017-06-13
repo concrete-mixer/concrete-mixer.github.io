@@ -1680,3 +1680,26 @@ input[type="tel"] {
 	.btn, .navigation__item a {
 		display: block;
 		margin-bottom: .4em; } }
+
+#nowPlaying {
+    margin-top: 1em;
+}
+
+#nowPlayingLabel {
+    color: #e25440;
+    font-weight: bold;
+}
+
+#nowPlaying p {
+    margin-bottom: 0.5em;
+    padding: 0 0.5em;
+}
+
+#nowPlaying p a:hover {
+    color: #1dabbf;
+    text-decoration: underline;
+}
+
+.panel-cover--collapsed #nowPlaying, .panel-cover--collapsed #cmPlayer {
+    display: none;
+}
