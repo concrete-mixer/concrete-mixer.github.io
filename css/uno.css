@@ -1688,6 +1688,7 @@ input[type="tel"] {
 #nowPlayingLabel {
     color: #e25440;
     font-weight: bold;
+    display: none;
 }
 
 #nowPlaying p {

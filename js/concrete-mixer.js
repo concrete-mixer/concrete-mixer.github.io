@@ -1,4 +1,10 @@
-// hey ho it's jquery
+---
+layout: null
+sitemap:
+  exclude: 'yes'
+---
+
+// hey ho it's some jquery
 $(document).ready(function() {
   // do it like this for now
   contributor_sites = {
@@ -29,13 +35,13 @@ $(document).ready(function() {
         setStreamHtml.bind($el, data)
       }
       else {
-        $el.show(500, setStreamHtml.bind($el, data))
+        $el.fadeOut(500, setStreamHtml.bind($el, data))
       }
     }
   };
 
   var setStreamHtml = function(data) {
-    $el = this
+    var $el = this
 
     var contributorName = data.recordist
 
@@ -53,10 +59,18 @@ $(document).ready(function() {
             + ': <a href="' + track.permalink_url
             + '" target="_blank">' + data.file + '</a>'
           )
+
+          $el.fadeIn(500)
         });
     }
     else {
       $el.html(contributorName + ': ' + data.file);
+
+      $el.fadeIn(500)
+    }
+
+    if ( $('#nowPlayingLabel').css('display') === 'none' ) {
+      $('#nowPlayingLabel').fadeIn(500)
     }
   }
 
