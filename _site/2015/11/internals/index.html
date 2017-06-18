@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+
+  <title>Gastroscopy of Concrète Mixer</title>
+  <meta name="description" content="This post describes what Concrète Mixer is doing when it does its thing.
+
+">
+  <meta name="author" content="Concrète Mixer">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Gastroscopy of Concrète Mixer">
+  <meta name="twitter:description" content="This post describes what Concrète Mixer is doing when it does its thing.
+
+">
+  
+  <meta name="twitter:creator" content="soundsconcrete">
+  
+  <meta name="twitter:image" content="//images/favicons/favicon-194x194.png" />
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Gastroscopy of Concrète Mixer">
+  <meta property="og:description" content="This post describes what Concrète Mixer is doing when it does its thing.
+
+">
+  <meta property="og:image" content="//images/favicons/favicon-194x194.png" />
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <meta name="theme-color" content="#ffffff">
+
+  <link rel="stylesheet" href="/css/main.css?1497782518209214020">
+  <link rel="canonical" href="https://concrete-mixer.github.io//2015/11/internals/">
+  <link rel="alternate" type="application/rss+xml" title="Concrète Mixer" href="/feed.xml">
+
+    <script src="https://cdn.jsdelivr.net/sockjs/1/sockjs.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="https://connect.soundcloud.com/sdk/sdk-3.1.2.js"></script>
+  <script src="/js/concrete-mixer.js"></script>
+
+</head>
+
+
+  <body>
+    <span class="mobile btn-mobile-menu">
+  <i class="icon icon-list btn-mobile-menu__icon"></i>
+  <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+</span>
+
+<header class="panel-cover" style="background-image: url(/images/cover.jpg)">
+  <div class="panel-main">
+
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+        <a href="/" title="link to home of Concrète Mixer">
+          <img src="/images/profile.jpg" class="user-image" alt="My Profile Photo">
+          <h1 class="panel-cover__title panel-title">Concrète Mixer</h1>
+        </a>
+        <hr class="panel-cover__divider">
+        <p class="panel-cover__description">An internet radio station dedicated to shredded field recording ambience</p>
+
+        <div id="cmPlayer">
+          <hr class="panel-cover__divider">
+          <audio
+            src="http://concrete-mixer.venturus.io/concrete-mixer.mp3"
+            volume="0.5"
+            controls
+          >
+          </audio>
+        </div>
+
+        <div id="nowPlaying">
+          <p id="nowPlayingLabel">Now playing</p>
+          <p id="stream1" style="display:none"></p>
+          <p id="stream2" style="display:none"></p>
+        </div>
+
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              <li class="navigation__item"><a id="blog-link" href="/#blog" title="link to Concrète Mixer blog" class="blog-button">Blog</a></li>
+              <li class="navigation__item"><a href="/contributors.html" title="link to Concrète Mixer contributors" class="blog-button">Contributors</a></li>
+              <li class="navigation__item"><a href="/2017/02/call-for-field-recordings/" title="link to Concrète Mixer contributors" class="blog-button">Donate sounds</a></li>
+            </ul>
+          </nav>
+          <br />
+
+          <nav class="cover-navigation navigation--social">
+            <ul class="navigation">
+          
+            
+              <!-- Twitter -->
+              <li class="navigation__item">
+                <a href="http://twitter.com/soundsconcrete" title="@soundsconcrete on Twitter" target="_blank">
+                  <i class="icon icon-social-twitter"></i>
+                  <span class="label">Twitter</span>
+                </a>
+              </li>
+            
+
+            
+
+            
+
+            
+              <!-- GitHub -->
+              <li class="navigation__item">
+                <a href="https://www.github.com/concrete-mixer" title="concrete-mixer on GitHub" target="_blank">
+                  <i class="icon icon-social-github"></i>
+                  <span class="label">GitHub</span>
+                </a>
+              </li>
+            
+
+            
+              <!-- Email -->
+              <li class="navigation__item">
+                <a href="mailto:concretemixer.audio@gmail.com" title="Email concretemixer.audio@gmail.com" target="_blank">
+                  <i class="icon icon-mail"></i>
+                  <span class="label">Email</span>
+                </a>
+              </li>
+            
+
+            <!-- RSS -->
+            <li class="navigation__item">
+              <a href="/feed.xml" title="Subscribe" target="_blank">
+                <i class="icon icon-rss"></i>
+                <span class="label">RSS</span>
+              </a>
+            </li>
+          
+            </ul>
+          </nav>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+
+    <div class="content-wrapper">
+      <div class="content-wrapper__inner">
+        <article class="post-container post-container--single">
+  <header class="post-header">
+    <div class="post-meta">
+      <time datetime="15 Nov 2015" class="post-meta__date date">15 Nov 2015</time>
+      
+    </div>
+    <h1 class="post-title">Gastroscopy of Concrète Mixer</h1>
+  </header>
+
+  <section class="post">
+    <p>This post describes what Concrète Mixer is doing when it does its thing.</p>
+
+<h1 id="complicated-diagram">Complicated diagram</h1>
+
+<p>The following is a schematic I put together describing all the componentry in Concrete Mixer:</p>
+
+<p><img src="/img/cm-schematic.svg" alt="Concrete Mixer flow diagram" /></p>
+
+<p>I started writing out what all this was doing and realised that in all honesty no one cares.</p>
+
+<h1 id="simple-diagram">Simple diagram</h1>
+
+<p>When you get down to it, what’s actually important is the pipeline for what the listener gets to hear. With this in mind, here’s a stripped down version of the diagram:</p>
+
+<p><img src="/img/cm-schematic-sensible.svg" alt="Concrete Mixer flow diagram simplified" /></p>
+
+<p>Key:</p>
+
+<ul>
+  <li>The pink line denotes the app being initiated</li>
+  <li>Purples lines denote flow of file names</li>
+  <li>Brown lines: OSC messages and play* entity (re)invocation</li>
+  <li>Blue lines: flow of audio signal from the play* entities to the sound card,</li>
+</ul>
+
+<h1 id="whats-going-on---in-brief">What’s going on - in brief</h1>
+
+<ul>
+  <li>The audio processing is written in <a href="http://chuck.cs.princeton.edu/">ChucK</a>.</li>
+  <li>The ChucK libraries are enveloped by a sticky layer of <a href="https://www.perl.org">Perl</a> which is there to do the things ChucK can’t do.</li>
+  <li>The Perl layer identifies the audio files to play (from directories the user has specified in <code class="highlighter-rouge">conf/concrete.conf</code>)</li>
+  <li>There are two distinct sound entities in play:
+    <ul>
+      <li>playSound (of which there can be multiple concurrent instances)</li>
+      <li>playFxChain (of which there can be only one at a time)</li>
+    </ul>
+  </li>
+  <li>The app takes at least one but possibly two directories of WAV files as the sound source</li>
+  <li>The app will stop playback once it has run out of wave files to play, or, because ChucK leaks memory, when the app has used more than half the system RAM. Alternatively, if the user configures <code class="highlighter-rouge">endless_play=1</code> in <code class="highlighter-rouge">conf/concrete.conf</code>, the app will restart rather than end, and will thus play perpetually.</li>
+  <li>The app operates an OSC server in Perl space which receives signals from playSound and playFxChain that they have completed their tasks, and will generate new instances of both, until there are no more files left to play.</li>
+</ul>
+
+<h1 id="whats-going-on---less-briefly">What’s going on - less briefly</h1>
+
+<h2 id="playsound">playSound</h2>
+
+<p>The playSound entity is there to play wave files. The entity gets passed a filename by the OSC server, and then loads the file for playback. The playback period is divided into random lengths of time (dertived from the <code class="highlighter-rouge">bpm</code> value specified in <code class="highlighter-rouge">conf/global.conf</code>) in which the sound can be altered in some way. For any given period, there is a 1/8 chance that playback will be altered. When the decision to alter playback is made, a further random choice is taken as to what should be done. Possibilities include:</p>
+
+<ul>
+  <li>reversing playback</li>
+  <li>changing the recording’s pan position (if the sound is mono)</li>
+  <li>adding an effect to the sound (eg echo, reverb)</li>
+  <li>chopping up the playback in weird ways.</li>
+</ul>
+
+<p>In all there are 13 possible operations that can be performed. The 1/8 ratio of for doing something different is a value derived through experiment and in accordance with my taste. To my ears, it seems appropriate to keep the wave files performing normal playback most of the time, with occasional forays into non-standard transmission to make things interesting.</p>
+
+<h2 id="playfxchain">playFxChain</h2>
+
+<p>The playFxChain entity sets up an effects chain into which playSounds are fed. There are 25 different effects chains available. These chains contain different combinations of effects defined in lib/Fx, which has 14 different effects libraries available. Most of these effects are built in to ChucK but there are a few I’ve cobbled together. I might discuss these in a later post.</p>
+
+<p>playFxChains are instantiated for random periods of time, separate to playSounds. This means that a playFxChain instance may fade out during playback of one or more playSounds, only for a different chain to fade in moments later. The intended effect is an ever changing sound, with playSounds and playFxChains criss-crossing each other. Even when all sound happens to fade out at the same time, the result can still be interesting.</p>
+
+<h2 id="the-osc-server">The OSC server</h2>
+
+<p>In Perl space the app operates an OSC server. OSC stands for <a href="https://en.wikipedia.org/wiki/Open_Sound_Control">Open Sound Control</a>, a simplish protocol that is intended to be a sort of <a href="https://en.wikipedia.org/wiki/MIDI">MIDI</a> internet protocol. ChucK has OSC support, so it seemed the natural way for the ChucK to communicate with the Perl layer. So when each playSound and playFxChain instance have completed their task, they signal the OSC server, which will kick off another instance of the entity.</p>
+
+<p>So that, in a nutshell, is how Concrete Mixer works.</p>
+
+  </section>
+  
+</article>
+
+
+
+      </div>
+
+      <footer class="footer">
+  <span class="footer__copyright">&copy; 2017 Concrète Mixer. All rights reserved.</span>
+</footer>
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script type="text/javascript" src="/js/main.js?1497782518209214020"></script>
+
+
+    </div>
+  </body>
+</html>

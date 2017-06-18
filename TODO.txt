@@ -1,0 +1,2 @@
+- Fix it so we only fade in now playing
+- Clicking blog twice makes player disappear

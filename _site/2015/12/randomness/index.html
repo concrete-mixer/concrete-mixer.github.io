@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+
+  <title>Randomness in sound</title>
+  <meta name="description" content="A somewhat chin-strokey examination of how chance can be applied to open-ended electronic audio.
+
+">
+  <meta name="author" content="Concrète Mixer">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Randomness in sound">
+  <meta name="twitter:description" content="A somewhat chin-strokey examination of how chance can be applied to open-ended electronic audio.
+
+">
+  
+  <meta name="twitter:creator" content="soundsconcrete">
+  
+  <meta name="twitter:image" content="//images/favicons/favicon-194x194.png" />
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Randomness in sound">
+  <meta property="og:description" content="A somewhat chin-strokey examination of how chance can be applied to open-ended electronic audio.
+
+">
+  <meta property="og:image" content="//images/favicons/favicon-194x194.png" />
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <meta name="theme-color" content="#ffffff">
+
+  <link rel="stylesheet" href="/css/main.css?1497782518209214020">
+  <link rel="canonical" href="https://concrete-mixer.github.io//2015/12/randomness/">
+  <link rel="alternate" type="application/rss+xml" title="Concrète Mixer" href="/feed.xml">
+
+    <script src="https://cdn.jsdelivr.net/sockjs/1/sockjs.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="https://connect.soundcloud.com/sdk/sdk-3.1.2.js"></script>
+  <script src="/js/concrete-mixer.js"></script>
+
+</head>
+
+
+  <body>
+    <span class="mobile btn-mobile-menu">
+  <i class="icon icon-list btn-mobile-menu__icon"></i>
+  <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+</span>
+
+<header class="panel-cover" style="background-image: url(/images/cover.jpg)">
+  <div class="panel-main">
+
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+        <a href="/" title="link to home of Concrète Mixer">
+          <img src="/images/profile.jpg" class="user-image" alt="My Profile Photo">
+          <h1 class="panel-cover__title panel-title">Concrète Mixer</h1>
+        </a>
+        <hr class="panel-cover__divider">
+        <p class="panel-cover__description">An internet radio station dedicated to shredded field recording ambience</p>
+
+        <div id="cmPlayer">
+          <hr class="panel-cover__divider">
+          <audio
+            src="http://concrete-mixer.venturus.io/concrete-mixer.mp3"
+            volume="0.5"
+            controls
+          >
+          </audio>
+        </div>
+
+        <div id="nowPlaying">
+          <p id="nowPlayingLabel">Now playing</p>
+          <p id="stream1" style="display:none"></p>
+          <p id="stream2" style="display:none"></p>
+        </div>
+
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              <li class="navigation__item"><a id="blog-link" href="/#blog" title="link to Concrète Mixer blog" class="blog-button">Blog</a></li>
+              <li class="navigation__item"><a href="/contributors.html" title="link to Concrète Mixer contributors" class="blog-button">Contributors</a></li>
+              <li class="navigation__item"><a href="/2017/02/call-for-field-recordings/" title="link to Concrète Mixer contributors" class="blog-button">Donate sounds</a></li>
+            </ul>
+          </nav>
+          <br />
+
+          <nav class="cover-navigation navigation--social">
+            <ul class="navigation">
+          
+            
+              <!-- Twitter -->
+              <li class="navigation__item">
+                <a href="http://twitter.com/soundsconcrete" title="@soundsconcrete on Twitter" target="_blank">
+                  <i class="icon icon-social-twitter"></i>
+                  <span class="label">Twitter</span>
+                </a>
+              </li>
+            
+
+            
+
+            
+
+            
+              <!-- GitHub -->
+              <li class="navigation__item">
+                <a href="https://www.github.com/concrete-mixer" title="concrete-mixer on GitHub" target="_blank">
+                  <i class="icon icon-social-github"></i>
+                  <span class="label">GitHub</span>
+                </a>
+              </li>
+            
+
+            
+              <!-- Email -->
+              <li class="navigation__item">
+                <a href="mailto:concretemixer.audio@gmail.com" title="Email concretemixer.audio@gmail.com" target="_blank">
+                  <i class="icon icon-mail"></i>
+                  <span class="label">Email</span>
+                </a>
+              </li>
+            
+
+            <!-- RSS -->
+            <li class="navigation__item">
+              <a href="/feed.xml" title="Subscribe" target="_blank">
+                <i class="icon icon-rss"></i>
+                <span class="label">RSS</span>
+              </a>
+            </li>
+          
+            </ul>
+          </nav>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+
+    <div class="content-wrapper">
+      <div class="content-wrapper__inner">
+        <article class="post-container post-container--single">
+  <header class="post-header">
+    <div class="post-meta">
+      <time datetime="10 Dec 2015" class="post-meta__date date">10 Dec 2015</time>
+      
+    </div>
+    <h1 class="post-title">Randomness in sound</h1>
+  </header>
+
+  <section class="post">
+    <p>A somewhat chin-strokey examination of how chance can be applied to open-ended electronic audio.</p>
+
+<p>When starting out writing audio processing scripts my plan was to devise a system that would generate sound sufficiently complex that by listening to it I wouldn’t be able to determine how it had been constructed.  I’m not sure quite why this idea interests me, but I guess I like suprises.</p>
+
+<p>The problem with this approach is that writing something that baffles you requires a lot of complexity and a lot of time - something at odds with the amount of time (generally, nocturnal dilettanting) that I can invest. Concrete Mixer ended up being a compromise. Take some real world sounds (ie don’t invest a lot of effort in complex signal generation) and devise a broad range of operations that could be applied to them, determined by chance.</p>
+
+<h1 id="go-plenty-random">Go plenty random</h1>
+
+<p>Concrete Mixer makes a lot of choices in determining the sound that is output:</p>
+
+<ul>
+  <li>The order in which sound files are played (and which consequently which files will be mixed with each other). Even with a few dozen files the number of possible combinations of sounds in a single render run is enormous.</li>
+  <li>The order in which effects are applied - there are 25 effects chains, which chosen randomly.</li>
+  <li>The amount of time an effect or sound playback manipulation is applied: each sound playback is divided into random stretches of time. For 7/8 of these segments, sample playback will proceed in a normal fashion; for the other 1/8 sound manipulation will be performed. Similarly, each effects chain is applied for a random period. Multiplying these factors, in any 20 second period some change in playback is being determined.</li>
+  <li>Further to this, each time some sound manipulation is performed, it may have many parameters that are determined randomly.</li>
+</ul>
+
+<p>What I really want to convey is that the parameter space for CM is huge and thus, however subtly it may seem, every time you listen to it it is playing in a way it has never played before, or will again.</p>
+
+<p>Additionally, part of the process of improving CM is providing even more choices and consequently more variety and uniqueness.</p>
+
+<h1 id="but-never-go-full-random">But never go full random</h1>
+
+<p>Randomness is good, but there’s a hefty constraint to be applied: whatever and however many decisions get made, the result has to sound good. There’s no point writing an app that regularly presents its sounds in a way that listeners don’t like.</p>
+
+<p>An early iteration of Concrete Mixer called Sound Forest frequently sounded poor, mostly because I had the parameter space for the effects chain so open that a often the choices made were nonsensical. Even so I remained undaunted: I even earnestly explained in the README file that although the app would often sound terrible, that this was in fact a virtue. Eventually it occurred to me that things had to be reined in a bit. I’ve always been sceptical about musicians who are enamoured with process over result, and going full random with awkward results is less ideal than providing a constrained but more rewarding set of possibilities.</p>
+
+<p>Even so, there’s no way that a computer arbitrarily making choices will always make the optimum choice for the sound files being played. Not without some fiendish piece of sound analysis. In this sense CM will never be the equal of a deliberate composition of Musique Concrete. Looking at it another way though, when an apt choice does get made, you can appreciate it more for being a product of chance rather than intent.</p>
+
+  </section>
+  
+</article>
+
+
+
+      </div>
+
+      <footer class="footer">
+  <span class="footer__copyright">&copy; 2017 Concrète Mixer. All rights reserved.</span>
+</footer>
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script type="text/javascript" src="/js/main.js?1497782518209214020"></script>
+
+
+    </div>
+  </body>
+</html>
