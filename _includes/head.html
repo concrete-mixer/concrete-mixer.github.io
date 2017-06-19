@@ -21,13 +21,13 @@
   {% if site.author.twitter_username %}
   <meta name="twitter:creator" content="{{ site.author.twitter_username }}">
   {% endif %}
-  <meta name="twitter:image" content="{{ site.baseurl }}/images/favicons/favicon-194x194.png" />
+  <meta name="twitter:image" content="{{ site.baseurl }}/images/favicons/social-image.jpg">
 
   <meta property="og:type" content="article">
   <meta property="og:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}">
   <meta property="og:description" content="{% if page.excerpt %}{{ page.excerpt | strip_html }}{% else %}{{ site.description }}{% endif %}">
-  <meta property="og:image" content="{{ site.baseurl }}/images/favicons/favicon-194x194.png" />
-  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <meta property="og:image" content="{{ site.baseurl }}/images/favicons/social-image.jpg">
+  <link rel="icon" href="/images/favicons/favicon.ico" type="image/x-icon" />
   <meta name="theme-color" content="#ffffff">
 
   <link rel="stylesheet" href="{{ "css/main.css" | prepend: site.baseurl }}?{{site.time | date: '%s%N'}}">
