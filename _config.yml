@@ -4,7 +4,7 @@ description: 'An internet radio station dedicated to shredded field recording am
 url: 'https://concrete-mixer.github.io'
 baseurl: '/'
 google_analytics: 'UA-70881154-1'
-# disqus_shortname: 'your-disqus-name'
+disqus_shortname: 'concretemixer'
 
 author:
   name: 'Concrète Mixer'
