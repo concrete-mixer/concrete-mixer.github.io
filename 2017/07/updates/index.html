@@ -6,8 +6,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   
 
-  <title>Real time track data added to home page</title>
-  <meta name="description" content="You should notice that there’s a “Now playing” section in the “hero image” on the home page which lists tracks currently playing in the Concrète Mixer audio stream. I’ve achieved this by:
+  <title>Updates to site and sounds</title>
+  <meta name="description" content="There’s been a few updates lately.
 
 ">
   <meta name="author" content="Concrète Mixer">
@@ -18,8 +18,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Real time track data added to home page">
-  <meta name="twitter:description" content="You should notice that there’s a “Now playing” section in the “hero image” on the home page which lists tracks currently playing in the Concrète Mixer audio stream. I’ve achieved this by:
+  <meta name="twitter:title" content="Updates to site and sounds">
+  <meta name="twitter:description" content="There’s been a few updates lately.
 
 ">
   
@@ -28,8 +28,8 @@
   <meta name="twitter:image" content="/images/favicons/social-image.jpg">
 
   <meta property="og:type" content="article">
-  <meta property="og:title" content="Real time track data added to home page">
-  <meta property="og:description" content="You should notice that there’s a “Now playing” section in the “hero image” on the home page which lists tracks currently playing in the Concrète Mixer audio stream. I’ve achieved this by:
+  <meta property="og:title" content="Updates to site and sounds">
+  <meta property="og:description" content="There’s been a few updates lately.
 
 ">
   <meta property="og:image" content="/images/favicons/social-image.jpg">
@@ -37,7 +37,7 @@
   <meta name="theme-color" content="#ffffff">
 
   <link rel="stylesheet" href="/css/main.css?1498983850919549029">
-  <link rel="canonical" href="https://concrete-mixer.github.io//2017/04/real-time-track-data/">
+  <link rel="canonical" href="https://concrete-mixer.github.io//2017/07/updates/">
   <link rel="alternate" type="application/rss+xml" title="Concrète Mixer" href="/feed.xml">
 
     <script src="https://cdn.jsdelivr.net/sockjs/1/sockjs.min.js"></script>
@@ -167,36 +167,54 @@
         <article class="post-container post-container--single">
   <header class="post-header">
     <div class="post-meta">
-      <time datetime="30 Apr 2017" class="post-meta__date date">30 Apr 2017</time>
+      <time datetime="2 Jul 2017" class="post-meta__date date">2 Jul 2017</time>
       
     </div>
-    <h1 class="post-title">Real time track data added to home page</h1>
+    <h1 class="post-title">Updates to site and sounds</h1>
   </header>
 
   <section class="post">
-    <p>You should notice that there’s a “Now playing” section in the “hero image” on the home page which lists tracks currently playing in the Concrète Mixer audio stream. I’ve achieved this by:</p>
+    <p>There’s been a few updates lately.</p>
 
-<ul>
-  <li>Adding extra <a href="http://opensoundcontrol.org">OSC</a> request calls to <code class="highlighter-rouge">playSound.ck</code> within Concrète Mixer, which broadcast the file name being played</li>
-  <li>Adding a <a href="https://nodejs.org">nodejs</a> server which:
-    <ul>
-      <li>Listens for OSC notifications from <code class="highlighter-rouge">playSound.ck</code>, converting the file name into three parts:
-        <ol>
-          <li>Sound contributor</li>
-          <li>Description of sound</li>
-          <li>Soundcloud track ID (if available)</li>
-        </ol>
-      </li>
-      <li>Broadcasts the data to connected browsers via websockets (or other appropriate technology via <a href="https://github.com/sockjs">sock.js</a>)</li>
-    </ul>
-  </li>
-  <li>Added <a href="https://www.nginx.com">nginx</a> to proxy both the node server and the mp3 stream to downstream consumers</li>
-  <li>Adding javascript (humble <a href="https://jquery.com/">jQuery</a>) to the homepage which updates the text under the player when a new track is played.</li>
-</ul>
+<h2 id="new-site-theme">New site theme</h2>
 
-<p>So far the Pi hasn’t taken on any extra load from these services (the bulk of the CPU usage lies - understandably - with chuck and darkice). Admittedly the Pi’s not serving many simultaneous connections. Still, what an awesome little machine, eh?</p>
+<p>I’ve upgraded the <a href="https://jekyllrb.com/">Jekyll</a> <a href="https://github.com/joshgerdes/jekyll-uno">theme</a> on this site to something less literally concretey, and less bloggy. There is still a blog, of course, it’s just a bit more in the background, with the audio stream controls more to the fore.</p>
 
-<p>There’s more work that could be done: as the metadata is currently bundled into the filename it’s tempting to set up a database to keep track of the data at the node end, and simplify the file names to simple ids. The db would be built in sqlite or maybe one of those fancy nosql dbs I’ve hearing about. So many possibilities…</p>
+<p>The new theme is more mobile-friendly too, for those who like their <i>musique concrète</i> on the go…</p>
+
+<h2 id="concrte-mixer-changes">Concrète Mixer changes</h2>
+
+<p>Additionally, I’ve made some changes to the audio out of Concrète Mixer…</p>
+
+<h3 id="upped-gain-on-field-recordings">Upped gain on field recordings</h3>
+
+<p>I’ve bumped the gain on the audio files so they’re a bit louder, which hopefully will mean less volume cranking on your audio device, but also no speaker blowouts. Be careful!</p>
+
+<p>Aesthetic side note: I’ve found that when you are randomly mixing field recordings managing the gain on any particular recording isn’t an exact science; in fact to be honest it’s a pretty Quixotic endeavour. One recording can sound quiet against some recordings and too loud against others.</p>
+
+<p>Regardless of RMS or peak volume I’ve found that as a rule, recordings with continuous sound through a wide range of frequencies need to have their gain lowered, so that quieter recordings punctuated by occasional narrow frequency loudness can be discerned. You can imagine everything gets a bit muddy when two noisy recordings are played together. Oh well.</p>
+
+<h3 id="some-sounds-have-been-removed">Some sounds have been removed</h3>
+
+<p>I’ve retired some sounds from the Concrète Mixer collection: recordings that have been superseded by recordings contributed by others, and sounds that aren’t really field recordings. Examples of the latter include: a recording of <a href="https://www.youtube.com/watch?v=XDvnNeCDDi8">my old synthesiser</a> burbling away; <a href="https://www.youtube.com/watch?v=USzGCdoLhjQ">a bit of jew’s harp</a> I took from a <a href="https://en.wikipedia.org/wiki/John_Berger">John Berger</a> documentary; and a very pretty song from <a href="https://en.wikipedia.org/wiki/Mothra_vs._Godzilla">Mothra vs Godzilla</a>.</p>
+
+<p>These obviously aren’t field recordings, so you might wonder how they fit in to Concrète Mixer’s brief. Well they don’t, much, but as a huge fan of collage ambient in the vein of the KLF and the Orb, I thought they worked well. I’m a bit sorry to see these eccentric oddments going, to be honest, but focusing on a central theme of field recordings for this endeavour seems to be a more sobre and sensible (if boring) approach.</p>
+
+<h3 id="changes-to-the-effects-chain">Changes to the effects chain</h3>
+
+<p>The effects chain has been pared back:
+- Now centre mono rather than two (one delayed) channel.
+- The chains themselves have been reduced from 26 to 20, with fewer distortion effects applied.</p>
+
+<p>I decided to do this work because there are now third party contributors and I don’t want effects clouding their recordings over-excessively. It’s one thing to mangle my own sounds, another to mangle other people’s. That said, I can’t quite face the thought of removing the effects all together because they’re the most interesting bit of Concrète Mixer for me. They’re just a bit more respectful now.</p>
+
+<p>As well as taking effects away, I’ve added a new effect which I call SpeedDelay. This works on a similar principle of the <code class="highlighter-rouge">Chugen</code> ReverseDelay by writing signal to an array, and reading them back later, but parts company by reading the array by skipping or reading samples multiple times, with the effect that the original signal is multiplied in frequecy.</p>
+
+<p>The available playback speeds speeds are 0.5x, 1x (ie. normal), 2x, 3x, 4x and 0.5x. To make things a bit weirder the delay is randomly changed in pitch for one array’s length of samples, meaning that if the delay speed is 2x, you’ll hear the sped up sample twice (since it takes two iterations to play back an array length if you’re skipping one sample in two). The result sounds a bit like a demented parrot squawking in the background. It would be nice to interpolate the speeds in sub-sample resolution, but I think that would require math. Anyway, see what you think.</p>
+
+<h2 id="the-future">The future</h2>
+
+<p>There’s always more room for more contributions and more refinements to the sound. How things progress will depend on time and energy on my part.</p>
 
   </section>
   <section id="disqus_thread"></section><!-- /#disqus_thread -->
@@ -204,8 +222,8 @@
 
     <script type="text/javascript">
       var disqus_config = function () {
-        this.page.url = 'https://concrete-mixer.github.io/2017/04/real-time-track-data/';  // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = '/2017/04/real-time-track-data'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        this.page.url = 'https://concrete-mixer.github.io/2017/07/updates/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = '/2017/07/updates'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
       };
 
       (function() { // DON'T EDIT BELOW THIS LINE
