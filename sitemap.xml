@@ -3,6 +3,21 @@
   
     
     <url>
+      <loc>https://concrete-mixer.github.io/2017/07/updates/</loc>
+      
+        <lastmod>2017-07-02T00:00:00+12:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
       <loc>https://concrete-mixer.github.io/2017/06/mjupton/</loc>
       
         <lastmod>2017-06-19T00:00:00+12:00</lastmod>
@@ -250,7 +265,7 @@
     <url>
       <loc>https://concrete-mixer.github.io/contributors</loc>
       
-        <lastmod>2017-06-22T21:48:42+12:00</lastmod>
+        <lastmod>2017-07-02T20:24:10+12:00</lastmod>
       
       
         <changefreq>monthly</changefreq>
@@ -265,7 +280,7 @@
     <url>
       <loc>https://concrete-mixer.github.io/feed.xml</loc>
       
-        <lastmod>2017-06-22T21:48:42+12:00</lastmod>
+        <lastmod>2017-07-02T20:24:10+12:00</lastmod>
       
       
         <changefreq>monthly</changefreq>
