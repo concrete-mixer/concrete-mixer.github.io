@@ -14,7 +14,7 @@ $(document).ready(function() {
   });
 
   // kick off sockJS connection
-  var sock = new SockJS('http://concretemixer.enrichme.io/cm-data');
+  var sock = new SockJS('http://concretemixer.enrichme.nz/cm-data');
   sock.onopen = function() {
     console.log('WS connection open');
   };
