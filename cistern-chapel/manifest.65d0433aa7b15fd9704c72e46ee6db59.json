@@ -1,16 +1,6 @@
 {
   "icons": [
     {
-      "src": "icon_32x32.526b5832e8b2f1c3ed0cf8e22cc7f355.png",
-      "sizes": "32x32",
-      "type": "image/png"
-    },
-    {
-      "src": "icon_16x16.fc8ef0952c29f5151219d5826b61428c.png",
-      "sizes": "16x16",
-      "type": "image/png"
-    },
-    {
       "src": "icon_512x512.a9050ed4e6074a8b0f94be95bbae5726.png",
       "sizes": "512x512",
       "type": "image/png"
@@ -26,7 +16,7 @@
   "short_name": "CisternChapel",
   "orientation": "portrait",
   "display": "standalone",
-  "start_url": "/index.html",
+  "start_url": "cistern-chapel",
   "description": "Cistern Chapel web audio sound art of sorts",
   "background_color": "black",
   "theme_color": "#883714"
