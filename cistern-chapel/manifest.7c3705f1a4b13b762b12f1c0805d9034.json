@@ -16,7 +16,7 @@
   "short_name": "CisternChapel",
   "orientation": "portrait",
   "display": "standalone",
-  "start_url": "cistern-chapel",
+  "start_url": "/cistern-chapel/index.html",
   "description": "Cistern Chapel web audio sound art of sorts",
   "background_color": "black",
   "theme_color": "#883714"
