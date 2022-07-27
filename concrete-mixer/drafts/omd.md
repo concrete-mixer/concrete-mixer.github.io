@@ -15,11 +15,11 @@ OMD were primarily formed and fronted by Merseysiders Andy McCluskey and Paul Hu
 
 # Orchestral Manoeuvres in the Dark (1980)
 
-OMD's album debut is a mixed bag. It's got the singles Electricity, Messages, and Red Frame/White Light. Electricity, as mentioned, is a rollicking Kraftwerkian number; the tune is a belter, although McCluskey's wailing double-tracked vocal doesn't quite have the dead-pan dignity of Ralf Hutter. Messages is perhaps the most 1980 song ever written. Sparingly written, with two chords for the verses and one for the break (no chorus!), the song is sustained entirely by its bleak concrete brutalist mood. Red Frame/White Light is a spirited piece of punk electronic.
+OMD's album debut is a mixed bag. It's got the singles Electricity, Messages, and Red Frame/White Light. Electricity, as mentioned, is a rollicking Kraftwerkian number; the tune is a belter, although McCluskey's wailing double-tracked vocal doesn't quite have the dead-pan dignity of Ralf Hutter. Messages is perhaps the most 1980 song ever written. Sparingly written, with two chords for the verses and one for the break (no chorus!), the song is sustained entirely by its bleak concrete brutalist mood. Red Frame/White Light is a spirited piece of punk electronic, a love letter to a public phone box the group used to arrange their affairs.
 
 My favourite song on the album is the Messerschmidt Twins, a gentle ballad about... something that has a well-observed arrangement.
 
-So far, a great debut, but there are some squirm-inducing moments. Mystereality is a flatline (although I'll concede the sax has a Roxy Music vibe), and the achingly beautiful song [Almost](https://genius.com/Orchestral-manoeuvres-in-the-dark-almost-lyrics) is marred by perhaps the most risible lyrics in the pop canon:
+So far, a great debut, but there are some squirm-inducing moments. Mystereality is a flatline (although I'll concede the sax has an agreeable Roxy Music vibe), Julia's Song is a dirgey drum-machine-and-organ number that goes on a bit too long. Dancing is throwaway silliness. Pretending to see the Future isn't quite there. Even the achingly beautiful [Almost](https://genius.com/Orchestral-manoeuvres-in-the-dark-almost-lyrics) is marred by perhaps the most risible lyrics in the pop canon:
 
     I'd travel oh so far
     To be where you are
@@ -30,9 +30,9 @@ So far, a great debut, but there are some squirm-inducing moments. Mystereality 
     It happens all the time
     To a friend of mine
 
-Come on, man...
+If there was ever a verse in desperate need of punching up, this is it.
 
-All up, though, a really impressive debut.
+Many first albums sound nothing like how a group will become. With OMD's self-titled debut, they emerged remarkably complete. Half the songs could sit comfortably on later albums; the only real difference is that there's more filler material than in subsequent releases (at least up to Dazzle Ships). So Orchestral Maneouvres in the Dark (the album) is a very assured beginning.
 
 # Organisation (1980)
 
@@ -147,4 +147,4 @@ From a Greatest Hits perspective, the best of the "desperate era" OMD singles (T
 
 What else to say? The group most like OMD, at least at inception, was Depeche Mode. Aside from OMD supporting Depeche for their famous 101 performance, the two groups weren't really in competition. But comparing their trajectories provides an interesting contrast. Depeche Mode managed to overcome the loss of their initial songwriter and metamorphose gradually into a transatlantic beacon for angsty teenagers. McCluskey and Humphrey, however, never transcended their original raison d'etre.
 
-So that's the strange story of OMD, trying to have their cake and eat it as experimentalists and pop idols. Triumph or catastrophe? Ultimately, yes! But such are the achievements of their heyday, they remain memorable To This Day.
+So that's the strange story of OMD, trying to have their cake and eat it as experimentalists and pop idols. Triumph or catastrophe? Ultimately, yes! But such were their achievements, that their legend lives on To This Day.
