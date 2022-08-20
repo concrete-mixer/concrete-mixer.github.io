@@ -1,55 +1,14 @@
-Survey of the following
+As previously recounted, I started exploring electronic music as a teenager. My earliest archaeological digs were spent at various public libraries, sifting through music in the category "Electronic".
 
-- Folding Planets
-- Zeus dude
-- That Manuel Gottsching one
+This category is pretty general, and took in various movements in the (at that time) 40 year history of electronic music. In addition to the sort of thing young me expected to appear in a category so labelled (Jarre, Vangelis, Tangerine Dream), there were stranger things hitherto beyond my ken. Wendy Carlos' Switched on Bach is one example. I didn't think much of it because despite Carlos' commitment to performing all the parts on a Moog, the resulting sound was pretty awful compared to a Baroque orchestra. Another example was Deutsche Grammophon's droll collection Stockhausen Festival of Hits! I found the "music" fascinating, but tended to regard it more as a curiosity (or, if I'm being honest, a source of amusement). There was Laurie Anderson's remarkable album Big Science. It's an album that does feature a modest amount of electronic instrumentation, but it's not really electronic; indeed arguably a spoken word/performance art work rather than a suite of music. 
 
-So when I was a young man, life was so simple that it basically boiled down to two axiomatic statements:
+After this there's the [New Age](https://en.wikipedia.org/wiki/New_Age) music. (My memory's hazy, but the library category may even have been "New Age/Electronic".) My parents had already inculcated me with a profound sense of skepticism about things New Age, but I despite this I held a low-level science fiction/UFO romantic/ancient alien/vague Eastern religion sympathy to these things. I got out on cassette the most definitely New Agey [Novus Magnificat: Beyond the Stargate](https://en.wikipedia.org/wiki/Novus_Magnificat) by one [Constance Demby](https://en.wikipedia.org/wiki/Constance_Demby). On listening, I wasn't too impressed, and after hearing stuff more to my liking, I kind of came to loathe it (esp its egregiously artificial Emulator cello patches!). After this experience I steered clear of anything that looked New Age. 
 
-1. Ambient music is good.
-2. New age music is terrible.
+In recent years, as I've exhausted the distressingly small vein of music I think is My Thing, I've explored further afield, often blundering into New Age. And while the majority of what I've heard isn't that great, I have indeed found some remarkable records, enough to suggest to me that my earlier prejudice was unwarranted, or at least insufficiently nuanced. Here follows a survey of these records.
 
-And to me the two genres were easy to distinguish. Over time and listening to dozens more albums I've found that 
-In middle age I've found it's a bit more complicated than that.
+# "Good" New Age albums
 
-# Definitions
-
-As a teenager my working definition of new age music was music with the following qualities:
-
-- harmonically simplistic
-- made by hippies
-- featured lots of Eastern accoutrements: eg tinkly bells
-- had terrible album cover art
-- featured terrible synth arrangements (see the Emulator cello samples on Constance Demby's Novus Magnificat)
-- very much 1980s
-- pan pipes
-- Celtic crap (eg Enya)
-- all about crystals and shit
-- emotionally nice-nice but artistically void.
-
-By contrast, Ambient was comprised of these aspects:
-
-- invented by Brian Eno, so had a bit of intellectual cachet
-- chill out music for when ravers flamed out in the early A.M.
-- smart drugs and Terence McKenna
-- more emotionally ambiguous - see Aphex Twin
-- had sense of humour (KLF, the Orb)
-- the way of the future
-
-
-# But over time
-
-Well, the more I heard, the more muddled things got. For starters, while teenage me saw 90s ambient as the recapitulation of 1970s music like Tangerine Dream and Jean Michel Jarre, early 20s me found that there weren't many 90s ambient albums that I actually liked. The KLF's Chill Out, and the Orb's first two albums are the only enduring classics in my mind. FSOL was too disjointed, Aphex Twin too gimmicky (it's true I love Selected Ambient Works 85-92, but it's a low-energy IDM album rather than ambient). Furthermore, actual listening of Eno's classics revealed that Discreet Music and Music for Airports was boring, and the only entry in his classic Ambient series that I care for is On Land (and the Laraaji album is, well, New Age!).
-
-From the New Age end, things got more ambiguous. From around 1997 to 2007 (although also beyond) I discovered Krautrock (other than Tangerine Dream and Kraftwerk) and exploring these albums I found that from the late 1970s, all these bands became New Age (perhaps most prominently Michael Rother, for whom New Age music was an escape from Krautrock poverty).
-
-But New Age itself was still terrible, right? That remained true for me until I began to discover albums that were both incontrovertibly New Age and undeniably good. Through Spotify I've encountered more of them. As penance for my earlier denigration, I feel compelled to discuss them here.
-
-# Good New Age albums
-
-(This list is not exhaustive, feel free to suggest your own!)
-
-## The Harmonic Choir - Hearing Solar Winds
+## The Harmonic Choir - Hearing Solar Winds (1982)
 
 I first heard throat singing on KLF's Chill Out. The KLF-loving members of my social circle assumed the effect was a resonant filter put on the singer's voice, so finding out later that humans could actually make those sounds was pretty astonishing.
 
@@ -83,7 +42,7 @@ Former Gong member Steve Hillage, with and wife/partner Miquette Giraudy were pr
 
 Rainbow Dome Musick was "Recorded for the Rainbow Dome at the Festival for Mind-Body-Spirit Olympia London April 21-29. 1979.", which should give you an idea. Things start with the sound of water trickling into a pool, which, on playing back just now encouraged my wife to use the bathroom. Other this sound and electric piano and synth waft in gently and lovingly. Gradually a spiraling sequencer comes in to play. Things waft about celestially, with Hillage's guitar making an appearance.
 
-Four Ever Rainbow starts with a ting sound sound and some raspy bass monosynth harmonic twiddling. There's some catlike sines and a plinky heavy delayed synth. It's very New Age, but more shockingly, it sounds like the Orb, and this is not a coincidence: Rainbow Dome Musick was a disc spun by the Orb's LX Paterson and the KLF's Jimmy Cauty when they (re)discovered ambient in the late 80s. Indeed, Hillage and Giraudy collaborated with the Orb on the wonderful Orb track Blue Room. All of this suggests the boundary between ambient and New Age is pretty porous.
+Four Ever Rainbow starts with a ting sound sound and some raspy bass monosynth harmonic twiddling. There's some catlike sines and a plinky heavy delayed synth. It's very New Age, but more shockingly, it sounds like the Orb, and this is not a coincidence: Rainbow Dome Musick was a disc spun by the Orb's LX Paterson and the KLF's Jimmy Cauty when they (re)discovered ambient in the late 80s. Indeed, Hillage and Giraudy collaborated with the Orb on the wonderful Orb track Blue Room. All of this suggests the boundary between ambient and New Age is more porous.
 
 ## Inter-dimensional music - Iasos (1975)
 
@@ -97,24 +56,40 @@ The first track, "77 Slightly Delayed", is a genial piece, synth-propelled and w
 
 Track 2, Midnight on Mars, is a gentle space jazz outing. Don't Trust The Kids, sounds more like Air than anything else? The track is attached to its followup, Blackouts, which erupts in a blaze of guitar solo.Shuttlecock is a geometric spiral of multiple guitars and afro rhythms. Concluding the album is the more straightforwardly New Agey Lotus Part I - IV, which shuffles around reasonably cheerfully, although some dissonance is allowed in at one point.
 
-To be honest, New Age of Earth is more straightforwardly New Age than Blackouts, but because of that it's less interesting. Is it New Age enough? Well, if you compare it to the primordial fire of Ash Ra Tempel's first album, it is, yes. If you compare it to something Hearts of Spacey, not so much. Interestingly, the Ashra album following BLackouts, Correlations (1979), was a more rock(!) affair, so it's almost like over the course of three albums Gottsching recanted his New Age swerve.
+To be honest, New Age of Earth is more straightforwardly New Age than Blackouts, but because of that it's less interesting. Is it New Age enough? Well, if you compare it to the primordial fire of Ash Ra Tempel's first album, it is, yes. If you compare it to something [Hearts of Spacey](https://en.wikipedia.org/wiki/Hearts_of_Space_Records), not so much. Interestingly, the Ashra album following BLackouts, Correlations (1979), was a more rock(!) affair, so it's almost like over the course of three albums Gottsching recanted his New Age swerve.
 
-Blackouts then, represents an imperfect example of Krautrock trend of evolving from experimental rock to a much softer, more appealing and largely New Age sound. Tangerine Dream, Michael Rother, Popul Vuh (earlier than most), and Cluster (on New Age label Sky Records!) all went there. Those that didn't largely faded into obscurity. Or were Kraftwerk. It was a strangely weak end to arguably the most fertile art music movement in the late 20th Century. On the other hand, if it paid for mortgages, I'm not going to argue with that.
+Blackouts then, represents an imperfect example of Krautrock trend of evolving from experimental rock to a much softer, more appealing and largely New Age sound. Tangerine Dream, Michael Rother, Popul Vuh (earlier than most), and Cluster (on increasingly New Age label Sky Records!) all went there. Those that didn't largely faded into obscurity. Or were Kraftwerk. It was a strangely weak end to arguably the most fertile art music movement in the late 20th Century. On the other hand, if it paid for mortgages, you know, good on it.
 
-## Enya - Watermark (1988)
+## Tony Scott - Music for Zen Meditation and Other Joys (1964)
 
-I adored Orinoco Flow when I first heard it, and the rest of Watermark when I eventually caught up with it. I didn't think much of Enya's followup, Shepherd Moons, though, and haven't bothered to hear anything else she's done. 
+Tony Scott was primarily a jazz clarinetist, but was interested in music from other cultures, and produced an album sufficiently early to be considered the first New Age album; you could make a case for it being a seminal ambient or World music album too. Hell, let's add fusion to the list too.
 
-Watermark is a joyous, exploratory, open-feeling album. Does it make me grit my teeth to say I still like it? Yes! But I can't deny it.
+The arrangement is very minimal: Scott & clarinet, plus koto and shakuhachi. At first the music sounds like standard minor key Japanese folk music, but Scott's clarinet puts in enough bend to the notes that you realise you're listening to something deliberately other. Basically what I'm saying is that Scott isn't merely - and I'm putting this perhaps too crudely - "going native", he's contributing his own ideas to the Japanese music.
 
-# Rounding it out
+And there's another joy to the album: being the first album of World or New Age music, it's completely unselfconscious. Clearly, purely New Age, without any of the bullshit that the genre later accreted.
 
-Thinking about these albums, my initial teenage thesis that New Age Good, Ambient Bad, is clearly insufficient. Can we make better definitions?
+My only criticism of the album, and it's a criticism of underlying mode of Japanese folk music generally: the minimal arrangement, the meditative mood, and the traditional scale used make the tracks pretty samey. Maybe that's the whole point, though: transporting the listener's mind to the same place, every time.
 
-Ambient being a more elusive genre, let's define it broadly and non-specifically as "low intensity music". You can add a lot more defining characterisitcs, but I think this definition is just specific enough to cage most music people would think of as ambient, while distinguishing it from genres few ambient makers and listeners would consider ambient (classical Symphonies, hard bop Jazz, black metal, and so forth).
+## Michael Stearns - Planetary Unfolding (1981)
 
-(I should point out I don't consider this an academic-grade definition, but a useful rule of thumb.)
+Michael Stearns' biggest claim to fame is scoring the early 90s "non-narrative" documentary film Baraka. But his career stretches back into the 70s, and Planetary Unfolding is a remarkable early 80s document. The first track, aptly (in every sense) titled "In the Beginning", unfurls inexorably from a quiet bass drone into a transcendent crescendo that I would have to say think is the most transcendiest and cresciendiest I've heard.
 
-With this definition of Ambient, New Age sits as a sub-genre where the intent it focused on spirituality, wellbeing and transcendence. 90s post-rave ambient has some crossover with New Age, but plenty of ambient music made before or since does not.
+The rest of the album proceeds with much the same resplendent majesty. The only duff track is Life in the Gravity Well, but even then because it contains a wailing chanteuse part that isn't to my taste. To be fair, it's not the wailing itself: there's a similar example in the KLF's Chill Out, which I think does work. It's the particular _style_ of this wailing: it's a New Age, swims-with-dolphins and births-underwater kind of a wail. No offense...
 
-As for my original "New Age music sucks thesis", my attitude has changed somewhat. I still feel the New Age movement as a whole is misguided at best and shonky at worst, but it has clearly attracted some pretty thoughtful musical practitioners. As with most enduring ideas (socialism, conservatism, materialsm), there's a kernel of value there, but it's not the whole story. I find it easier to respect art created without any underlying dogma. Or if there is a dogma, it's related to the art itself. In concrete terms, I do think Christian Metal is 
+The final track, Something's Moving, starts with a tickyticky sound that is quite odd for a concluding track, but it resolves all the more wonderfully for that.
+
+It's sort of hard to say that Plantary Unfolding is New Age, rather than space rock, or ambient. The main giveaway (apart from the singing) is the (actually most excellent) cover art, and the font of the album title. Perhaps also crucial to the album's winning quality is the use of early 80s analog-synthesis-in-its-prime synths, rather than mid 80s digital synths, which could be a bit brittle and tinny.
+
+A further revelation is that the album as a whole (not just the wail) reminds me of my favourite ambient album, the KLF's ambient classic Chill Out. This could be put down to the superficial similarity of the synthetic arrangements, but I suspect that somewhere deep down there is a kindred spirit between Rockman, King Boy, and New Age practitioners like Stearns. (Come to think of it, I've just remembered the KLF's obsession with Ley Lines. There's a bit of New Age even in pop's most piss-taking pranksters.)
+
+## James Holden - The Animal Spirits (2017)
+
+James Holden has a storied pedigree as a DJ and remixer with a sideline producing wonky electronica with a custom modular synth. With The Animal Spirits and The Inheritors, he took to recording with a band in a kind of 70s psychedelic jazz tribal(?) style. The Animal Spirits is absolutely top notch as Something I Genuinely Enjoy, but while pondering this survey I came to wonder "is this album New Age?"
+
+I don't have an easy answer without knowing more about the motivations of Holden and his cadre. But I detect a strong sense of paganism in the music. It's not necessarily a paganism from the past; it could equally be a paganism post-civilisation, which is - by any definition - of a new age. All the same, if the album is New Age, it's by a very different trajectory than Californian hippies'n'crystals.
+
+In any event, The Animal Spirits is brilliant. Each track's arrangement is simple enough to let the sound breathe, but complex enough to maintain interest.
+
+# Conclusions
+
+What can we conclude from this survey? I don't seem to have any insightful final thoughts other than: sufficiently good music will always transcend the dross of its genre. I still have an instinctive suspicion of New Age music because I think much (though not necessarily all) the underlying thinking behind the New Age movement is humbug. But these albums have taught me to - sometimes at least - be less quick to judge.
