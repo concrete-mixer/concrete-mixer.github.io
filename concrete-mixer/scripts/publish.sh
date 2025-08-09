@@ -15,6 +15,7 @@ git checkout cistern-chapel
 
 cp -ra /tmp/_site/* .
 rm -rf concrete-mixer
+rm -rf scripts
  
 git add *
 git commit
