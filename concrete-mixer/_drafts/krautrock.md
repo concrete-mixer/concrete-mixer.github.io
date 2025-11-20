@@ -1,32 +1,39 @@
+---
+layout: post
+title: Krautrock
+---
+
 Welcome to my idiosyncratic survey of Krautrock, the German experimental rock movement that flourished from the late 1960s to the late 1970s. I've already written about one of its chief pillars, Tangerine Dream, but there's a lot of other wonderful groups to explore.
 
 # What is
 
 If you want to know what Krautrock is, you'd best start with:
 
-- the BBC's [Krautrock: the Rebirth of Germany](https://www.youtube.com/watch?v=QP5dOKTB3ng).
-- the mercurial Julian Cope's Krautrock top 50 albums list. His is something of a superset of what I like (I'm not much fond of the more conventional psych rock of bands like the Cosmic Jokers, Amon Duul II, and Guru Guru), but it's pretty decent.
+- the BBC's [Krautrock: the Rebirth of Germany](https://www.youtube.com/watch?v=QP5dOKTB3ng)
+- the mercurial Julian Cope's Krautrock top 50 albums list. His is something of a superset of what I like (I'm not much fond of the more conventional psych rock of bands like the Cosmic Jokers, Amon Duul II, and Guru Guru), but it's pretty decent
 - And you probably won't go (too) wrong if you consult Wikipedia's Krautrock entry.
 
 # Kraftwerk
 
 There's not much to say about Kraftwerk that hasn't already been said, but my personal faves are Radio-Activity (1975), and Ralf und Florian (1973). They are an absolutely extraordinary outfit, a sort of electronic Beatles, in a way (I'm sure I'm not the first to make that comparison). Random notes:
 
-- the first two albums are highly experimental, and also (the odd gem aside) pretty shit. If you compare Kraftwek II (1971) and Computerworld (1981) years later, you'd scarcely credit it's the same band.
-- I think Computerworld is their apotheosis, although, as pretty much the first Techno album, it's arguably outside the realm of Krautrock altogether (Cope discounts any album after Autobahn as being Krautrock).
-- I love early Kraftwerk flute & piano tunes like Heimatlange and Morgenspaziergang. Ananassymphonie is also brilliant. Bit of a shame the group won't relrelease them properly. Hopefully one day that will change, assuming the master tapes still exist...
-- I prefer the first side of Trans Europe Express (I actually find the title track a bit dull, so side 2 is a complete bust for me).
-- I love that despite the near-reality of rhythm automation in the 1970s, Kraftwerk used live drums (with even the odd, very human error creeping into recordings). Man-machine indeed.
-- With the house-music retooling of the Mix album and tour in 1990, Kraftwerk kind of pioneered the whole heritage act thing.
-- Tour de France Soundtracks (2003) is both a dream come true (new Kraftwerk album!) and a deep disappointment (enough with the cycling already!)
+- the first two albums contain highly experimental tracks that are almost universally rubbish. I think what's missing is restraint, above all else. Their style crystalised better on Ralf und Florian, and Autobahn saw them on their way. It's a tragedy Ralf und Florian has not had any rereleases.
+- I think Computerworld is their best album, although, as pretty much the first Techno album, it's arguably outside the realm of Krautrock altogether (Cope discounts any album after Autobahn as being Krautrock; I understand the reasoning, but I'm more willing to keep them in as they only went on to become their own genre after that, so you might as well say that was part of how krautrock evolved.)
+- I love early Kraftwerk flute & piano tunes like _Heimatlange_ and _Morgenspaziergang_. _Ananassymphonie_ is also brilliant. Bit of a shame the group won't relrelease them properly. Hopefully one day that will change, assuming the master tapes still exist...
+- I prefer the first side of Trans Europe Express; I actually find the title track a bit dull.
+- I love that despite the near-reality of rhythm automation in the 1970s, Kraftwerk used live drums (with even the odd, very human errors in some recordings). Man-machine indeed.
+- With the house-music retooling of the Mix album and tour in 1990, Kraftwerk kind of pioneered the whole heritage act thing, and 35 years later they're still at it. Visionary!
+- Tour de France Soundtracks (2003) is both a dream come true (a 21st Century Kraftwerk album!) and a deep disappointment (enough with the cycling already!)
+- I really like the original mix of _Expo 2000_. It had the dignity and majesty of classics like Radio-Activity. The uptempo mixes seem a bit duff.
+- The only essential track on Tour de France Soundtracks is Aerodynamik, though Vitamin and the bonkers Elektrokardiogram aren't terrible.
 
 # Can
 
-I think of Kraftwerk, Can, and Tangerine Dream as the Krautrock Big Three. (I suspect most afficianados would rate Tangerine Dream at a distant third, but I strongly agree.) What I like about the three groups is that they have utterly different characters. Can is the most conventionally "rock" in arrangement, but also made highly idiosyncratic music, and had a stunningly impressive lineup of freaks and weirdos. My favourite album? Well, I would say that Tago Mago (1971) is the high mark, but the gentler Future Days (1974) is a sentimental favourite. Mad respect to Holger Czukay (RIP) for his startling solo albums (and music videos!).
+I think of Kraftwerk, Can, and Tangerine Dream as the Krautrock Big Three. (I suspect most afficionados would rate Tangerine Dream at a distant third, but I strongly disagree.) What I like about the three groups is that they have utterly different characters. Can is the most conventionally "rock" in arrangement, but they also made the weirdest music, and had a stunningly lineup of freaks and weirdos. My favourite album? Well, I would say that Tago Mago (1971) is the high mark, but the gentler Future Days (1974) is my sentimental favourite. Mad respect to Holger Czukay (RIP) too for his startling solo albums (and music videos!).
 
 # Neu!
 
-They produced three albums, but you could argue that they only wrote one song. Hah! (Wonder if that joke's been made before...) Ther debut album (1972) is the best, but Neu! '75 is a very decent swansong. The 26 minutes of actual material in Neu! 2 is also good (ignore those who claim the filler varispeed remixes that flesh out the album is an "innovative" precursor of remix culture; in reality it's a desperate attempt to bump an EP or mini album's worth of material to a full album status in order to recoup costs, and it's kind of embarrassing).
+They produced three albums, but they only wrote one song. Hah! (Wonder if that joke's been made before...) Their debut album (1972) is the best, but Neu! '75 is a very decent swansong. The 26 minutes of actual material in Neu! 2 is also good (ignore those who claim the filler varispeed remixes that flesh out the album is an "innovative" precursor of remix culture; in reality it's a desperate attempt to bump an EP or mini album's worth of material to a full album status in order to recoup costs, and it's kind of embarrassing).
 
 A shoutout to Klaus Dinger's band La Dusseldorf. The motorik pop of the first album is excellent, though his singing is pretty atrocious.
 
